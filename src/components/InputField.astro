@@ -1,0 +1,26 @@
+---
+const { label, unit, value, step, min, dataInput, dataUnitLabel } = Astro.props;
+---
+
+<div>
+  <label for={dataInput} class="mb-1.5 block text-body-sm text-secondary">
+    {label}
+    {unit && <span class="text-muted" data-unit-label={dataUnitLabel}>{unit}</span>}
+  </label>
+  <div class="relative">
+    <input
+      id={dataInput}
+      data-input={dataInput}
+      type="number"
+      step={step || "any"}
+      min={min || "0"}
+      value={value || ""}
+      class="w-full rounded-lg border border-subtle bg-primary px-3 py-2 text-body-md text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40"
+    />
+    {unit && (
+      <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-body-sm text-muted">
+        {unit}
+      </span>
+    )}
+  </div>
+</div>
