@@ -1,23 +1,73 @@
+---
+import "../styles/global.css";
+const { title = "Board Foot Calculator", description = "Free online board foot calculator for lumber." } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Google Fonts: Inter + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Primary meta tags -->
+    <title>{title} | Modern Board Foot Calculator</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="board foot calculator, lumber calculator, woodworking calculator, board feet, cut list, lumber cost"
+    />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://boardfootcalc.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} | Modern Board Foot Calculator`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://boardfootcalc.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Modern Board Foot Calculator" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | Modern Board Foot Calculator`} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Structured Data (WebApplication) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Modern Board Foot Calculator",
+      "url": "https://boardfootcalc.app/",
+      "description": description,
+      "applicationCategory": "Utilities",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    })}>
+    </script>
+
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen bg-canvas-soft text-ink font-sans antialiased">
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html { scroll-behavior: smooth; }
 </style>

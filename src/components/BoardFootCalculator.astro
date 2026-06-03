@@ -1,0 +1,721 @@
+<section
+  id="calculator"
+  class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-16"
+  data-calculator-root
+>
+  <div class="mb-8 text-center">
+    <span class="inline-block rounded-full bg-canvas-soft-2 px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-hairline-strong">
+      Free Online Tool
+    </span>
+    <h2 class="mt-3 text-display-xl text-ink">
+      Board Foot Calculator.
+    </h2>
+    <p class="mx-auto mt-2 max-w-2xl text-body-lg text-body">
+      Calculate board footage, visualize lumber dimensions, and manage a project cut list &mdash; all in one place.
+    </p>
+  </div>
+
+  <!-- Unit Toggle -->
+  <div class="mb-6 flex items-center justify-center gap-2">
+    <span class="text-body-sm text-body">Imperial</span>
+    <button
+      data-unit-toggle
+      class="relative inline-flex h-6 w-10 cursor-pointer items-center rounded-full border border-hairline bg-canvas transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-link/30"
+      role="switch"
+      aria-checked="false"
+      aria-label="Toggle metric units"
+    >
+      <span class="inline-block h-4 w-4 translate-x-0.5 transform rounded-full bg-ink transition-transform duration-200" data-toggle-dot></span>
+    </button>
+    <span class="text-body-sm text-body">Metric</span>
+  </div>
+
+  <!-- Input Dashboard -->
+  <div class="grid gap-6 lg:grid-cols-3">
+    <!-- Input Form Card -->
+    <div class="lg:col-span-2">
+      <div class="rounded-lg border border-hairline bg-canvas p-6 shadow-[0_0_0_1px_#00000014,0_1px_1px_#00000005,0_2px_2px_#0000000a]">
+        <div class="mb-4 flex items-center justify-between">
+          <h3 class="text-display-sm text-ink">Board Dimensions</h3>
+          <div class="flex items-center gap-1">
+            <span class="text-caption font-mono text-mute uppercase tracking-wide" data-unit-labels>
+              in / ft
+            </span>
+          </div>
+        </div>
+
+        <!-- Quick Presets -->
+        <div class="mb-5" data-presets-root>
+          <span class="mb-2 block text-body-sm-strong text-body">Quick Fill</span>
+          <div class="flex flex-wrap gap-2" data-presets-list>
+            <button data-preset="1.5,3.5,8" class="rounded-sm border border-hairline bg-canvas px-3 py-1.5 text-body-sm text-ink transition-colors hover:bg-canvas-soft-2">2&times;4 &mdash; 8'</button>
+            <button data-preset="1.5,3.5,10" class="rounded-sm border border-hairline bg-canvas px-3 py-1.5 text-body-sm text-ink transition-colors hover:bg-canvas-soft-2">2&times;4 &mdash; 10'</button>
+            <button data-preset="1.5,5.5,8" class="rounded-sm border border-hairline bg-canvas px-3 py-1.5 text-body-sm text-ink transition-colors hover:bg-canvas-soft-2">2&times;6 &mdash; 8'</button>
+            <button data-preset="1.5,7.25,8" class="rounded-sm border border-hairline bg-canvas px-3 py-1.5 text-body-sm text-ink transition-colors hover:bg-canvas-soft-2">2&times;8 &mdash; 8'</button>
+            <button data-preset="3.5,3.5,8" class="rounded-sm border border-hairline bg-canvas px-3 py-1.5 text-body-sm text-ink transition-colors hover:bg-canvas-soft-2">4&times;4 &mdash; 8'</button>
+            <button data-preset="0.75,5.5,8" class="rounded-sm border border-hairline bg-canvas px-3 py-1.5 text-body-sm text-ink transition-colors hover:bg-canvas-soft-2">1&times;6 &mdash; 8'</button>
+          </div>
+        </div>
+
+        <!-- Dimension Inputs -->
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div>
+            <label for="input-thickness" class="mb-1 block text-body-sm text-body">Thickness</label>
+            <div class="relative">
+              <input
+                id="input-thickness"
+                data-input="thickness"
+                type="number"
+                step="0.25"
+                min="0.1"
+                value="1.5"
+                class="form-input w-full rounded-sm border border-hairline bg-canvas px-3 py-2 text-body-md text-ink outline-none transition-colors focus:border-ink focus:ring-1 focus:ring-ink"
+              />
+              <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-body-sm text-mute" data-unit-label="thickness">in</span>
+            </div>
+          </div>
+          <div>
+            <label for="input-width" class="mb-1 block text-body-sm text-body">Width</label>
+            <div class="relative">
+              <input
+                id="input-width"
+                data-input="width"
+                type="number"
+                step="0.25"
+                min="0.1"
+                value="3.5"
+                class="form-input w-full rounded-sm border border-hairline bg-canvas px-3 py-2 text-body-md text-ink outline-none transition-colors focus:border-ink focus:ring-1 focus:ring-ink"
+              />
+              <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-body-sm text-mute" data-unit-label="width">in</span>
+            </div>
+          </div>
+          <div>
+            <label for="input-length" class="mb-1 block text-body-sm text-body">Length</label>
+            <div class="relative">
+              <input
+                id="input-length"
+                data-input="length"
+                type="number"
+                step="0.5"
+                min="0.5"
+                value="8"
+                class="form-input w-full rounded-sm border border-hairline bg-canvas px-3 py-2 text-body-md text-ink outline-none transition-colors focus:border-ink focus:ring-1 focus:ring-ink"
+              />
+              <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-body-sm text-mute" data-unit-label="length">ft</span>
+            </div>
+          </div>
+          <div>
+            <label for="input-quantity" class="mb-1 block text-body-sm text-body">Quantity</label>
+            <div class="relative">
+              <input
+                id="input-quantity"
+                data-input="quantity"
+                type="number"
+                step="1"
+                min="1"
+                value="1"
+                class="form-input w-full rounded-sm border border-hairline bg-canvas px-3 py-2 text-body-md text-ink outline-none transition-colors focus:border-ink focus:ring-1 focus:ring-ink"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Price & Add Button Row -->
+        <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div class="sm:col-start-1">
+            <label for="input-price" class="mb-1 block text-body-sm text-body">
+              Price <span class="text-mute" data-unit-label="price">per BF</span>
+            </label>
+            <div class="relative">
+              <input
+                id="input-price"
+                data-input="price"
+                type="number"
+                step="0.01"
+                min="0"
+                value="0"
+                class="form-input w-full rounded-sm border border-hairline bg-canvas px-3 py-2 text-body-md text-ink outline-none transition-colors focus:border-ink focus:ring-1 focus:ring-ink"
+              />
+              <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-body-sm text-mute">$</span>
+            </div>
+          </div>
+          <div class="flex items-end sm:col-span-1 sm:col-start-4">
+            <button
+              data-action="add-to-cart"
+              class="w-full rounded-sm bg-ink px-4 py-2.5 text-body-md-strong text-on-ink transition-opacity hover:opacity-90"
+            >
+              Add to Cut List
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Results -->
+        <div class="mt-6 flex items-center justify-between rounded-sm bg-canvas-soft p-4" data-live-results>
+          <div>
+            <span class="text-body-sm text-body">Board Footage</span>
+            <p class="text-display-sm text-ink" data-result-bf>0 BF</p>
+          </div>
+          <div class="text-right">
+            <span class="text-body-sm text-body">Cost</span>
+            <p class="text-display-sm text-ink" data-result-cost>$0.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visualizer Panel -->
+    <div class="lg:col-span-1">
+      <div class="flex h-full flex-col rounded-lg border border-hairline bg-canvas p-6 shadow-[0_0_0_1px_#00000014,0_1px_1px_#00000005,0_2px_2px_#0000000a]">
+        <h3 class="mb-3 text-display-sm text-ink">Lumber Preview</h3>
+        <div class="flex flex-1 items-center justify-center" data-visualizer-root>
+          <div class="visualizer-scene" data-visualizer-scene>
+            <div class="visualizer-box" data-visualizer-box>
+              <div class="visualizer-face visualizer-face-front" data-face="front">
+                <span data-face-label="front"></span>
+              </div>
+              <div class="visualizer-face visualizer-face-top" data-face="top">
+                <span data-face-label="top"></span>
+              </div>
+              <div class="visualizer-face visualizer-face-side" data-face="side">
+                <span data-face-label="side"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="mt-3 text-center text-caption text-mute">
+          Rough proportional representation
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Waste Factor -->
+  <div class="mx-auto mt-6 max-w-2xl">
+    <div class="rounded-lg border border-hairline bg-canvas p-6 shadow-[0_0_0_1px_#00000014,0_1px_1px_#00000005,0_2px_2px_#0000000a]">
+      <div class="flex items-center justify-between">
+        <label class="text-body-sm-strong text-body" for="waste-slider">
+          Waste Factor
+        </label>
+        <span class="font-mono text-body-md text-ink" data-waste-value>5%</span>
+      </div>
+      <input
+        id="waste-slider"
+        data-input="waste"
+        type="range"
+        min="0"
+        max="50"
+        value="5"
+        step="1"
+        class="mt-2 block w-full cursor-pointer accent-ink"
+      />
+      <div class="mt-1 flex justify-between text-caption text-mute">
+        <span>0%</span>
+        <span>50%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cut List -->
+  <div class="mt-10" data-cutlist-root>
+    <div class="mb-4 flex items-center justify-between">
+      <h3 class="text-display-sm text-ink">Project Cut List</h3>
+      <div class="flex items-center gap-3">
+        <span class="text-body-sm text-body" data-total-bf>Total: 0 BF</span>
+        <span class="text-body-sm text-body" data-total-cost>Cost: $0.00</span>
+        <button
+          data-action="clear-all"
+          class="rounded-sm border border-hairline bg-canvas px-3 py-1.5 text-body-sm text-body transition-colors hover:bg-canvas-soft-2"
+        >
+          Clear All
+        </button>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div
+      class="rounded-lg border border-hairline bg-canvas p-12 text-center shadow-[0_0_0_1px_#00000014,0_1px_1px_#00000005,0_2px_2px_#0000000a]"
+      data-empty-state
+    >
+      <p class="text-body-lg text-mute">No items yet.</p>
+      <p class="mt-1 text-body-sm text-mute">Add boards above to build your cut list.</p>
+    </div>
+
+    <!-- Table -->
+    <div class="hidden overflow-x-auto rounded-lg border border-hairline bg-canvas shadow-[0_0_0_1px_#00000014,0_1px_1px_#00000005,0_2px_2px_#0000000a]" data-table-wrapper>
+      <table class="w-full text-left text-body-sm">
+        <thead>
+          <tr class="border-b border-hairline bg-canvas-soft">
+            <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-hairline-strong">Thickness</th>
+            <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-hairline-strong">Width</th>
+            <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-hairline-strong">Length</th>
+            <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-hairline-strong">Qty</th>
+            <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-hairline-strong">BF</th>
+            <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-hairline-strong">Cost</th>
+            <th class="px-4 py-3"></th>
+          </tr>
+        </thead>
+        <tbody data-table-body></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Visualizer Styles -->
+<style>
+  .visualizer-scene {
+    width: 200px;
+    height: 200px;
+    perspective: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .visualizer-box {
+    width: 120px;
+    height: 80px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-24deg) rotateY(-30deg);
+    transition: transform 0.3s ease;
+  }
+
+  .visualizer-face {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    backface-visibility: hidden;
+    overflow: hidden;
+  }
+
+  .visualizer-face span {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    line-height: 1.2;
+    pointer-events: none;
+  }
+
+  .visualizer-face-front {
+    width: 120px;
+    height: 60px;
+    background: rgba(23, 23, 23, 0.08);
+    transform: translateZ(10px);
+  }
+
+  .visualizer-face-top {
+    width: 120px;
+    height: 20px;
+    background: rgba(23, 23, 23, 0.14);
+    transform: rotateX(90deg) translateZ(10px);
+    transform-origin: bottom center;
+  }
+
+  .visualizer-face-side {
+    width: 20px;
+    height: 60px;
+    background: rgba(23, 23, 23, 0.20);
+    transform: rotateY(-90deg) translateZ(10px);
+    transform-origin: right center;
+    right: 0;
+  }
+</style>
+
+<script>
+  (() => {
+    const STORAGE_KEY = "bfc_cutlist";
+
+    // ─── State ───
+    const state = {
+      unit: "imperial",
+      thickness: 1.5,
+      width: 3.5,
+      length: 8,
+      quantity: 1,
+      price: 0,
+      waste: 5,
+      cutList: [],
+    };
+
+    // ─── DOM refs ───
+    const $ = (sel) => document.querySelector(sel);
+    const $$ = (sel) => document.querySelectorAll(sel);
+
+    const root = $("[data-calculator-root]");
+    if (!root) return;
+
+    const inputs = {
+      thickness: $("[data-input='thickness']"),
+      width: $("[data-input='width']"),
+      length: $("[data-input='length']"),
+      quantity: $("[data-input='quantity']"),
+      price: $("[data-input='price']"),
+      waste: $("[data-input='waste']"),
+    };
+
+    const unitToggle = $("[data-unit-toggle]");
+    const toggleDot = $("[data-toggle-dot]");
+    const unitLabels = $("[data-unit-labels]");
+    const unitLabelEls = {
+      thickness: $("[data-unit-label='thickness']"),
+      width: $("[data-unit-label='width']"),
+      length: $("[data-unit-label='length']"),
+      price: $("[data-unit-label='price']"),
+    };
+
+    const resultBF = $("[data-result-bf]");
+    const resultCost = $("[data-result-cost]");
+    const wasteValue = $("[data-waste-value]");
+    const presetsList = $("[data-presets-list]");
+    const addBtn = $("[data-action='add-to-cart']");
+    const clearBtn = $("[data-action='clear-all']");
+
+    const cutlistRoot = $("[data-cutlist-root]");
+    const emptyState = $("[data-empty-state]");
+    const tableWrapper = $("[data-table-wrapper]");
+    const tableBody = $("[data-table-body]");
+    const totalBF = $("[data-total-bf]");
+    const totalCost = $("[data-total-cost]");
+
+    const visScene = $("[data-visualizer-scene]");
+    const visBox = $("[data-visualizer-box]");
+    const visFront = $("[data-visualizer-box] [data-face='front'] span");
+    const visTop = $("[data-visualizer-box] [data-face='top'] span");
+    const visSide = $("[data-visualizer-box] [data-face='side'] span");
+
+    // ─── Board Foot Math ───
+    function calcBoardFeet(thickness, width, length, unit) {
+      if (unit === "metric") {
+        const tIn = thickness / 25.4;
+        const wIn = width / 25.4;
+        const lFt = length / 0.3048;
+        return (tIn * wIn * lFt) / 12;
+      }
+      return (thickness * width * length) / 12;
+    }
+
+    function calcCost(bf, price) {
+      return bf * price;
+    }
+
+    function formatCurrency(val) {
+      return "$" + val.toFixed(2);
+    }
+
+    function formatBF(val) {
+      return val.toFixed(2) + " BF";
+    }
+
+    // ─── Unit Labels ───
+    function updateUnitLabels() {
+      const isImperial = state.unit === "imperial";
+      unitLabels.textContent = isImperial ? "in / ft" : "mm / m";
+      unitLabelEls.thickness.textContent = isImperial ? "in" : "mm";
+      unitLabelEls.width.textContent = isImperial ? "in" : "mm";
+      unitLabelEls.length.textContent = isImperial ? "ft" : "m";
+      unitLabelEls.price.textContent = "per BF";
+      toggleDot.style.transform = isImperial
+        ? "translateX(0.125rem)"
+        : "translateX(1rem)";
+    }
+
+    // ─── Live Preview ───
+    function updateLiveResults() {
+      const t = parseFloat(inputs.thickness.value) || 0;
+      const w = parseFloat(inputs.width.value) || 0;
+      const l = parseFloat(inputs.length.value) || 0;
+      const q = parseInt(inputs.quantity.value) || 1;
+      const p = parseFloat(inputs.price.value) || 0;
+
+      const bfPerBoard = calcBoardFeet(t, w, l, state.unit);
+      const totalBFValue = bfPerBoard * q;
+      const totalCostValue = calcCost(totalBFValue, p);
+
+      resultBF.textContent = formatBF(totalBFValue);
+      resultCost.textContent = formatCurrency(totalCostValue);
+    }
+
+    // ─── Visualizer ───
+    function updateVisualizer() {
+      const t = parseFloat(inputs.thickness.value) || 1;
+      const w = parseFloat(inputs.width.value) || 1;
+      const l = parseFloat(inputs.length.value) || 1;
+
+      let tVal = t;
+      let wVal = w;
+      let lVal = l;
+
+      if (state.unit === "metric") {
+        tVal = t / 25.4;
+        wVal = w / 25.4;
+        lVal = l / 0.3048;
+      }
+
+      const maxDim = Math.max(tVal, wVal, lVal);
+      if (maxDim === 0) return;
+
+      const scale = 100 / maxDim;
+      const boxW = Math.max(20, Math.min(140, wVal * scale * 1.2));
+      const boxH = Math.max(12, Math.min(80, lVal * scale * 1.2));
+      const boxD = Math.max(6, Math.min(40, tVal * scale * 1.2));
+
+      if (visBox) {
+        visBox.style.width = boxW + "px";
+        visBox.style.height = boxH + "px";
+        const front = visBox.querySelector("[data-face='front']");
+        const top = visBox.querySelector("[data-face='top']");
+        const side = visBox.querySelector("[data-face='side']");
+
+        if (front) {
+          front.style.width = boxW + "px";
+          front.style.height = boxH + "px";
+          front.style.transform = "translateZ(" + (boxD / 2) + "px)";
+        }
+        if (top) {
+          top.style.width = boxW + "px";
+          top.style.height = boxD + "px";
+          top.style.transform = "rotateX(90deg) translateZ(" + (boxD / 2) + "px)";
+        }
+        if (side) {
+          side.style.width = boxD + "px";
+          side.style.height = boxH + "px";
+          side.style.transform = "rotateY(-90deg) translateZ(" + (boxD / 2) + "px)";
+        }
+
+        const unit = state.unit === "imperial" ? "in" : "mm";
+        const lenUnit = state.unit === "imperial" ? "ft" : "m";
+        if (visFront) visFront.textContent = tVal.toFixed(1) + "×" + wVal.toFixed(1) + " " + unit;
+        if (visTop) visTop.textContent = lVal.toFixed(1) + " " + lenUnit;
+        if (visSide) visSide.textContent = tVal.toFixed(1) + " " + unit;
+      }
+    }
+
+    // ─── Cut List ───
+    function saveCutList() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state.cutList));
+      } catch (_) {}
+    }
+
+    function loadCutList() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          state.cutList = JSON.parse(saved);
+        }
+      } catch (_) {}
+    }
+
+    function renderCutList() {
+      const items = state.cutList;
+      if (items.length === 0) {
+        emptyState.classList.remove("hidden");
+        tableWrapper.classList.add("hidden");
+        return;
+      }
+      emptyState.classList.add("hidden");
+      tableWrapper.classList.remove("hidden");
+
+      const unitLabel = state.unit === "imperial" ? "in" : "mm";
+      const lenLabel = state.unit === "imperial" ? "ft" : "m";
+
+      tableBody.innerHTML = items
+        .map(
+          (item, i) => `
+        <tr class="border-b border-hairline transition-colors hover:bg-canvas-soft">
+          <td class="px-4 py-3 text-body-sm text-ink">${item.thickness.toFixed(2)} ${unitLabel}</td>
+          <td class="px-4 py-3 text-body-sm text-ink">${item.width.toFixed(2)} ${unitLabel}</td>
+          <td class="px-4 py-3 text-body-sm text-ink">${item.length.toFixed(2)} ${lenLabel}</td>
+          <td class="px-4 py-3 text-body-sm text-ink">${item.quantity}</td>
+          <td class="px-4 py-3 font-mono text-body-sm text-ink">${item.boardFeet.toFixed(2)} BF</td>
+          <td class="px-4 py-3 font-mono text-body-sm text-ink">${formatCurrency(item.cost)}</td>
+          <td class="px-4 py-3 text-right">
+            <button data-remove="${i}" class="rounded-sm px-2 py-1 text-body-sm text-mute transition-colors hover:bg-error-soft hover:text-error">Remove</button>
+          </td>
+        </tr>
+      `
+        )
+        .join("");
+
+      // Re-bind remove buttons
+      tableBody.querySelectorAll("[data-remove]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const idx = parseInt(btn.dataset.remove);
+          state.cutList.splice(idx, 1);
+          saveCutList();
+          renderCutList();
+          updateTotals();
+        });
+      });
+
+      updateTotals();
+    }
+
+    function updateTotals() {
+      const items = state.cutList;
+      if (items.length === 0) {
+        totalBF.textContent = "Total: 0 BF";
+        totalCost.textContent = "Cost: $0.00";
+        return;
+      }
+
+      let bfSum = 0;
+      let costSum = 0;
+      for (const item of items) {
+        bfSum += item.boardFeet;
+        costSum += item.cost;
+      }
+
+      const wasteMultiplier = 1 + state.waste / 100;
+      const bfWithWaste = bfSum * wasteMultiplier;
+      const costWithWaste = costSum * wasteMultiplier;
+
+      totalBF.textContent = `Total: ${bfWithWaste.toFixed(2)} BF (incl. ${state.waste}% waste)`;
+      totalCost.textContent = `Cost: ${formatCurrency(costWithWaste)}`;
+    }
+
+    function addToCutList() {
+      const t = parseFloat(inputs.thickness.value) || 0;
+      const w = parseFloat(inputs.width.value) || 0;
+      const l = parseFloat(inputs.length.value) || 0;
+      const q = parseInt(inputs.quantity.value) || 1;
+      const p = parseFloat(inputs.price.value) || 0;
+
+      if (t <= 0 || w <= 0 || l <= 0) return;
+
+      const bfPerBoard = calcBoardFeet(t, w, l, state.unit);
+      const totalBFValue = bfPerBoard * q;
+      const totalCostValue = calcCost(totalBFValue, p);
+
+      state.cutList.push({
+        thickness: t,
+        width: w,
+        length: l,
+        quantity: q,
+        price: p,
+        boardFeet: totalBFValue,
+        cost: totalCostValue,
+      });
+
+      saveCutList();
+      renderCutList();
+      updateTotals();
+    }
+
+    function clearCutList() {
+      if (state.cutList.length === 0) return;
+      state.cutList = [];
+      saveCutList();
+      renderCutList();
+      updateTotals();
+    }
+
+    // ─── Unit Toggle ───
+    function toggleUnit() {
+      const current = state.unit;
+      const newUnit = current === "imperial" ? "metric" : "imperial";
+
+      // Convert values
+      const t = parseFloat(inputs.thickness.value) || 1.5;
+      const w = parseFloat(inputs.width.value) || 3.5;
+      const l = parseFloat(inputs.length.value) || 8;
+
+      if (newUnit === "metric") {
+        inputs.thickness.value = (t * 25.4).toFixed(1);
+        inputs.width.value = (w * 25.4).toFixed(1);
+        inputs.length.value = (l * 0.3048).toFixed(2);
+      } else {
+        inputs.thickness.value = (t / 25.4).toFixed(2);
+        inputs.width.value = (w / 25.4).toFixed(2);
+        inputs.length.value = (l / 0.3048).toFixed(2);
+      }
+
+      state.unit = newUnit;
+      unitToggle.setAttribute("aria-checked", newUnit === "metric");
+      updateUnitLabels();
+      updateLiveResults();
+      updateVisualizer();
+    }
+
+    // ─── Presets ───
+    function applyPreset(values) {
+      const parts = values.split(",");
+      if (parts.length >= 3) {
+        let t = parseFloat(parts[0]);
+        let w = parseFloat(parts[1]);
+        let l = parseFloat(parts[2]);
+
+        if (state.unit === "metric") {
+          t = t * 25.4;
+          w = w * 25.4;
+          l = l * 0.3048;
+        }
+
+        inputs.thickness.value = t;
+        inputs.width.value = w;
+        inputs.length.value = l;
+        updateLiveResults();
+        updateVisualizer();
+      }
+    }
+
+    // ─── Event Binding ───
+    function init() {
+      loadCutList();
+
+      // Input change handlers
+      Object.values(inputs).forEach((el) => {
+        if (!el) return;
+        el.addEventListener("input", () => {
+          if (el === inputs.waste) {
+            state.waste = parseInt(el.value) || 5;
+            wasteValue.textContent = state.waste + "%";
+            updateTotals();
+            return;
+          }
+          updateLiveResults();
+          updateVisualizer();
+        });
+      });
+
+      // Unit toggle
+      unitToggle.addEventListener("click", toggleUnit);
+
+      // Presets
+      presetsList.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-preset]");
+        if (btn) applyPreset(btn.dataset.preset);
+      });
+
+      // Add to cart
+      addBtn.addEventListener("click", addToCutList);
+
+      // Enter key support
+      Object.values(inputs).forEach((el) => {
+        if (!el || el === inputs.waste) return;
+        el.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") addToCutList();
+        });
+      });
+
+      // Clear all
+      clearBtn.addEventListener("click", clearCutList);
+
+      // Init UI
+      updateUnitLabels();
+      updateLiveResults();
+      updateVisualizer();
+      renderCutList();
+      wasteValue.textContent = state.waste + "%";
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  })();
+</script>

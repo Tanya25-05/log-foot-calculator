@@ -1,11 +1,172 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import BoardFootCalculator from "../components/BoardFootCalculator.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Board Foot Calculator"
+  description="Free online board foot calculator for lumber. Calculate board footage, visualize dimensions, manage cut lists, and estimate costs with waste margin."
+>
+  <NavBar />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-canvas">
+      <div class="mx-auto max-w-7xl px-4 pb-16 pt-16 text-center sm:px-6 lg:pb-24 lg:pt-20">
+        <span class="inline-block rounded-full bg-canvas-soft-2 px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-hairline-strong">
+          Free Online Tool
+        </span>
+
+        <h1 class="mx-auto mt-6 max-w-4xl text-display-xl text-ink">
+          Calculate lumber instantly. Build smarter.
+        </h1>
+
+        <p class="mx-auto mt-4 max-w-2xl text-body-lg text-body">
+          The modern board foot calculator for woodworkers, contractors, and DIYers.
+          Real-time results, visual preview, and a project cut list that persists.
+        </p>
+
+        <div class="mt-8 flex items-center justify-center gap-3">
+          <a
+            href="#calculator"
+            class="inline-flex items-center rounded-pill bg-ink px-6 py-3 text-button-lg text-on-ink no-underline transition-opacity hover:opacity-90"
+          >
+            Start Calculating
+          </a>
+          <a
+            href="#how-it-works"
+            class="inline-flex items-center rounded-pill border border-hairline bg-canvas px-6 py-3 text-button-lg text-ink no-underline transition-colors hover:bg-canvas-soft-2"
+          >
+            How It Works
+          </a>
+        </div>
+      </div>
+
+      <!-- Subtle gradient mesh decoration -->
+      <div class="pointer-events-none absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-cyan-50/60 via-purple-50/30 to-transparent" aria-hidden="true"></div>
+    </section>
+
+    <!-- Calculator Section -->
+    <BoardFootCalculator />
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="bg-canvas-soft py-16 sm:py-20 lg:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="mx-auto max-w-2xl text-center">
+          <span class="inline-block rounded-full bg-canvas-soft-2 px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-hairline-strong">
+            Guide
+          </span>
+          <h2 class="mt-3 text-display-lg text-ink">
+            How to calculate board feet.
+          </h2>
+          <p class="mt-2 text-body-md text-body">
+            Board footage measures lumber volume. One board foot is 1&prime; &times; 1&prime; &times; 1&Prime;.
+            Use the formula below or let the calculator do it for you.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="rounded-lg border border-hairline bg-canvas p-6 shadow-[0_0_0_1px_#00000014,0_1px_1px_#00000005,0_2px_2px_#0000000a]">
+            <div class="flex h-10 w-10 items-center justify-center rounded-sm bg-ink text-on-ink">
+              <span class="text-body-md-strong font-mono">1</span>
+            </div>
+            <h3 class="mt-4 text-display-sm text-ink">Enter dimensions</h3>
+            <p class="mt-2 text-body-sm text-body">
+              Input thickness, width, and length. Toggle between Imperial and Metric units seamlessly.
+            </p>
+          </div>
+
+          <div class="rounded-lg border border-hairline bg-canvas p-6 shadow-[0_0_0_1px_#00000014,0_1px_1px_#00000005,0_2px_2px_#0000000a]">
+            <div class="flex h-10 w-10 items-center justify-center rounded-sm bg-ink text-on-ink">
+              <span class="text-body-md-strong font-mono">2</span>
+            </div>
+            <h3 class="mt-4 text-display-sm text-ink">Set quantity &amp; price</h3>
+            <p class="mt-2 text-body-sm text-body">
+              How many boards? What&rsquo;s the price per board foot? Results update instantly.
+            </p>
+          </div>
+
+          <div class="rounded-lg border border-hairline bg-canvas p-6 shadow-[0_0_0_1px_#00000014,0_1px_1px_#00000005,0_2px_2px_#0000000a]">
+            <div class="flex h-10 w-10 items-center justify-center rounded-sm bg-ink text-on-ink">
+              <span class="text-body-md-strong font-mono">3</span>
+            </div>
+            <h3 class="mt-4 text-display-sm text-ink">Build your cut list</h3>
+            <p class="mt-2 text-body-sm text-body">
+              Add multiple board sizes to a project cut list. Totals auto-calculate with waste margin. Data saves to your browser.
+            </p>
+          </div>
+        </div>
+
+        <div class="mx-auto mt-10 max-w-xl rounded-lg border border-hairline bg-canvas p-6 shadow-[0_0_0_1px_#00000014,0_1px_1px_#00000005,0_2px_2px_#0000000a]">
+          <h3 class="text-display-sm text-ink">Board Foot Formula</h3>
+          <div class="mt-3 rounded-sm bg-canvas-soft-2 p-4 font-mono text-body-sm text-ink">
+            <span class="text-hairline-strong">BF</span> = Thickness (<span class="text-hairline-strong">in</span>) &times; Width (<span class="text-hairline-strong">in</span>) &times; Length (<span class="text-hairline-strong">ft</span>) &divide; 12
+          </div>
+          <p class="mt-3 text-caption text-mute">
+            1 board foot = 144 in&sup3;. For metric, dimensions convert to inches and feet internally.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-canvas py-16 sm:py-20">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6">
+        <h2 class="text-center text-display-lg text-ink">
+          Frequently asked questions.
+        </h2>
+
+        <div class="mt-10 space-y-4">
+          <details class="group rounded-lg border border-hairline bg-canvas p-5 open:shadow-[0_0_0_1px_#00000014,0_1px_1px_#00000005,0_2px_2px_#0000000a]">
+            <summary class="flex cursor-pointer items-center justify-between text-body-md-strong text-ink list-none">
+              What is a board foot?
+              <svg class="h-4 w-4 text-mute transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-body-sm text-body">
+              A board foot is a unit of volume for lumber. One board foot equals 1 foot &times; 1 foot &times; 1 inch thick,
+              or 144 cubic inches. It&rsquo;s the standard measure for buying and selling hardwood lumber in North America.
+            </p>
+          </details>
+
+          <details class="group rounded-lg border border-hairline bg-canvas p-5 open:shadow-[0_0_0_1px_#00000014,0_1px_1px_#00000005,0_2px_2px_#0000000a]">
+            <summary class="flex cursor-pointer items-center justify-between text-body-md-strong text-ink list-none">
+              What&rsquo;s the difference between nominal and actual dimensions?
+              <svg class="h-4 w-4 text-mute transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-body-sm text-body">
+              Nominal dimensions (e.g. 2&times;4) are the rough-sawn size before milling. After planing and drying,
+              the actual dimensions are smaller (e.g. 1.5&Prime; &times; 3.5&Prime;). Always use actual dimensions for accurate
+              board foot calculations. Our Quick Fill presets use the standard actual dimensions.
+            </p>
+          </details>
+
+          <details class="group rounded-lg border border-hairline bg-canvas p-5 open:shadow-[0_0_0_1px_#00000014,0_1px_1px_#00000005,0_2px_2px_#0000000a]">
+            <summary class="flex cursor-pointer items-center justify-between text-body-md-strong text-ink list-none">
+              How do I convert metric to board feet?
+              <svg class="h-4 w-4 text-mute transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-body-sm text-body">
+              Toggle to Metric mode in the calculator. Enter thickness in mm, width in mm, and length in meters.
+              The calculator handles the conversion automatically.
+            </p>
+          </details>
+
+          <details class="group rounded-lg border border-hairline bg-canvas p-5 open:shadow-[0_0_0_1px_#00000014,0_1px_1px_#00000005,0_2px_2px_#0000000a]">
+            <summary class="flex cursor-pointer items-center justify-between text-body-md-strong text-ink list-none">
+              Is my cut list saved?
+              <svg class="h-4 w-4 text-mute transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-body-sm text-body">
+              Yes. Your project cut list is stored in your browser&rsquo;s localStorage. It persists across
+              visits but is not synced across devices or shared.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
 </Layout>
