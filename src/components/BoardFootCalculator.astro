@@ -5,7 +5,7 @@ import InputField from "./InputField.astro";
 
 <section
   id="calculator"
-  class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16"
+  class="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12 lg:py-16"
   data-calculator-root
 >
   <!-- Section Heading -->
@@ -47,36 +47,60 @@ import InputField from "./InputField.astro";
           <div>
             <label class="mb-1.5 block text-body-sm text-secondary">Thickness</label>
             <div class="flex items-center rounded-lg border border-subtle bg-primary">
-              <input data-input="thickness" type="number" step="0.25" min="0.1" value="1.5" class="flex-1 border-none bg-transparent outline-none px-3 py-2 text-body-md text-primary [appearance:textfield]" />
-              <select data-unit="thickness" class="border-none bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-2">
-                <option value="in">in</option>
+              <div data-input-wrapper="thickness" class="flex-1 flex items-center min-w-0">
+                <input data-inp type="number" step="any" min="0" value="1.5" class="flex-1 min-w-0 border-none bg-transparent outline-none px-3 py-1.5 text-body-md text-primary [appearance:textfield]" />
+              </div>
+              <select data-unit="thickness" class="shrink-0 border-0 border-l border-subtle bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-1.5">
                 <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+                <option value="ft">ft</option>
+                <option value="m">m</option>
+                <option disabled class="border-t border-subtle">──────────</option>
+                <option value="ft_in">ft + in</option>
+                <option value="m_cm">m + cm</option>
               </select>
             </div>
           </div>
           <div>
             <label class="mb-1.5 block text-body-sm text-secondary">Width</label>
             <div class="flex items-center rounded-lg border border-subtle bg-primary">
-              <input data-input="width" type="number" step="0.25" min="0.1" value="3.5" class="flex-1 border-none bg-transparent outline-none px-3 py-2 text-body-md text-primary [appearance:textfield]" />
-              <select data-unit="width" class="border-none bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-2">
-                <option value="in">in</option>
+              <div data-input-wrapper="width" class="flex-1 flex items-center min-w-0">
+                <input data-inp type="number" step="any" min="0" value="3.5" class="flex-1 min-w-0 border-none bg-transparent outline-none px-3 py-1.5 text-body-md text-primary [appearance:textfield]" />
+              </div>
+              <select data-unit="width" class="shrink-0 border-0 border-l border-subtle bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-1.5">
                 <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+                <option value="ft">ft</option>
+                <option value="m">m</option>
+                <option disabled class="border-t border-subtle">──────────</option>
+                <option value="ft_in">ft + in</option>
+                <option value="m_cm">m + cm</option>
               </select>
             </div>
           </div>
           <div>
             <label class="mb-1.5 block text-body-sm text-secondary">Length</label>
             <div class="flex items-center rounded-lg border border-subtle bg-primary">
-              <input data-input="length" type="number" step="0.5" min="0.5" value="8" class="flex-1 border-none bg-transparent outline-none px-3 py-2 text-body-md text-primary [appearance:textfield]" />
-              <select data-unit="length" class="border-none bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-2">
+              <div data-input-wrapper="length" class="flex-1 flex items-center min-w-0">
+                <input data-inp type="number" step="any" min="0" value="8" class="flex-1 min-w-0 border-none bg-transparent outline-none px-3 py-1.5 text-body-md text-primary [appearance:textfield]" />
+              </div>
+              <select data-unit="length" class="shrink-0 border-0 border-l border-subtle bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-1.5">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="in">in</option>
                 <option value="ft">ft</option>
                 <option value="m">m</option>
+                <option disabled class="border-t border-subtle">──────────</option>
+                <option value="ft_in">ft + in</option>
+                <option value="m_cm">m + cm</option>
               </select>
             </div>
           </div>
           <div>
             <label class="mb-1.5 block text-body-sm text-secondary">Quantity</label>
-            <input data-input="quantity" type="number" step="1" min="1" value="1" class="w-full rounded-lg border border-subtle bg-primary px-3 py-2 text-body-md text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40 [appearance:textfield]" />
+            <input data-input="quantity" type="number" step="1" min="1" value="1" class="w-full rounded-lg border border-subtle bg-primary px-3 py-1.5 text-body-md text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40 [appearance:textfield]" />
           </div>
         </div>
 
@@ -87,7 +111,7 @@ import InputField from "./InputField.astro";
               <span class="text-muted" data-unit-label="price">$/BF</span>
             </label>
             <div class="flex gap-2">
-              <select data-currency class="shrink-0 rounded-lg border border-subtle bg-primary px-2.5 py-2 text-body-sm text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40 cursor-pointer">
+              <select data-currency class="shrink-0 rounded-lg border border-subtle bg-primary px-2.5 py-1.5 text-body-sm text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40 cursor-pointer">
                 <option value="USD">$ USD</option>
                 <option value="EUR">€ EUR</option>
                 <option value="GBP">£ GBP</option>
@@ -106,7 +130,7 @@ import InputField from "./InputField.astro";
                   step="0.01"
                   min="0"
                   value="0"
-                  class="w-full rounded-lg border border-subtle bg-primary px-3 py-2 text-body-md text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40"
+                  class="w-full rounded-lg border border-subtle bg-primary px-3 py-1.5 text-body-md text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40"
                 />
 
               </div>
@@ -265,20 +289,21 @@ import InputField from "./InputField.astro";
 <script>
   (() => {
     const STORAGE_KEY = "bfc_cutlist";
-
     const CURRENCIES = { USD:"$", EUR:"€", GBP:"£", CAD:"C$", AUD:"A$", JPY:"¥", CNY:"¥", INR:"₹", BRL:"R$", MXN:"$" };
     const state = { units: { thickness: "in", width: "in", length: "ft" }, waste: 5, cutList: [], currency: "USD" };
 
-    const $ = (s) => document.querySelector(s);
-    const $$ = (s) => document.querySelectorAll(s);
-
+    const $ = s => document.querySelector(s);
+    const $$ = s => document.querySelectorAll(s);
     const root = $("[data-calculator-root]");
     if (!root) return;
 
+    const wrappers = {
+      thickness: $("[data-input-wrapper='thickness']"),
+      width: $("[data-input-wrapper='width']"),
+      length: $("[data-input-wrapper='length']"),
+    };
+
     const inputs = {
-      thickness: $("[data-input='thickness']"),
-      width: $("[data-input='width']"),
-      length: $("[data-input='length']"),
       quantity: $("[data-input='quantity']"),
       price: $("[data-input='price']"),
       waste: $("[data-input='waste']"),
@@ -306,24 +331,50 @@ import InputField from "./InputField.astro";
 
     let vis = {};
 
-    function toIn(v, u) { return u === "mm" ? v/25.4 : v; }
-    function toFt(v, u) { return u === "m" ? v/0.3048 : v; }
-    function bf(t, w, l) {
-      return toIn(t,state.units.thickness) * toIn(w,state.units.width) * toFt(l,state.units.length) / 12;
+    function inpVal(key, n) {
+      const w = wrappers[key];
+      if (!w) return 0;
+      const el = n === 2 ? w.querySelector("[data-inp2]") : w.querySelector("[data-inp]");
+      return +el?.value || 0;
     }
+
+    function valIn(key) {
+      const u = state.units[key], a = inpVal(key);
+      if (u === "in") return a;
+      if (u === "mm") return a / 25.4;
+      if (u === "cm") return a / 2.54;
+      if (u === "ft") return a * 12;
+      if (u === "m") return a * 39.3701;
+      if (u === "ft_in") return a * 12 + inpVal(key, 2);
+      if (u === "m_cm") return a * 39.3701 + inpVal(key, 2) / 2.54;
+      return a;
+    }
+
+    function valFt() {
+      const u = state.units.length, a = inpVal("length");
+      if (u === "ft") return a;
+      if (u === "in") return a / 12;
+      if (u === "mm") return a / 304.8;
+      if (u === "cm") return a / 30.48;
+      if (u === "m") return a / 0.3048;
+      if (u === "ft_in") return a + inpVal("length", 2) / 12;
+      if (u === "m_cm") return a / 0.3048 + inpVal("length", 2) / 30.48;
+      return a;
+    }
+
+    function bf() { return valIn("thickness") * valIn("width") * valFt() / 12; }
+
     const sym = () => CURRENCIES[state.currency] || "$";
-    const fmt = (v) => sym()+v.toFixed(2);
-    const fmtBf = (v) => v.toFixed(2)+" BF";
+    const fmt = v => sym() + v.toFixed(2);
+    const fmtBf = v => v.toFixed(2) + " BF";
 
     function labels() {
-      if (ui.price) ui.price.textContent = sym()+"/BF";
+      if (ui.price) ui.price.textContent = sym() + "/BF";
     }
 
     function live() {
-      const t = +inputs.thickness.value||0, w = +inputs.width.value||0, l = +inputs.length.value||0;
-      const q = +inputs.quantity.value||1, p = +inputs.price.value||0;
-      const per = bf(t,w,l);
-      const totalBf = per * q;
+      const q = +inputs.quantity.value || 1, p = +inputs.price.value || 0;
+      const per = bf(), totalBf = per * q;
       ui.bf.textContent = fmtBf(per);
       ui.totalBf.textContent = fmtBf(totalBf);
       ui.cost.textContent = fmt(totalBf * p);
@@ -331,88 +382,118 @@ import InputField from "./InputField.astro";
 
     function initVis() {
       vis = {
-        front: document.querySelector("[data-viz='front']"),
-        top: document.querySelector("[data-viz='top']"),
-        side: document.querySelector("[data-viz='side']"),
-        labelW: document.querySelector("[data-viz='label-w']"),
-        labelL: document.querySelector("[data-viz='label-l']"),
-        labelT: document.querySelector("[data-viz='label-t']"),
-        dimlineW: document.querySelector("[data-viz='dimline-w']"),
-        dimlineL: document.querySelector("[data-viz='dimline-l']"),
-        dimlineT: document.querySelector("[data-viz='dimline-t']"),
-        dotW1: document.querySelector("[data-viz='dot-w1']"),
-        dotW2: document.querySelector("[data-viz='dot-w2']"),
-        dotL1: document.querySelector("[data-viz='dot-l1']"),
-        dotL2: document.querySelector("[data-viz='dot-l2']"),
-        dotT1: document.querySelector("[data-viz='dot-t1']"),
-        dotT2: document.querySelector("[data-viz='dot-t2']"),
+        front: $("[data-viz='front']"), top: $("[data-viz='top']"), side: $("[data-viz='side']"),
+        labelW: $("[data-viz='label-w']"), labelL: $("[data-viz='label-l']"), labelT: $("[data-viz='label-t']"),
+        dimlineW: $("[data-viz='dimline-w']"), dimlineL: $("[data-viz='dimline-l']"), dimlineT: $("[data-viz='dimline-t']"),
+        dotW1: $("[data-viz='dot-w1']"), dotW2: $("[data-viz='dot-w2']"),
+        dotL1: $("[data-viz='dot-l1']"), dotL2: $("[data-viz='dot-l2']"),
+        dotT1: $("[data-viz='dot-t1']"), dotT2: $("[data-viz='dot-t2']"),
       };
+    }
+
+    function unitAbbr(key) {
+      const m = { mm:"mm", cm:"cm", in:"in", ft:"ft", m:"m", ft_in:"ft+in", m_cm:"m+cm" };
+      return m[state.units[key]] || state.units[key];
+    }
+
+    function dimDisplay(totInches, key) {
+      const u = state.units[key];
+      if (u === "ft_in") return Math.floor(totInches / 12) + "' " + (totInches % 12).toFixed(1) + '"';
+      if (u === "m_cm") { const t = totInches * 2.54; return Math.floor(t / 100) + " m " + (t % 100).toFixed(1) + " cm"; }
+      if (u === "in") return totInches.toFixed(2) + " in";
+      if (u === "mm") return (totInches * 25.4).toFixed(1) + " mm";
+      if (u === "cm") return (totInches * 2.54).toFixed(2) + " cm";
+      if (u === "ft") return (totInches / 12).toFixed(3) + " ft";
+      if (u === "m") return (totInches / 39.3701).toFixed(3) + " m";
+      return totInches.toFixed(2);
+    }
+
+    function rebuildInput(key, totIn) {
+      const w = wrappers[key];
+      if (!w) return;
+      const u = state.units[key];
+      let val1 = Math.max(0, totIn != null ? +totIn : +w.querySelector("[data-inp]")?.value || 0);
+      let val2 = 0;
+
+      if (u === "ft_in") {
+        const inches = Math.max(0, totIn != null ? +totIn : 0);
+        val1 = Math.floor(inches / 12);
+        val2 = +(inches - val1 * 12).toFixed(1);
+      } else if (u === "m_cm") {
+        const cm = Math.max(0, (totIn != null ? +totIn : 0) * 2.54);
+        val1 = Math.floor(cm / 100);
+        val2 = +(cm - val1 * 100).toFixed(1);
+      } else if (u === "in") {
+        val1 = +val1.toFixed(2);
+      } else if (u === "mm") {
+        val1 = +(val1 * 25.4).toFixed(1);
+      } else if (u === "cm") {
+        val1 = +(val1 * 2.54).toFixed(2);
+      } else if (u === "ft") {
+        val1 = +(val1 / 12).toFixed(3);
+      } else if (u === "m") {
+        val1 = +(val1 / 39.3701).toFixed(3);
+      }
+
+      if (u === "ft_in" || u === "m_cm") {
+        const p1 = u === "ft_in" ? "ft" : "m";
+        const p2 = u === "ft_in" ? "in" : "cm";
+        w.innerHTML = `<input data-inp type="number" step="any" min="0" value="${val1}" class="flex-1 min-w-0 border-none bg-transparent outline-none px-2 py-1.5 text-body-md text-primary [appearance:textfield]" placeholder="${p1}" /><div class="w-px self-stretch bg-[var(--border-subtle)] shrink-0"></div><input data-inp2 type="number" step="any" min="0" value="${val2}" class="flex-1 min-w-0 border-none bg-transparent outline-none px-2 py-1.5 text-body-md text-primary [appearance:textfield]" placeholder="${p2}" />`;
+      } else {
+        w.innerHTML = `<input data-inp type="number" step="any" min="0" value="${val1}" class="flex-1 min-w-0 border-none bg-transparent outline-none px-3 py-1.5 text-body-md text-primary [appearance:textfield]" />`;
+      }
+    }
+
+    function toCanonical(key) {
+      const w = wrappers[key];
+      if (!w) return 0;
+      const v1 = +w.querySelector("[data-inp]")?.value || 0;
+      const v2 = +w.querySelector("[data-inp2]")?.value || 0;
+      const u = state.units[key];
+      if (key === "length") {
+        if (u === "ft") return v1;
+        if (u === "in") return v1 / 12;
+        if (u === "mm") return v1 / 304.8;
+        if (u === "cm") return v1 / 30.48;
+        if (u === "m") return v1 / 0.3048;
+        if (u === "ft_in") return v1 + v2 / 12;
+        if (u === "m_cm") return v1 / 0.3048 + v2 / 30.48;
+        return v1;
+      }
+      if (u === "in") return v1;
+      if (u === "mm") return v1 / 25.4;
+      if (u === "cm") return v1 / 2.54;
+      if (u === "ft") return v1 * 12;
+      if (u === "m") return v1 * 39.3701;
+      if (u === "ft_in") return v1 * 12 + v2;
+      if (u === "m_cm") return v1 * 39.3701 + v2 / 2.54;
+      return v1;
     }
 
     function viz() {
       if (!vis.front) initVis();
-      let t = +inputs.thickness.value||1, w = +inputs.width.value||1, l = +inputs.length.value||1;
-      t = toIn(t,state.units.thickness); w = toIn(w,state.units.width); l = toFt(l,state.units.length);
-      const max = Math.max(t,w,l);
-      if (max===0) return;
-
+      let t = valIn("thickness") || 1, w = valIn("width") || 1, l = valFt() || 1;
+      const max = Math.max(t, w, l);
+      if (max === 0) return;
       const scale = 54 / max;
       const sw = Math.max(28, Math.min(92, w * scale));
       const sl = Math.max(22, Math.min(72, l * scale));
       const st = Math.max(10, Math.min(38, t * scale));
-      const ox = st * 0.48;
-      const oy = st * 0.28;
-
+      const ox = st * 0.48, oy = st * 0.28;
       const cx = 130, cy = 102;
-
-      function pt(x, y) { return x.toFixed(1)+","+y.toFixed(1); }
-
-      const p0 = [cx - sw/2, cy + sl/2];
-      const p1 = [cx + sw/2, cy + sl/2];
-      const p2 = [cx + sw/2, cy - sl/2];
-      const p3 = [cx - sw/2, cy - sl/2];
-      const p4 = [cx + sw/2 + ox, cy + sl/2 - oy];
-      const p5 = [cx + sw/2 + ox, cy - sl/2 - oy];
-      const p6 = [cx - sw/2 + ox, cy - sl/2 - oy];
-
-      if (vis.side) vis.side.setAttribute("points",
-        pt(p1[0],p1[1])+" "+pt(p4[0],p4[1])+" "+pt(p5[0],p5[1])+" "+pt(p2[0],p2[1]));
-      if (vis.top) vis.top.setAttribute("points",
-        pt(p3[0],p3[1])+" "+pt(p2[0],p2[1])+" "+pt(p5[0],p5[1])+" "+pt(p6[0],p6[1]));
-      if (vis.front) vis.front.setAttribute("points",
-        pt(p0[0],p0[1])+" "+pt(p1[0],p1[1])+" "+pt(p2[0],p2[1])+" "+pt(p3[0],p3[1]));
-
-      const wu = state.units.width, lu = state.units.length, tu = state.units.thickness;
-
-      if (vis.labelW) {
-        vis.labelW.setAttribute("x", cx);
-        vis.labelW.setAttribute("y", cy + sl/2 + 14);
-        vis.labelW.textContent = "W: "+w.toFixed(2)+" "+wu;
-      }
-      if (vis.labelL) {
-        vis.labelL.setAttribute("x", cx - sw/2 - 10);
-        vis.labelL.setAttribute("y", cy + 4);
-        vis.labelL.textContent = "L: "+l.toFixed(2)+" "+lu;
-      }
-      if (vis.labelT) {
-        vis.labelT.setAttribute("x", cx + sw/2 + ox/2);
-        vis.labelT.setAttribute("y", cy - sl/2 - oy - 6);
-        vis.labelT.textContent = "T: "+t.toFixed(2)+" "+tu;
-      }
-
-      if (vis.dimlineW) {
-        vis.dimlineW.setAttribute("x1", p0[0]); vis.dimlineW.setAttribute("y1", p0[1]+6);
-        vis.dimlineW.setAttribute("x2", p1[0]); vis.dimlineW.setAttribute("y2", p1[1]+6);
-      }
-      if (vis.dimlineL) {
-        vis.dimlineL.setAttribute("x1", p3[0]-6); vis.dimlineL.setAttribute("y1", p3[1]);
-        vis.dimlineL.setAttribute("x2", p0[0]-6); vis.dimlineL.setAttribute("y2", p0[1]);
-      }
-      if (vis.dimlineT) {
-        vis.dimlineT.setAttribute("x1", p2[0]); vis.dimlineT.setAttribute("y1", p2[1]-4);
-        vis.dimlineT.setAttribute("x2", p5[0]); vis.dimlineT.setAttribute("y2", p5[1]-4);
-      }
-
+      const pt = (x, y) => x.toFixed(1) + "," + y.toFixed(1);
+      const p0 = [cx - sw/2, cy + sl/2], p1 = [cx + sw/2, cy + sl/2];
+      const p2 = [cx + sw/2, cy - sl/2], p3 = [cx - sw/2, cy - sl/2];
+      const p4 = [cx + sw/2 + ox, cy + sl/2 - oy], p5 = [cx + sw/2 + ox, cy - sl/2 - oy], p6 = [cx - sw/2 + ox, cy - sl/2 - oy];
+      if (vis.side) vis.side.setAttribute("points", pt(p1[0],p1[1])+" "+pt(p4[0],p4[1])+" "+pt(p5[0],p5[1])+" "+pt(p2[0],p2[1]));
+      if (vis.top) vis.top.setAttribute("points", pt(p3[0],p3[1])+" "+pt(p2[0],p2[1])+" "+pt(p5[0],p5[1])+" "+pt(p6[0],p6[1]));
+      if (vis.front) vis.front.setAttribute("points", pt(p0[0],p0[1])+" "+pt(p1[0],p1[1])+" "+pt(p2[0],p2[1])+" "+pt(p3[0],p3[1]));
+      if (vis.labelW) { vis.labelW.setAttribute("x", cx); vis.labelW.setAttribute("y", cy + sl/2 + 14); vis.labelW.textContent = dimDisplay(w, "width"); }
+      if (vis.labelL) { vis.labelL.setAttribute("x", cx - sw/2 - 10); vis.labelL.setAttribute("y", cy + 4); vis.labelL.textContent = dimDisplay(l * 12, "length"); }
+      if (vis.labelT) { vis.labelT.setAttribute("x", cx + sw/2 + ox/2); vis.labelT.setAttribute("y", cy - sl/2 - oy - 6); vis.labelT.textContent = dimDisplay(t, "thickness"); }
+      if (vis.dimlineW) { vis.dimlineW.setAttribute("x1", p0[0]); vis.dimlineW.setAttribute("y1", p0[1]+6); vis.dimlineW.setAttribute("x2", p1[0]); vis.dimlineW.setAttribute("y2", p1[1]+6); }
+      if (vis.dimlineL) { vis.dimlineL.setAttribute("x1", p3[0]-6); vis.dimlineL.setAttribute("y1", p3[1]); vis.dimlineL.setAttribute("x2", p0[0]-6); vis.dimlineL.setAttribute("y2", p0[1]); }
+      if (vis.dimlineT) { vis.dimlineT.setAttribute("x1", p2[0]); vis.dimlineT.setAttribute("y1", p2[1]-4); vis.dimlineT.setAttribute("x2", p5[0]); vis.dimlineT.setAttribute("y2", p5[1]-4); }
       if (vis.dotW1) { vis.dotW1.setAttribute("cx", p0[0]); vis.dotW1.setAttribute("cy", p0[1]+6); }
       if (vis.dotW2) { vis.dotW2.setAttribute("cx", p1[0]); vis.dotW2.setAttribute("cy", p1[1]+6); }
       if (vis.dotL1) { vis.dotL1.setAttribute("cx", p3[0]-6); vis.dotL1.setAttribute("cy", p3[1]); }
@@ -421,22 +502,18 @@ import InputField from "./InputField.astro";
       if (vis.dotT2) { vis.dotT2.setAttribute("cx", p5[0]); vis.dotT2.setAttribute("cy", p5[1]-4); }
     }
 
-    function save() { try { localStorage.setItem(STORAGE_KEY,JSON.stringify(state.cutList)); localStorage.setItem("bfc_currency",state.currency); } catch(e) {} }
-    function load() { try { const d=localStorage.getItem(STORAGE_KEY); if(d) state.cutList=JSON.parse(d); const c=localStorage.getItem("bfc_currency"); if(c&&CURRENCIES[c]) state.currency=c; } catch(e) {} }
+    function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state.cutList)); localStorage.setItem("bfc_currency", state.currency); } catch (e) {} }
+    function load() { try { const d = localStorage.getItem(STORAGE_KEY); if (d) state.cutList = JSON.parse(d); const c = localStorage.getItem("bfc_currency"); if (c && CURRENCIES[c]) state.currency = c; } catch (e) {} }
 
     function render() {
       const items = state.cutList;
-      if (!items.length) {
-        ui.empty.classList.remove("hidden"); ui.table.classList.add("hidden");
-        tot(); return;
-      }
+      if (!items.length) { ui.empty.classList.remove("hidden"); ui.table.classList.add("hidden"); tot(); return; }
       ui.empty.classList.add("hidden"); ui.table.classList.remove("hidden");
-      const ul = state.unit==="imperial"?"in":"mm", ll = state.unit==="imperial"?"ft":"m";
-      ui.body.innerHTML = items.map((it,i) =>
+      ui.body.innerHTML = items.map((it, i) =>
         `<tr class="border-b border-subtle transition-colors hover:bg-secondary">
-          <td class="px-4 py-3 text-body-sm text-primary">${it.t.toFixed(2)} ${ul}</td>
-          <td class="px-4 py-3 text-body-sm text-primary">${it.w.toFixed(2)} ${ul}</td>
-          <td class="px-4 py-3 text-body-sm text-primary">${it.l.toFixed(2)} ${ll}</td>
+          <td class="px-4 py-3 text-body-sm text-primary">${dimDisplay(it.t, "thickness")}</td>
+          <td class="px-4 py-3 text-body-sm text-primary">${dimDisplay(it.w, "width")}</td>
+          <td class="px-4 py-3 text-body-sm text-primary">${dimDisplay(it.l * 12, "length")}</td>
           <td class="px-4 py-3 text-body-sm text-primary">${it.q}</td>
           <td class="px-4 py-3 font-mono text-body-sm text-primary">${it.bf.toFixed(2)} BF</td>
           <td class="px-4 py-3 font-mono text-body-sm text-primary">${fmt(it.c)}</td>
@@ -445,65 +522,71 @@ import InputField from "./InputField.astro";
           </td>
         </tr>`
       ).join("");
-      ui.body.querySelectorAll("[data-remove]").forEach(b=>b.addEventListener("click",()=>{
-        state.cutList.splice(+b.dataset.remove,1); save(); render(); tot();
-      }));
+      ui.body.querySelectorAll("[data-remove]").forEach(b => b.addEventListener("click", () => { state.cutList.splice(+b.dataset.remove, 1); save(); render(); tot(); }));
       tot();
     }
 
     function tot() {
       const items = state.cutList;
-      if (!items.length) { ui.summaryBf.textContent="Total: 0 BF"; ui.summaryCost.textContent="Cost: $0.00"; return; }
-      let bs=0, cs=0;
-      for (const it of items) { bs+=it.bf; cs+=it.c; }
-      const m = 1+state.waste/100;
-      ui.summaryBf.textContent = `Total: ${(bs*m).toFixed(2)} BF (incl. ${state.waste}% waste)`;
-      ui.summaryCost.textContent = `Cost: ${fmt(cs*m)}`;
+      if (!items.length) { ui.summaryBf.textContent = "Total: 0 BF"; ui.summaryCost.textContent = "Cost: $0.00"; return; }
+      let bs = 0, cs = 0;
+      for (const it of items) { bs += it.bf; cs += it.c; }
+      const m = 1 + state.waste / 100;
+      ui.summaryBf.textContent = `Total: ${(bs * m).toFixed(2)} BF (incl. ${state.waste}% waste)`;
+      ui.summaryCost.textContent = `Cost: ${fmt(cs * m)}`;
     }
 
     function add() {
-      const t=+inputs.thickness.value||0, w=+inputs.width.value||0, l=+inputs.length.value||0;
-      const q=+inputs.quantity.value||1, p=+inputs.price.value||0;
-      if (t<=0||w<=0||l<=0) return;
-      const per = bf(t,w,l);
-      state.cutList.push({t,w,l,q,bf:per*q,c:per*q*p});
+      const t = valIn("thickness"), w = valIn("width"), l = valFt();
+      const q = +inputs.quantity.value || 1, p = +inputs.price.value || 0;
+      if (t <= 0 || w <= 0 || l <= 0) return;
+      const per = bf();
+      state.cutList.push({ t, w, l, q, bf: per * q, c: per * q * p });
       save(); render(); tot();
     }
 
-    function clearAll() { if (!state.cutList.length) return; state.cutList=[]; save(); render(); }
+    function clearAll() { if (!state.cutList.length) return; state.cutList = []; save(); render(); }
 
     function preset(v) {
-      const p=v.split(","); if (p.length<3) return;
-      inputs.thickness.value=p[0]; inputs.width.value=p[1]; inputs.length.value=p[2];
+      const p = v.split(",");
+      if (p.length < 3) return;
+      rebuildInput("thickness", +p[0]);
+      rebuildInput("width", +p[1]);
+      rebuildInput("length", +p[2] * 12);
       live(); viz();
     }
 
     function init() {
       load();
       initVis();
-      const unitKeys = [["thickness","unitT"],["width","unitW"],["length","unitL"]];
-      unitKeys.forEach(([k,uk])=>{
+      const dims = [["thickness", "unitT"], ["width", "unitW"], ["length", "unitL"]];
+      dims.forEach(([k, uk]) => {
         const sel = inputs[uk];
-        if(!sel) return;
-        sel.value=state.units[k];
-        sel.addEventListener("change",()=>{ state.units[k]=sel.value; labels(); live(); viz(); });
+        if (!sel) return;
+        sel.value = state.units[k];
+        sel.addEventListener("change", () => {
+          const oldUnit = state.units[k], newUnit = sel.value;
+          if (oldUnit === newUnit) return;
+          const canonical = k === "length" ? toCanonical("length") : toCanonical(k);
+          state.units[k] = newUnit;
+          rebuildInput(k, k === "length" ? canonical * 12 : canonical);
+          labels(); live(); viz();
+        });
       });
-      Object.values(inputs).forEach(el=>{ if(!el) return; el.addEventListener("input",()=>{
-        if(el===inputs.waste){ state.waste=+el.value||5; ui.waste.textContent=state.waste+"%"; tot(); return; }
-        live(); viz();
-      })});
-      if (ui.presets) ui.presets.addEventListener("click",e=>{ const b=e.target.closest("[data-preset]"); if(b) preset(b.dataset.preset); });
-      ui.add.addEventListener("click",add);
-      Object.values(inputs).forEach(el=>{ if(!el||el===inputs.waste) return; el.addEventListener("keydown",e=>{ if(e.key==="Enter") add(); }); });
-      ui.clear.addEventListener("click",clearAll);
-      if (ui.currency) {
-        ui.currency.value=state.currency;
-        ui.currency.addEventListener("change",()=>{ state.currency=ui.currency.value; save(); labels(); live(); render(); });
-      }
+      dims.forEach(([k]) => rebuildInput(k));
+      root.addEventListener("input", e => {
+        if (e.target.closest("[data-input-wrapper]")) { live(); viz(); return; }
+        if (e.target === inputs.waste) { state.waste = +e.target.value || 5; ui.waste.textContent = state.waste + "%"; tot(); return; }
+      });
+      root.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.closest("[data-input-wrapper]")) add(); });
+      if (ui.presets) ui.presets.addEventListener("click", e => { const b = e.target.closest("[data-preset]"); if (b) preset(b.dataset.preset); });
+      ui.add.addEventListener("click", add);
+      ui.clear.addEventListener("click", clearAll);
+      if (ui.currency) { ui.currency.value = state.currency; ui.currency.addEventListener("change", () => { state.currency = ui.currency.value; save(); labels(); live(); render(); }); }
       labels(); live(); viz(); render();
-      if (ui.waste) ui.waste.textContent=state.waste+"%";
+      if (ui.waste) ui.waste.textContent = state.waste + "%";
     }
 
-    if (document.readyState==="loading") document.addEventListener("DOMContentLoaded",init); else init();
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
   })();
 </script>
