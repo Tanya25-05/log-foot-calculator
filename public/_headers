@@ -20,3 +20,6 @@
 
 *.html
   Cache-Control: public, max-age=0, must-revalidate
+
+https://board-foot-cal.pages.dev/*
+  X-Robots-Tag: noindex

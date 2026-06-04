@@ -50,7 +50,7 @@ import InputField from "./InputField.astro";
               <div data-input-wrapper="thickness" class="flex-1 flex items-center min-w-0">
                 <input data-inp type="number" step="any" min="0" value="1.5" class="flex-1 min-w-0 border-none bg-transparent outline-none px-3 py-1.5 text-body-md text-primary [appearance:textfield]" />
               </div>
-              <select data-unit="thickness" class="shrink-0 border-0 border-l border-subtle bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-1.5">
+              <select data-unit="thickness" class="shrink-0 border-0 border-l border-subtle bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-1.5 max-sm:text-[11px] max-sm:px-1 max-sm:max-w-[68px]">
                 <option value="mm">mm (millimeters)</option>
                 <option value="cm">cm (centimeters)</option>
                 <option value="in">in (inches)</option>
@@ -68,7 +68,7 @@ import InputField from "./InputField.astro";
               <div data-input-wrapper="width" class="flex-1 flex items-center min-w-0">
                 <input data-inp type="number" step="any" min="0" value="3.5" class="flex-1 min-w-0 border-none bg-transparent outline-none px-3 py-1.5 text-body-md text-primary [appearance:textfield]" />
               </div>
-              <select data-unit="width" class="shrink-0 border-0 border-l border-subtle bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-1.5">
+              <select data-unit="width" class="shrink-0 border-0 border-l border-subtle bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-1.5 max-sm:text-[11px] max-sm:px-1 max-sm:max-w-[68px]">
                 <option value="mm">mm (millimeters)</option>
                 <option value="cm">cm (centimeters)</option>
                 <option value="in">in (inches)</option>
@@ -86,7 +86,7 @@ import InputField from "./InputField.astro";
               <div data-input-wrapper="length" class="flex-1 flex items-center min-w-0">
                 <input data-inp type="number" step="any" min="0" value="8" class="flex-1 min-w-0 border-none bg-transparent outline-none px-3 py-1.5 text-body-md text-primary [appearance:textfield]" />
               </div>
-              <select data-unit="length" class="shrink-0 border-0 border-l border-subtle bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-1.5">
+              <select data-unit="length" class="shrink-0 border-0 border-l border-subtle bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-1.5 max-sm:text-[11px] max-sm:px-1 max-sm:max-w-[68px]">
                 <option value="mm">mm (millimeters)</option>
                 <option value="cm">cm (centimeters)</option>
                 <option value="in">in (inches)</option>
@@ -223,16 +223,10 @@ import InputField from "./InputField.astro";
             <circle data-viz="dot-t2" r="2.5" fill="var(--accent-mustard)" />
           </svg>
         </div>
-        <p class="mt-1 text-center text-caption text-muted" data-i18n="calc.not_to_scale">
-          Board dimensions — not to scale
+        <p class="mt-3 text-center text-caption text-secondary leading-relaxed px-2">
+          <strong>Quickly calculate board feet</strong>, visualize lumber dimensions, and <strong>manage your project cut list</strong> — all in one place. Enter thickness, width, and length, choose your units, set a price, and get <strong>instant cost estimates</strong>. Add multiple boards to build a cut list that <strong>auto-saves to your browser</strong>.
         </p>
       </Card>
-
-      <div class="px-1">
-        <p class="text-body-sm text-secondary leading-relaxed">
-          Quickly calculate board feet, visualize lumber dimensions, and manage your project cut list — all in one place. Enter thickness, width, and length, choose your units, set a price, and get instant cost estimates. Add multiple boards to build a cut list that auto-saves to your browser.
-        </p>
-      </div>
     </div>
 
     <!-- Project Cut List — Full width below -->
@@ -243,6 +237,18 @@ import InputField from "./InputField.astro";
           <div class="flex flex-wrap items-center gap-3 sm:gap-4">
             <span class="text-body-sm text-secondary" data-total-summary-bf>Total: 0 BF</span>
             <span class="text-body-sm text-secondary" data-total-summary-cost>Cost: $0.00</span>
+            <button
+              data-action="export-pdf"
+              class="linear-card px-3 py-1.5 text-body-sm text-secondary transition-colors hover:bg-secondary cursor-pointer"
+            >
+              Save PDF
+            </button>
+            <button
+              data-action="export-img"
+              class="linear-card px-3 py-1.5 text-body-sm text-secondary transition-colors hover:bg-secondary cursor-pointer"
+            >
+              Save Image
+            </button>
             <button
               data-action="clear-all"
               class="linear-card px-3 py-1.5 text-body-sm text-secondary transition-colors hover:bg-secondary cursor-pointer" data-i18n="calc.clear_all"
@@ -316,6 +322,15 @@ import InputField from "./InputField.astro";
   [data-visualizer-svg] text {
     user-select: none;
     pointer-events: none;
+  }
+
+  @media print {
+    body * { visibility: hidden; }
+    [data-cutlist-root], [data-cutlist-root] * { visibility: visible; }
+    [data-cutlist-root] { position: absolute; left: 0; top: 0; width: 100%; }
+    [data-cutlist-root] [data-action="export-pdf"],
+    [data-cutlist-root] [data-action="export-img"],
+    [data-cutlist-root] [data-action="clear-all"] { display: none !important; }
   }
 </style>
 
@@ -580,6 +595,51 @@ import InputField from "./InputField.astro";
 
     function clearAll() { if (!state.cutList.length) return; state.cutList = []; save(); render(); }
 
+    function exportPdf() { if (!state.cutList.length) return; window.print(); }
+
+    function exportImg() {
+      const items = state.cutList;
+      if (!items.length) return;
+      const cols = ["Thickness", "Width", "Length", "Qty", "BF", "Cost"];
+      const rows = items.map(it => [
+        dimDisplay(it.t, "thickness"), dimDisplay(it.w, "width"),
+        dimDisplay(it.l * 12, "length"), it.q, it.bf.toFixed(2) + " BF",
+        sym() + it.c.toFixed(2)
+      ]);
+      const m = 1 + state.waste / 100;
+      let bs = 0, cs = 0;
+      for (const it of items) { bs += it.bf; cs += it.c; }
+      rows.push(["","","","","",""]);
+      rows.push(["TOTAL", "", "", "", (bs * m).toFixed(2) + " BF", sym() + (cs * m).toFixed(2)]);
+      const cw = 140, rh = 32, pad = 16, hdr = 44;
+      const tw = cols.length * cw + pad * 2;
+      const th = (rows.length + 1) * rh + hdr + pad * 2;
+      const c = document.createElement("canvas");
+      c.width = tw; c.height = th;
+      const ctx = c.getContext("2d");
+      ctx.fillStyle = "#FFFFFF"; ctx.fillRect(0, 0, tw, th);
+      ctx.fillStyle = "#111111";
+      ctx.font = "bold 13px Inter, sans-serif";
+      cols.forEach((col, i) => { ctx.fillText(col, pad + i * cw + 8, pad + 18); });
+      ctx.strokeStyle = "#E5E5E5"; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(pad, pad + hdr); ctx.lineTo(tw - pad, pad + hdr); ctx.stroke();
+      ctx.font = "12px Inter, sans-serif";
+      rows.forEach((row, ri) => {
+        const yy = pad + hdr + 10 + (ri + 1) * rh;
+        if (ri === rows.length - 1) { ctx.font = "bold 12px Inter, sans-serif"; }
+        row.forEach((cell, ci) => { ctx.fillText(cell, pad + ci * cw + 8, yy); });
+        ctx.font = "12px Inter, sans-serif";
+        if (ri < rows.length - 1) {
+          ctx.strokeStyle = "#F0F0F0"; ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(pad, yy + rh - 22); ctx.lineTo(tw - pad, yy + rh - 22); ctx.stroke();
+        }
+      });
+      const a = document.createElement("a");
+      a.href = c.toDataURL("image/png");
+      a.download = "cut-list.png";
+      a.click();
+    }
+
     function preset(v) {
       const p = v.split(",");
       if (p.length < 3) return;
@@ -616,6 +676,10 @@ import InputField from "./InputField.astro";
       if (ui.presets) ui.presets.addEventListener("click", e => { const b = e.target.closest("[data-preset]"); if (b) preset(b.dataset.preset); });
       ui.add.addEventListener("click", add);
       ui.clear.addEventListener("click", clearAll);
+      const pdfBtn = root.querySelector("[data-action='export-pdf']");
+      const imgBtn = root.querySelector("[data-action='export-img']");
+      if (pdfBtn) pdfBtn.addEventListener("click", exportPdf);
+      if (imgBtn) imgBtn.addEventListener("click", exportImg);
       if (ui.currency) { ui.currency.value = state.currency; ui.currency.addEventListener("change", () => { state.currency = ui.currency.value; save(); labels(); live(); render(); }); }
       document.addEventListener("i18nchange", () => { labels(); tot(); });
       labels(); live(); viz(); render();
