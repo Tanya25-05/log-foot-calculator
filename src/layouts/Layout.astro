@@ -97,57 +97,170 @@ const { title = "Board Foot Calculator — Free Lumber Calculator with Cut List"
 </html>
 
 <script>
+  const LANG = {
+    en: {
+      "nav.calculator":"Calculator","nav.about":"About","nav.contact":"Contact","nav.privacy":"Privacy","nav.terms":"Terms","nav.get_started":"Get Started",
+      "footer.desc":"Free online board foot calculator for woodworkers, contractors, and DIYers.","footer.about":"About","footer.contact":"Contact","footer.privacy":"Privacy Policy","footer.terms":"Terms & Conditions","footer.copyright":"© BoardFootCal.com — Made for makers.",
+      "calc.badge":"Free Online Tool","calc.heading":"Board Foot Calculator.","calc.subtitle":"Real-time lumber calculations with a visual preview and a project cut list that saves to your browser.",
+      "calc.board_dimensions":"Board Dimensions","calc.quick_fill":"Quick Fill","calc.thickness":"Thickness","calc.width":"Width","calc.length":"Length","calc.quantity":"Quantity",
+      "calc.price_per_bf":"Price / BF","calc.add_to_cut_list":"Add to Cut List","calc.per_board":"Per Board","calc.total_bf":"Total BF","calc.total_cost":"Total Cost",
+      "calc.cost_formula":"Cost = Total BF × Price / BF · Waste factor applied to cut list totals",
+      "calc.lumber_preview":"Lumber Preview","calc.not_to_scale":"Board dimensions — not to scale","calc.project_cut_list":"Project Cut List",
+      "calc.total_label":"Total:","calc.cost_label":"Cost:","calc.clear_all":"Clear All","calc.empty_title":"No items yet.","calc.empty_desc":"Add boards above to build your cut list.",
+      "calc.waste_factor":"Waste Factor","calc.waste_0":"0%","calc.waste_50":"50%",
+      "hero.badge":"Free Online Tool","hero.title":"Calculate lumber instantly. Build smarter.","hero.desc":"The modern board foot calculator for woodworkers, contractors, and DIYers. Real-time results, visual preview, and a project cut list that persists across sessions.","hero.cta":"How It Works",
+      "how.guide":"Guide","how.title":"How to calculate board feet.","how.desc":"Board footage measures lumber volume. One board foot is 1′ × 1′ × 1″.",
+      "how.step1_title":"Enter dimensions","how.step1_desc":"Input thickness, width, and length. Toggle between Imperial and Metric seamlessly.",
+      "how.step2_title":"Set quantity and price","how.step2_desc":"How many boards? What's the price per board foot? Results update instantly.",
+      "how.step3_title":"Build your cut list","how.step3_desc":"Add multiple board sizes to a project cut list. Totals auto-calculate with waste margin.",
+      "how.formula_title":"Board Foot Formula","how.formula":"BF = Thickness (in) × Width (in) × Length (ft) ÷ 12","how.formula_note":"1 board foot = 144 in³. Metric values convert to inches and feet internally.",
+      "faq.heading":"Frequently asked questions.","faq.load_more":"Load More FAQ","faq.show_less":"Show Less",
+      "faq.q1":"What is a board foot calculator?","faq.a1":"A board foot calculator is a tool that computes the volume of lumber in board feet — the standard unit for measuring hardwood in North America. It multiplies thickness (in), width (in), and length (ft), then divides by 12. Our calculator adds real-time results, price per board foot, and a project cut list.",
+      "faq.q2":"How do I calculate a board foot?","faq.a2":"Use the formula: Board Feet = Thickness (in) × Width (in) × Length (ft) ÷ 12. For example, a 2×4 that is 8 feet long is 1.5 × 3.5 × 8 ÷ 12 = 3.5 board feet. Our calculator does this instantly — just enter your dimensions.",
+      "faq.q3":"How many board feet is a 2x4x8?","faq.a3":"An 8-foot 2×4 (actual dimensions: 1.5″ × 3.5″ × 8′) contains 3.5 board feet. The calculation is 1.5 × 3.5 × 8 ÷ 12 = 3.5 BF. Use our Quick Fill presets to load common lumber sizes instantly.",
+      "faq.q4":"How many board feet is a 2x4x10?","faq.a4":"A 10-foot 2×4 (actual: 1.5″ × 3.5″ × 10′) contains 4.375 board feet. The formula is 1.5 × 3.5 × 10 ÷ 12 = 4.375 BF. Enter any length and our calculator adjusts the result in real time.",
+      "faq.q5":"How much will 200 board feet cover?","faq.a5":"Coverage depends on thickness. At 1″ thick, 200 BF covers 200 square feet. At ¾″ (0.75″), it covers roughly 267 sq ft. Use our calculator to test different thicknesses and see both board footage and cost instantly.",
+      "seo.heading":"Everything you need from a board foot calculator.",
+    },
+    es: {
+      "nav.calculator":"Calculadora","nav.about":"Acerca de","nav.contact":"Contacto","nav.privacy":"Privacidad","nav.terms":"Términos","nav.get_started":"Comenzar",
+      "footer.desc":"Calculadora gratuita de pies tablares para carpinteros, contratistas y aficionados.","footer.about":"Acerca de","footer.contact":"Contacto","footer.privacy":"Política de Privacidad","footer.terms":"Términos y Condiciones","footer.copyright":"© BoardFootCal.com — Hecho para creadores.",
+      "calc.badge":"Herramienta Gratuita","calc.heading":"Calculadora de Pies Tablares.","calc.subtitle":"Cálculos de madera en tiempo real con vista previa visual y lista de corte que se guarda en tu navegador.",
+      "calc.board_dimensions":"Dimensiones","calc.quick_fill":"Relleno Rápido","calc.thickness":"Grosor","calc.width":"Ancho","calc.length":"Largo","calc.quantity":"Cantidad",
+      "calc.price_per_bf":"Precio / Pie Tablar","calc.add_to_cut_list":"Agregar a Lista","calc.per_board":"Por Tabla","calc.total_bf":"Total Pies T.","calc.total_cost":"Costo Total",
+      "calc.cost_formula":"Costo = Total Pies T. × Precio / Pie T. · Factor de desperdicio aplicado a totales",
+      "calc.lumber_preview":"Vista Previa","calc.not_to_scale":"Dimensiones — no a escala","calc.project_cut_list":"Lista de Corte",
+      "calc.total_label":"Total:","calc.cost_label":"Costo:","calc.clear_all":"Limpiar Todo","calc.empty_title":"Sin elementos aún.","calc.empty_desc":"Agrega tablas arriba para crear tu lista.",
+      "calc.waste_factor":"Factor de Desperdicio","calc.waste_0":"0%","calc.waste_50":"50%",
+      "hero.badge":"Herramienta Gratuita","hero.title":"Calcula madera al instante. Construye mejor.","hero.desc":"La calculadora moderna de pies tablares para carpinteros, contratistas y aficionados. Resultados en tiempo real, vista previa visual y lista de corte que persiste entre sesiones.","hero.cta":"Cómo Funciona",
+      "how.guide":"Guía","how.title":"Cómo calcular pies tablares.","how.desc":"El pie tablar mide el volumen de la madera. Un pie tablar es 1′ × 1′ × 1″.",
+      "how.step1_title":"Ingresa dimensiones","how.step1_desc":"Introduce grosor, ancho y largo. Cambia entre imperial y métrico sin problemas.",
+      "how.step2_title":"Cantidad y precio","how.step2_desc":"¿Cuántas tablas? ¿Precio por pie tablar? Los resultados se actualizan al instante.",
+      "how.step3_title":"Crea tu lista","how.step3_desc":"Agrega múltiples tamaños a tu lista. Los totales se calculan automáticamente con margen de desperdicio.",
+      "how.formula_title":"Fórmula","how.formula":"PT = Grosor (in) × Ancho (in) × Largo (ft) ÷ 12","how.formula_note":"1 pie tablar = 144 in³. Los valores métricos se convierten internamente.",
+      "faq.heading":"Preguntas frecuentes.","faq.load_more":"Más Preguntas","faq.show_less":"Mostrar Menos",
+      "faq.q1":"¿Qué es una calculadora de pies tablares?","faq.a1":"Una calculadora de pies tablares calcula el volumen de la madera en pies tablares, la unidad estándar para medir madera dura en Norteamérica. Multiplica grosor (in), ancho (in) y largo (ft), luego divide por 12.",
+      "faq.q2":"¿Cómo calculo un pie tablar?","faq.a2":"Usa la fórmula: Pies Tablares = Grosor (in) × Ancho (in) × Largo (ft) ÷ 12. Por ejemplo, un 2×4 de 8 pies es 1.5 × 3.5 × 8 ÷ 12 = 3.5 pies tablares.",
+      "faq.q3":"¿Cuántos pies tablares tiene un 2x4x8?","faq.a3":"Un 2×4 de 8 pies (dimensiones reales: 1.5″ × 3.5″ × 8′) tiene 3.5 pies tablares. El cálculo es 1.5 × 3.5 × 8 ÷ 12 = 3.5 PT.",
+      "faq.q4":"¿Cuántos pies tablares tiene un 2x4x10?","faq.a4":"Un 2×4 de 10 pies (1.5″ × 3.5″ × 10′) tiene 4.375 pies tablares. La fórmula es 1.5 × 3.5 × 10 ÷ 12 = 4.375 PT.",
+      "faq.q5":"¿Cuánto cubren 200 pies tablares?","faq.a5":"La cobertura depende del grosor. A 1″ de grosor, 200 PT cubren 200 pies cuadrados. A ¾″ (0.75″), cubre aproximadamente 267 pies cuadrados.",
+      "seo.heading":"Todo lo que necesitas de una calculadora de pies tablares.",
+    },
+    fr: {
+      "nav.calculator":"Calculatrice","nav.about":"À propos","nav.contact":"Contact","nav.privacy":"Confidentialité","nav.terms":"CGV","nav.get_started":"Commencer",
+      "footer.desc":"Calculateur gratuit de pied-planche pour les menuisiers, entrepreneurs et bricoleurs.","footer.about":"À propos","footer.contact":"Contact","footer.privacy":"Politique de Confidentialité","footer.terms":"Conditions Générales","footer.copyright":"© BoardFootCal.com — Fabriqué pour les créateurs.",
+      "calc.badge":"Outil Gratuit","calc.heading":"Calculateur de Pieds-planches.","calc.subtitle":"Calculs de bois en temps réel avec aperçu visuel et liste de coupe sauvegardée dans votre navigateur.",
+      "calc.board_dimensions":"Dimensions","calc.quick_fill":"Saisie Rapide","calc.thickness":"Épaisseur","calc.width":"Largeur","calc.length":"Longueur","calc.quantity":"Quantité",
+      "calc.price_per_bf":"Prix / Pied-planche","calc.add_to_cut_list":"Ajouter à la Liste","calc.per_board":"Par Planche","calc.total_bf":"Total P-p","calc.total_cost":"Coût Total",
+      "calc.cost_formula":"Coût = Total P-p × Prix / P-p · Facteur de perte appliqué aux totaux",
+      "calc.lumber_preview":"Aperçu","calc.not_to_scale":"Dimensions — pas à l'échelle","calc.project_cut_list":"Liste de Coupe",
+      "calc.total_label":"Total :","calc.cost_label":"Coût :","calc.clear_all":"Tout Effacer","calc.empty_title":"Aucun élément.","calc.empty_desc":"Ajoutez des planches ci-dessus pour constituer votre liste.",
+      "calc.waste_factor":"Facteur de Perte","calc.waste_0":"0%","calc.waste_50":"50%",
+      "hero.badge":"Outil Gratuit","hero.title":"Calculez le bois instantanément. Construisez mieux.","hero.desc":"Le calculateur moderne de pieds-planches pour menuisiers, entrepreneurs et bricoleurs. Résultats en temps réel, aperçu visuel et liste de coupe persistante.","hero.cta":"Comment Ça Marche",
+      "how.guide":"Guide","how.title":"Comment calculer les pieds-planches.","how.desc":"Le pied-planche mesure le volume du bois. Un pied-planche = 1′ × 1′ × 1″.",
+      "how.step1_title":"Saisissez les dimensions","how.step1_desc":"Entrez l'épaisseur, la largeur et la longueur. Basculez entre impérial et métrique.",
+      "how.step2_title":"Quantité et prix","how.step2_desc":"Combien de planches ? Prix par pied-planche ? Les résultats se mettent à jour instantanément.",
+      "how.step3_title":"Créez votre liste","how.step3_desc":"Ajoutez plusieurs tailles de planches à votre liste. Les totaux se calculent automatiquement.",
+      "how.formula_title":"Formule","how.formula":"P-p = Épaisseur (in) × Largeur (in) × Longueur (ft) ÷ 12","how.formula_note":"1 pied-planche = 144 po³. Les valeurs métriques sont converties automatiquement.",
+      "faq.heading":"Questions fréquentes.","faq.load_more":"Plus de Questions","faq.show_less":"Moins",
+      "faq.q1":"Qu'est-ce qu'un calculateur de pieds-planches ?","faq.a1":"Un calculateur de pieds-planches calcule le volume du bois en pieds-planches, l'unité standard pour le bois dur en Amérique du Nord. Il multiplie l'épaisseur (in), la largeur (in) et la longueur (ft), puis divise par 12.",
+      "faq.q2":"Comment calculer un pied-planche ?","faq.a2":"Formule : Pieds-planches = Épaisseur (in) × Largeur (in) × Longueur (ft) ÷ 12. Exemple : un 2×4 de 8 pieds = 1,5 × 3,5 × 8 ÷ 12 = 3,5 pieds-planches.",
+      "faq.q3":"Combien de pieds-planches fait un 2x4x8 ?","faq.a3":"Un 2×4 de 8 pieds (1,5″ × 3,5″ × 8′) fait 3,5 pieds-planches. Calcul : 1,5 × 3,5 × 8 ÷ 12 = 3,5 P-p.",
+      "faq.q4":"Combien de pieds-planches fait un 2x4x10 ?","faq.a4":"Un 2×4 de 10 pieds (1,5″ × 3,5″ × 10′) fait 4,375 pieds-planches. Formule : 1,5 × 3,5 × 10 ÷ 12 = 4,375 P-p.",
+      "faq.q5":"Quelle surface couvrent 200 pieds-planches ?","faq.a5":"La couverture dépend de l'épaisseur. À 1″ d'épaisseur, 200 P-p couvrent 200 pieds carrés. À ¾″ (0,75″), environ 267 pieds carrés.",
+      "seo.heading":"Tout ce dont vous avez besoin d'un calculateur de pieds-planches.",
+    },
+    de: {
+      "nav.calculator":"Rechner","nav.about":"Über uns","nav.contact":"Kontakt","nav.privacy":"Datenschutz","nav.terms":"AGB","nav.get_started":"Loslegen",
+      "footer.desc":"Kostenloser Brettfuß-Rechner für Holzverarbeiter, Bauunternehmer und Heimwerker.","footer.about":"Über uns","footer.contact":"Kontakt","footer.privacy":"Datenschutzerklärung","footer.terms":"AGB","footer.copyright":"© BoardFootCal.com — Für Macher gemacht.",
+      "calc.badge":"Kostenloses Tool","calc.heading":"Brettfuß-Rechner.","calc.subtitle":"Echtzeit-Holzberechnungen mit visueller Vorschau und einer Zuschnittliste, die in Ihrem Browser gespeichert wird.",
+      "calc.board_dimensions":"Abmessungen","calc.quick_fill":"Schnellauswahl","calc.thickness":"Dicke","calc.width":"Breite","calc.length":"Länge","calc.quantity":"Menge",
+      "calc.price_per_bf":"Preis / Brettfuß","calc.add_to_cut_list":"Zur Liste hinzufügen","calc.per_board":"Pro Brett","calc.total_bf":"Gesamt BF","calc.total_cost":"Gesamtkosten",
+      "calc.cost_formula":"Kosten = Gesamt BF × Preis / BF · Verschnittfaktor auf Summen angewendet",
+      "calc.lumber_preview":"Vorschau","calc.not_to_scale":"Abmessungen — nicht maßstabsgetreu","calc.project_cut_list":"Zuschnittliste",
+      "calc.total_label":"Gesamt:","calc.cost_label":"Kosten:","calc.clear_all":"Alle löschen","calc.empty_title":"Noch keine Einträge.","calc.empty_desc":"Fügen Sie oben Bretter hinzu, um Ihre Liste zu erstellen.",
+      "calc.waste_factor":"Verschnittfaktor","calc.waste_0":"0%","calc.waste_50":"50%",
+      "hero.badge":"Kostenloses Tool","hero.title":"Holz sofort berechnen. Intelligenter bauen.","hero.desc":"Der moderne Brettfuß-Rechner für Holzverarbeiter, Bauunternehmer und Heimwerker. Echtzeitergebnisse, visuelle Vorschau und eine beständige Zuschnittliste.","hero.cta":"So funktioniert's",
+      "how.guide":"Anleitung","how.title":"Brettfuß berechnen.","how.desc":"Der Brettfuß misst das Holzvolumen. Ein Brettfuß = 1′ × 1′ × 1″.",
+      "how.step1_title":"Maße eingeben","how.step1_desc":"Dicke, Breite und Länge eingeben. Zwischen imperial und metrisch umschalten.",
+      "how.step2_title":"Menge & Preis","how.step2_desc":"Wie viele Bretter? Preis pro Brettfuß? Ergebnisse werden sofort aktualisiert.",
+      "how.step3_title":"Liste erstellen","how.step3_desc":"Mehrere Brettgrößen zur Zuschnittliste hinzufügen. Gesamtsummen mit Verschnittberechnung.",
+      "how.formula_title":"Formel","how.formula":"BF = Dicke (in) × Breite (in) × Länge (ft) ÷ 12","how.formula_note":"1 Brettfuß = 144 in³. Metrische Werte werden intern umgerechnet.",
+      "faq.heading":"Häufig gestellte Fragen.","faq.load_more":"Mehr Fragen","faq.show_less":"Weniger anzeigen",
+      "faq.q1":"Was ist ein Brettfuß-Rechner?","faq.a1":"Ein Brettfuß-Rechner berechnet das Holzvolumen in Brettfuß, der Standardeinheit für Hartholz in Nordamerika. Er multipliziert Dicke (in), Breite (in) und Länge (ft) und dividiert durch 12.",
+      "faq.q2":"Wie berechne ich einen Brettfuß?","faq.a2":"Formel: Brettfuß = Dicke (in) × Breite (in) × Länge (ft) ÷ 12. Beispiel: ein 2×4 mit 8 Fuß Länge = 1,5 × 3,5 × 8 ÷ 12 = 3,5 Brettfuß.",
+      "faq.q3":"Wie viel Brettfuß hat ein 2x4x8?","faq.a3":"Ein 2×4 mit 8 Fuß (1,5″ × 3,5″ × 8′) hat 3,5 Brettfuß. Berechnung: 1,5 × 3,5 × 8 ÷ 12 = 3,5 BF.",
+      "faq.q4":"Wie viel Brettfuß hat ein 2x4x10?","faq.a4":"Ein 2×4 mit 10 Fuß (1,5″ × 3,5″ × 10′) hat 4,375 Brettfuß. Formel: 1,5 × 3,5 × 10 ÷ 12 = 4,375 BF.",
+      "faq.q5":"Wie viel Fläche decken 200 Brettfuß ab?","faq.a5":"Die Fläche hängt von der Dicke ab. Bei 1″ Dicke decken 200 BF 200 Quadratfuß ab. Bei ¾″ (0,75″) etwa 267 Quadratfuß.",
+      "seo.heading":"Alles, was Sie von einem Brettfuß-Rechner brauchen.",
+    },
+    pt: {
+      "nav.calculator":"Calculadora","nav.about":"Sobre","nav.contact":"Contato","nav.privacy":"Privacidade","nav.terms":"Termos","nav.get_started":"Começar",
+      "footer.desc":"Calculadora gratuita de pés-tábua para marceneiros, empreiteiros e DIYers.","footer.about":"Sobre","footer.contact":"Contato","footer.privacy":"Política de Privacidade","footer.terms":"Termos e Condições","footer.copyright":"© BoardFootCal.com — Feito para criadores.",
+      "calc.badge":"Ferramenta Gratuita","calc.heading":"Calculadora de Pés-Tábua.","calc.subtitle":"Cálculos de madeira em tempo real com visualização e lista de corte salva no seu navegador.",
+      "calc.board_dimensions":"Dimensões","calc.quick_fill":"Preenchimento Rápido","calc.thickness":"Espessura","calc.width":"Largura","calc.length":"Comprimento","calc.quantity":"Quantidade",
+      "calc.price_per_bf":"Preço / Pé-tábua","calc.add_to_cut_list":"Adicionar à Lista","calc.per_board":"Por Tábua","calc.total_bf":"Total Pés","calc.total_cost":"Custo Total",
+      "calc.cost_formula":"Custo = Total Pés × Preço / Pé · Fator de perda aplicado aos totais",
+      "calc.lumber_preview":"Visualização","calc.not_to_scale":"Dimensões — fora de escala","calc.project_cut_list":"Lista de Corte",
+      "calc.total_label":"Total:","calc.cost_label":"Custo:","calc.clear_all":"Limpar Tudo","calc.empty_title":"Nenhum item ainda.","calc.empty_desc":"Adicione tábuas acima para criar sua lista.",
+      "calc.waste_factor":"Fator de Perda","calc.waste_0":"0%","calc.waste_50":"50%",
+      "hero.badge":"Ferramenta Gratuita","hero.title":"Calcule madeira instantaneamente. Construa melhor.","hero.desc":"A calculadora moderna de pés-tábua para marceneiros, empreiteiros e DIYers. Resultados em tempo real, visualização e lista de corte persistente.","hero.cta":"Como Funciona",
+      "how.guide":"Guia","how.title":"Como calcular pés-tábua.","how.desc":"O pé-tábua mede o volume da madeira. Um pé-tábua = 1′ × 1′ × 1″.",
+      "how.step1_title":"Insira dimensões","how.step1_desc":"Insira espessura, largura e comprimento. Alterne entre imperial e métrico.",
+      "how.step2_title":"Quantidade e preço","how.step2_desc":"Quantas tábuas? Preço por pé-tábua? Resultados atualizados instantaneamente.",
+      "how.step3_title":"Crie sua lista","how.step3_desc":"Adicione vários tamanhos à sua lista de corte. Totais calculados automaticamente com margem de perda.",
+      "how.formula_title":"Fórmula","how.formula":"Pés = Espessura (in) × Largura (in) × Comprimento (ft) ÷ 12","how.formula_note":"1 pé-tábua = 144 in³. Valores métricos convertidos internamente.",
+      "faq.heading":"Perguntas frequentes.","faq.load_more":"Mais Perguntas","faq.show_less":"Mostrar Menos",
+      "faq.q1":"O que é uma calculadora de pés-tábua?","faq.a1":"Uma calculadora de pés-tábua calcula o volume da madeira em pés-tábua, a unidade padrão para madeira de lei na América do Norte. Multiplica espessura (in), largura (in) e comprimento (ft) e divide por 12.",
+      "faq.q2":"Como calculo um pé-tábua?","faq.a2":"Fórmula: Pés-tábua = Espessura (in) × Largura (in) × Comprimento (ft) ÷ 12. Exemplo: um 2×4 de 8 pés = 1,5 × 3,5 × 8 ÷ 12 = 3,5 pés-tábua.",
+      "faq.q3":"Quantos pés-tábua tem um 2x4x8?","faq.a3":"Um 2×4 de 8 pés (1,5″ × 3,5″ × 8′) tem 3,5 pés-tábua. Cálculo: 1,5 × 3,5 × 8 ÷ 12 = 3,5 Pés.",
+      "faq.q4":"Quantos pés-tábua tem um 2x4x10?","faq.a4":"Um 2×4 de 10 pés (1,5″ × 3,5″ × 10′) tem 4,375 pés-tábua. Fórmula: 1,5 × 3,5 × 10 ÷ 12 = 4,375 Pés.",
+      "faq.q5":"Quanto cobrem 200 pés-tábua?","faq.a5":"A cobertura depende da espessura. Com 1″ de espessura, 200 pés-tábua cobrem 200 pés quadrados. Com ¾″ (0,75″), cobrem cerca de 267 pés quadrados.",
+      "seo.heading":"Tudo o que você precisa de uma calculadora de pés-tábua.",
+    },
+  };
+
+  window.i18n = {
+    lang: "en",
+    t(key) { return LANG[this.lang]?.[key] ?? LANG.en[key] ?? key; },
+    apply(root) {
+      (root || document).querySelectorAll("[data-i18n]").forEach(el => { el.textContent = this.t(el.dataset.i18n); });
+      (root || document).querySelectorAll("[data-i18n-html]").forEach(el => { el.innerHTML = this.t(el.dataset.i18nHtml); });
+    },
+    init() { try { this.lang = localStorage.getItem("bfc_lang") || "en"; } catch(e) {} if (!LANG[this.lang]) this.lang = "en"; this.apply(); },
+    set(lang) { this.lang = lang; try { localStorage.setItem("bfc_lang", lang); } catch(e) {} this.apply(); document.dispatchEvent(new CustomEvent("i18nchange")); }
+  };
+
   (() => {
     const stored = localStorage.getItem("bfc_theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = stored === "dark" || (!stored && prefersDark);
+    if (isDark) document.documentElement.setAttribute("data-theme", "dark");
 
-    if (isDark) {
-      document.documentElement.setAttribute("data-theme", "dark");
+    function syncLangSelectors() {
+      const lang = window.i18n?.lang || "en";
+      document.querySelectorAll("#lang-select, #lang-select-mobile").forEach(sel => { if (sel) sel.value = lang; });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      // Theme toggle
+      window.i18n.init();
+      syncLangSelectors();
+      document.querySelectorAll("#lang-select, #lang-select-mobile").forEach(sel => {
+        if (!sel) return;
+        sel.addEventListener("change", () => {
+          window.i18n?.set(sel.value);
+          document.querySelectorAll("#lang-select, #lang-select-mobile").forEach(s => { if (s) s.value = sel.value; });
+        });
+      });
+      document.addEventListener("i18nchange", syncLangSelectors);
       const themeBtns = ["theme-toggle", "theme-toggle-mobile"].map(id => document.getElementById(id)).filter(Boolean);
       const sunIcons = ["sun-icon", "sun-icon-mobile"].map(id => document.getElementById(id)).filter(Boolean);
       const moonIcons = ["moon-icon", "moon-icon-mobile"].map(id => document.getElementById(id)).filter(Boolean);
-
-      const updateTheme = () => {
-        const dark = document.documentElement.getAttribute("data-theme") === "dark";
-        sunIcons.forEach(el => el.classList.toggle("hidden", !dark));
-        moonIcons.forEach(el => el.classList.toggle("hidden", dark));
-      };
-
+      const updateTheme = () => { const dark = document.documentElement.getAttribute("data-theme") === "dark"; sunIcons.forEach(el => el.classList.toggle("hidden", !dark)); moonIcons.forEach(el => el.classList.toggle("hidden", dark)); };
       updateTheme();
-
-      themeBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-          if (isDark) {
-            document.documentElement.removeAttribute("data-theme");
-            localStorage.setItem("bfc_theme", "light");
-          } else {
-            document.documentElement.setAttribute("data-theme", "dark");
-            localStorage.setItem("bfc_theme", "dark");
-          }
-          updateTheme();
-        });
-      });
-
-      // Mobile menu toggle
-      const menuToggle = document.getElementById("menu-toggle");
-      const mobileMenu = document.getElementById("mobile-menu");
-      const menuIcon = document.getElementById("menu-icon");
-      const closeIcon = document.getElementById("close-icon");
-
-      if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener("click", () => {
-          const isOpen = !mobileMenu.classList.contains("hidden");
-          mobileMenu.classList.toggle("hidden", isOpen);
-          menuIcon.classList.toggle("hidden", !isOpen);
-          closeIcon.classList.toggle("hidden", isOpen);
-        });
-      }
+      themeBtns.forEach(btn => { btn.addEventListener("click", () => { const isD = document.documentElement.getAttribute("data-theme") === "dark"; if (isD) { document.documentElement.removeAttribute("data-theme"); localStorage.setItem("bfc_theme", "light"); } else { document.documentElement.setAttribute("data-theme", "dark"); localStorage.setItem("bfc_theme", "dark"); } updateTheme(); }); });
+      const menuToggle = document.getElementById("menu-toggle"), mobileMenu = document.getElementById("mobile-menu"), menuIcon = document.getElementById("menu-icon"), closeIcon = document.getElementById("close-icon");
+      if (menuToggle && mobileMenu) menuToggle.addEventListener("click", () => { const isO = !mobileMenu.classList.contains("hidden"); mobileMenu.classList.toggle("hidden", isO); menuIcon.classList.toggle("hidden", !isO); closeIcon.classList.toggle("hidden", isO); });
     });
   })();
 </script>

@@ -41,16 +41,16 @@ const faqItems = [
 
     <!-- Hero Message + CTA — now below calculator -->
     <section class="bg-primary border-t border-subtle py-16 sm:py-20 lg:py-24">
-      <div class="mx-auto max-w-7xl px-5 text-center sm:px-8 lg:px-12">
-        <span class="inline-block rounded-full bg-secondary px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-muted">
+      <div class="mx-auto max-w-7xl px-8 text-center sm:px-14 lg:px-24">
+        <span class="inline-block rounded-full bg-secondary px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-muted" data-i18n="hero.badge">
           Free Online Tool
         </span>
 
-        <h1 class="mx-auto mt-6 max-w-4xl text-display-xl text-primary text-balance">
+        <h1 class="mx-auto mt-6 max-w-4xl text-display-xl text-primary text-balance" data-i18n="hero.title">
           Calculate lumber instantly. Build smarter.
         </h1>
 
-        <p class="mx-auto mt-4 max-w-2xl text-body-lg text-secondary">
+        <p class="mx-auto mt-4 max-w-2xl text-body-lg text-secondary" data-i18n="hero.desc">
           The modern board foot calculator for woodworkers, contractors, and DIYers.
           Real-time results, visual preview, and a project cut list that persists across sessions.
         </p>
@@ -58,7 +58,7 @@ const faqItems = [
         <div class="mt-8 flex items-center justify-center gap-3">
           <a
             href="#how-it-works"
-            class="inline-flex items-center rounded-lg border border-subtle bg-primary px-8 py-3 text-button-lg text-primary no-underline transition-colors hover:bg-secondary"
+            class="inline-flex items-center rounded-lg border border-subtle bg-primary px-8 py-3 text-button-lg text-primary no-underline transition-colors hover:bg-secondary" data-i18n="hero.cta"
           >
             How It Works
           </a>
@@ -68,9 +68,9 @@ const faqItems = [
 
     <!-- SEO Content Section -->
     <section class="bg-secondary border-t border-subtle py-16 sm:py-20 lg:py-24" aria-label="About board foot calculations">
-      <div class="mx-auto max-w-4xl px-5 sm:px-8 lg:px-12">
+      <div class="mx-auto max-w-4xl px-8 sm:px-14 lg:px-24">
         <div class="prose-custom mx-auto">
-          <h2 class="text-display-lg text-primary text-center mb-8">Everything you need from a board foot calculator.</h2>
+          <h2 class="text-display-lg text-primary text-center mb-8" data-i18n="seo.heading">Everything you need from a board foot calculator.</h2>
 
           <div class="space-y-6 text-body-md text-secondary leading-relaxed">
             <p>
@@ -124,15 +124,15 @@ const faqItems = [
 
     <!-- How It Works Section -->
     <section id="how-it-works" class="bg-secondary border-t border-subtle py-16 sm:py-20 lg:py-24">
-      <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+      <div class="mx-auto max-w-7xl px-8 sm:px-14 lg:px-24">
         <div class="mx-auto max-w-2xl text-center">
-          <span class="inline-block rounded-full bg-primary px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-muted border border-subtle">
+          <span class="inline-block rounded-full bg-primary px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-muted border border-subtle" data-i18n="how.guide">
             Guide
           </span>
-          <h2 class="mt-4 text-display-lg text-primary">
+          <h2 class="mt-4 text-display-lg text-primary" data-i18n="how.title">
             How to calculate board feet.
           </h2>
-          <p class="mt-3 text-body-md text-secondary">
+          <p class="mt-3 text-body-md text-secondary" data-i18n="how.desc">
             Board footage measures lumber volume. One board foot is 1&prime; &times; 1&prime; &times; 1&Prime;.
           </p>
         </div>
@@ -145,8 +145,8 @@ const faqItems = [
             </div>
             <div class="mt-2 hidden sm:block absolute top-6 left-[calc(50%+2.5rem)] right-[calc(-50%+2.5rem)] h-px bg-[var(--border-subtle)] -z-0" aria-hidden="true"></div>
             <div class="mt-6 w-full linear-card p-6">
-              <h3 class="text-display-sm text-primary">Enter dimensions</h3>
-              <p class="mt-2 text-body-sm text-secondary">
+              <h3 class="text-display-sm text-primary" data-i18n="how.step1_title">Enter dimensions</h3>
+              <p class="mt-2 text-body-sm text-secondary" data-i18n="how.step1_desc">
                 Input thickness, width, and length. Toggle between Imperial and Metric seamlessly.
               </p>
             </div>
@@ -159,8 +159,8 @@ const faqItems = [
             </div>
             <div class="mt-2 hidden sm:block absolute top-6 left-[calc(50%+2.5rem)] right-[calc(-50%+2.5rem)] h-px bg-[var(--border-subtle)] -z-0" aria-hidden="true"></div>
             <div class="mt-6 w-full linear-card p-6">
-              <h3 class="text-display-sm text-primary">Set quantity and price</h3>
-              <p class="mt-2 text-body-sm text-secondary">
+              <h3 class="text-display-sm text-primary" data-i18n="how.step2_title">Set quantity and price</h3>
+              <p class="mt-2 text-body-sm text-secondary" data-i18n="how.step2_desc">
                 How many boards? What's the price per board foot? Results update instantly.
               </p>
             </div>
@@ -172,8 +172,8 @@ const faqItems = [
               <span class="text-body-md-strong font-mono">3</span>
             </div>
             <div class="mt-6 w-full linear-card p-6">
-              <h3 class="text-display-sm text-primary">Build your cut list</h3>
-              <p class="mt-2 text-body-sm text-secondary">
+              <h3 class="text-display-sm text-primary" data-i18n="how.step3_title">Build your cut list</h3>
+              <p class="mt-2 text-body-sm text-secondary" data-i18n="how.step3_desc">
                 Add multiple board sizes to a project cut list. Totals auto-calculate with waste margin.
               </p>
             </div>
@@ -186,12 +186,12 @@ const faqItems = [
             <svg class="h-5 w-5 text-accent-mustard shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
             </svg>
-            <h3 class="text-display-sm text-primary">Board Foot Formula</h3>
+            <h3 class="text-display-sm text-primary" data-i18n="how.formula_title">Board Foot Formula</h3>
           </div>
-          <div class="mt-3 rounded-lg bg-primary p-4 font-mono text-body-sm text-primary border border-subtle">
+          <div class="mt-3 rounded-lg bg-primary p-4 font-mono text-body-sm text-primary border border-subtle" data-i18n="how.formula">
             <span class="text-muted">BF</span> = Thickness (in) &times; Width (in) &times; Length (ft) &divide; 12
           </div>
-          <p class="mt-3 text-caption text-muted">
+          <p class="mt-3 text-caption text-muted" data-i18n="how.formula_note">
             1 board foot = 144 in&sup3;. Metric values convert to inches and feet internally.
           </p>
         </div>
@@ -200,8 +200,8 @@ const faqItems = [
 
     <!-- FAQ Section -->
     <section class="bg-primary border-t border-subtle py-16 sm:py-20 lg:py-24" data-faq-section>
-      <div class="mx-auto max-w-3xl px-5 sm:px-8 lg:px-12">
-        <h2 class="text-center text-display-lg text-primary">
+      <div class="mx-auto max-w-3xl px-8 sm:px-14 lg:px-24">
+        <h2 class="text-center text-display-lg text-primary" data-i18n="faq.heading">
           Frequently asked questions.
         </h2>
         <div class="mt-10">
@@ -236,10 +236,13 @@ const faqItems = [
           items.forEach((el, i) => {
             el.classList.toggle("hidden", i >= INITIAL && !isExpanded);
           });
-          toggle.textContent = isExpanded ? "Show Less" : `Load More FAQ (${items.length - INITIAL} more)`;
+          toggle.textContent = isExpanded
+            ? (window.i18n?.t("faq.show_less") || "Show Less")
+            : ((window.i18n?.t("faq.load_more") || "Load More FAQ") + ` (${items.length - INITIAL} more)`);
         }
 
         apply();
+        document.addEventListener("i18nchange", apply);
 
         toggle.addEventListener("click", () => {
           isExpanded = !isExpanded;

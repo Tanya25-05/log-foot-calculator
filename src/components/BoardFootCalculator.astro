@@ -5,18 +5,18 @@ import InputField from "./InputField.astro";
 
 <section
   id="calculator"
-  class="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12 lg:py-16"
+  class="mx-auto max-w-7xl px-8 py-12 sm:px-14 lg:px-24 lg:py-16"
   data-calculator-root
 >
   <!-- Section Heading -->
   <div class="mb-10 text-center">
-    <span class="inline-block rounded-full bg-secondary px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-muted">
+    <span class="inline-block rounded-full bg-secondary px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-muted" data-i18n="calc.badge">
       Free Online Tool
     </span>
-    <h2 class="mt-4 text-display-xl text-primary text-balance">
+    <h2 class="mt-4 text-display-xl text-primary text-balance" data-i18n="calc.heading">
       Board Foot Calculator.
     </h2>
-    <p class="mx-auto mt-3 max-w-2xl text-body-lg text-secondary">
+    <p class="mx-auto mt-3 max-w-2xl text-body-lg text-secondary" data-i18n="calc.subtitle">
       Real-time lumber calculations with a visual preview and a project cut list that saves to your browser.
     </p>
   </div>
@@ -28,11 +28,11 @@ import InputField from "./InputField.astro";
     <div>
       <Card>
         <div class="mb-6">
-          <h3 class="text-display-sm text-primary">Board Dimensions</h3>
+          <h3 class="text-display-sm text-primary" data-i18n="calc.board_dimensions">Board Dimensions</h3>
         </div>
 
         <div class="mb-6" data-presets-root>
-          <span class="mb-3 block text-body-sm-strong text-secondary uppercase tracking-wide">Quick Fill</span>
+          <span class="mb-3 block text-body-sm-strong text-secondary uppercase tracking-wide" data-i18n="calc.quick_fill">Quick Fill</span>
           <div class="flex flex-wrap gap-2" data-presets-list>
             <button data-preset="1.5,3.5,8" class="linear-card px-3 py-1.5 text-body-sm text-primary transition-colors hover:bg-secondary cursor-pointer">2×4 — 8'</button>
             <button data-preset="1.5,3.5,10" class="linear-card px-3 py-1.5 text-body-sm text-primary transition-colors hover:bg-secondary cursor-pointer">2×4 — 10'</button>
@@ -45,7 +45,7 @@ import InputField from "./InputField.astro";
 
         <div class="flex flex-col gap-4">
           <div>
-            <label class="mb-1.5 block text-body-sm text-secondary">Thickness</label>
+            <label class="mb-1.5 block text-body-sm text-secondary" data-i18n="calc.thickness">Thickness</label>
             <div class="flex items-center rounded-lg border border-subtle bg-primary">
               <div data-input-wrapper="thickness" class="flex-1 flex items-center min-w-0">
                 <input data-inp type="number" step="any" min="0" value="1.5" class="flex-1 min-w-0 border-none bg-transparent outline-none px-3 py-1.5 text-body-md text-primary [appearance:textfield]" />
@@ -63,7 +63,7 @@ import InputField from "./InputField.astro";
             </div>
           </div>
           <div>
-            <label class="mb-1.5 block text-body-sm text-secondary">Width</label>
+            <label class="mb-1.5 block text-body-sm text-secondary" data-i18n="calc.width">Width</label>
             <div class="flex items-center rounded-lg border border-subtle bg-primary">
               <div data-input-wrapper="width" class="flex-1 flex items-center min-w-0">
                 <input data-inp type="number" step="any" min="0" value="3.5" class="flex-1 min-w-0 border-none bg-transparent outline-none px-3 py-1.5 text-body-md text-primary [appearance:textfield]" />
@@ -81,7 +81,7 @@ import InputField from "./InputField.astro";
             </div>
           </div>
           <div>
-            <label class="mb-1.5 block text-body-sm text-secondary">Length</label>
+            <label class="mb-1.5 block text-body-sm text-secondary" data-i18n="calc.length">Length</label>
             <div class="flex items-center rounded-lg border border-subtle bg-primary">
               <div data-input-wrapper="length" class="flex-1 flex items-center min-w-0">
                 <input data-inp type="number" step="any" min="0" value="8" class="flex-1 min-w-0 border-none bg-transparent outline-none px-3 py-1.5 text-body-md text-primary [appearance:textfield]" />
@@ -99,7 +99,7 @@ import InputField from "./InputField.astro";
             </div>
           </div>
           <div>
-            <label class="mb-1.5 block text-body-sm text-secondary">Quantity</label>
+            <label class="mb-1.5 block text-body-sm text-secondary" data-i18n="calc.quantity">Quantity</label>
             <input data-input="quantity" type="number" step="1" min="1" value="1" class="w-full rounded-lg border border-subtle bg-primary px-3 py-1.5 text-body-md text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40 [appearance:textfield]" />
           </div>
         </div>
@@ -107,7 +107,7 @@ import InputField from "./InputField.astro";
         <div class="mt-6 grid grid-cols-2 gap-x-4 sm:grid-cols-4">
           <div class="sm:col-span-2">
             <label class="mb-1.5 block text-body-sm text-secondary">
-              Price / BF
+              <span data-i18n="calc.price_per_bf">Price / BF</span>
               <span class="text-muted" data-unit-label="price">$/BF</span>
             </label>
             <div class="flex gap-2">
@@ -139,7 +139,7 @@ import InputField from "./InputField.astro";
           <div class="flex items-end sm:col-span-2 sm:justify-end">
             <button
               data-action="add-to-cart"
-              class="w-full rounded-lg bg-accent-mustard px-4 py-2.5 text-body-md-strong text-white transition-opacity hover:opacity-90 cursor-pointer"
+              class="w-full rounded-lg bg-accent-mustard px-4 py-2.5 text-body-md-strong text-white transition-opacity hover:opacity-90 cursor-pointer" data-i18n="calc.add_to_cut_list"
             >
               Add to Cut List
             </button>
@@ -148,30 +148,57 @@ import InputField from "./InputField.astro";
 
         <div class="mt-6 grid grid-cols-3 gap-4 rounded-lg bg-secondary p-4">
           <div class="text-center">
-            <span class="text-caption text-secondary">Per Board</span>
+            <span class="text-caption text-secondary inline-flex items-center justify-center gap-1">
+              <span data-i18n="calc.per_board">Per Board</span>
+              <span class="group relative inline-flex items-center justify-center cursor-help" tabindex="0">
+                <svg class="h-3.5 w-3.5 text-muted" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="8" cy="8" r="6.5"/>
+                  <text x="8" y="10.5" text-anchor="middle" font-size="9" font-style="italic" font-family="serif" fill="currentColor" stroke="none">i</text>
+                </svg>
+                <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block group-focus:block w-44 rounded-lg border border-subtle bg-primary px-2.5 py-1.5 text-caption text-secondary shadow-card z-10 pointer-events-none">Board feet for one board at the entered dimensions.</span>
+              </span>
+            </span>
             <p class="mt-0.5 text-display-sm text-primary" data-result-bf>0 BF</p>
           </div>
           <div class="text-center">
-            <span class="text-caption text-secondary">Total BF</span>
+            <span class="text-caption text-secondary inline-flex items-center justify-center gap-1">
+              <span data-i18n="calc.total_bf">Total BF</span>
+              <span class="group relative inline-flex items-center justify-center cursor-help" tabindex="0">
+                <svg class="h-3.5 w-3.5 text-muted" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="8" cy="8" r="6.5"/>
+                  <text x="8" y="10.5" text-anchor="middle" font-size="9" font-style="italic" font-family="serif" fill="currentColor" stroke="none">i</text>
+                </svg>
+                <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block group-focus:block w-44 rounded-lg border border-subtle bg-primary px-2.5 py-1.5 text-caption text-secondary shadow-card z-10 pointer-events-none">Total board feet across all boards times their quantity.</span>
+              </span>
+            </span>
             <p class="mt-0.5 text-display-sm text-primary" data-result-total-bf>0 BF</p>
           </div>
           <div class="text-center">
-            <span class="text-caption text-secondary">Total Cost</span>
+            <span class="text-caption text-secondary inline-flex items-center justify-center gap-1">
+              <span data-i18n="calc.total_cost">Total Cost</span>
+              <span class="group relative inline-flex items-center justify-center cursor-help" tabindex="0">
+                <svg class="h-3.5 w-3.5 text-muted" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="8" cy="8" r="6.5"/>
+                  <text x="8" y="10.5" text-anchor="middle" font-size="9" font-style="italic" font-family="serif" fill="currentColor" stroke="none">i</text>
+                </svg>
+                <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block group-focus:block w-44 rounded-lg border border-subtle bg-primary px-2.5 py-1.5 text-caption text-secondary shadow-card z-10 pointer-events-none">Total board feet × price per board foot.</span>
+              </span>
+            </span>
             <p class="mt-0.5 text-display-sm text-primary" data-result-cost>$0.00</p>
           </div>
         </div>
-        <p class="mt-1.5 text-center text-caption text-muted">
+        <p class="mt-1.5 text-center text-caption text-muted" data-i18n="calc.cost_formula">
           Cost = Total BF &times; Price / BF &nbsp;&middot;&nbsp; Waste factor applied to cut list totals
         </p>
       </Card>
     </div>
 
     <!-- Lumber Preview — Column 2 -->
-    <div>
-      <Card class="h-full flex flex-col">
-        <h3 class="mb-4 text-display-sm text-primary">Lumber Preview</h3>
-        <div class="flex flex-1 items-center justify-center p-2" data-visualizer-root>
-          <svg class="w-full max-w-sm h-auto" viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg" data-visualizer-svg>
+    <div class="flex flex-col gap-6">
+      <Card class="flex flex-col">
+        <h3 class="mb-4 text-display-sm text-primary" data-i18n="calc.lumber_preview">Lumber Preview</h3>
+        <div class="flex flex-1 items-center justify-center" data-visualizer-root>
+          <svg class="w-full h-auto max-w-full" viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg" data-visualizer-svg>
             <!-- Side face (back) -->
             <polygon data-viz="side" fill="var(--bg-primary)" stroke="var(--border-subtle)" stroke-width="1.2" stroke-linejoin="round" />
             <!-- Top face -->
@@ -180,9 +207,9 @@ import InputField from "./InputField.astro";
             <polygon data-viz="front" fill="var(--bg-primary)" stroke="var(--border-subtle)" stroke-width="1.2" stroke-linejoin="round" />
 
             <!-- Dimension labels -->
-            <text data-viz="label-w" font-size="11" fill="var(--text-secondary)" text-anchor="middle" font-family="var(--font-mono)" font-weight="500" />
-            <text data-viz="label-l" font-size="11" fill="var(--text-secondary)" text-anchor="end" font-family="var(--font-mono)" font-weight="500" />
-            <text data-viz="label-t" font-size="11" fill="var(--text-secondary)" text-anchor="middle" font-family="var(--font-mono)" font-weight="500" />
+            <text data-viz="label-w" font-size="9" fill="var(--text-secondary)" text-anchor="middle" font-family="var(--font-mono)" font-weight="500" />
+            <text data-viz="label-l" font-size="9" fill="var(--text-secondary)" text-anchor="end" font-family="var(--font-mono)" font-weight="500" />
+            <text data-viz="label-t" font-size="9" fill="var(--text-secondary)" text-anchor="middle" font-family="var(--font-mono)" font-weight="500" />
 
             <!-- Dimension indicator icons -->
             <line data-viz="dimline-w" stroke="var(--accent-mustard)" stroke-width="1.5" stroke-linecap="round" />
@@ -196,23 +223,29 @@ import InputField from "./InputField.astro";
             <circle data-viz="dot-t2" r="2.5" fill="var(--accent-mustard)" />
           </svg>
         </div>
-        <p class="mt-1 text-center text-caption text-muted">
+        <p class="mt-1 text-center text-caption text-muted" data-i18n="calc.not_to_scale">
           Board dimensions — not to scale
         </p>
       </Card>
+
+      <div class="px-1">
+        <p class="text-body-sm text-secondary leading-relaxed">
+          Quickly calculate board feet, visualize lumber dimensions, and manage your project cut list — all in one place. Enter thickness, width, and length, choose your units, set a price, and get instant cost estimates. Add multiple boards to build a cut list that auto-saves to your browser.
+        </p>
+      </div>
     </div>
 
     <!-- Project Cut List — Full width below -->
     <div class="cut-list-section" data-cutlist-root>
       <Card class="flex flex-col">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <h3 class="text-display-sm text-primary">Project Cut List</h3>
+          <h3 class="text-display-sm text-primary" data-i18n="calc.project_cut_list">Project Cut List</h3>
           <div class="flex flex-wrap items-center gap-3 sm:gap-4">
             <span class="text-body-sm text-secondary" data-total-summary-bf>Total: 0 BF</span>
             <span class="text-body-sm text-secondary" data-total-summary-cost>Cost: $0.00</span>
             <button
               data-action="clear-all"
-              class="linear-card px-3 py-1.5 text-body-sm text-secondary transition-colors hover:bg-secondary cursor-pointer"
+              class="linear-card px-3 py-1.5 text-body-sm text-secondary transition-colors hover:bg-secondary cursor-pointer" data-i18n="calc.clear_all"
             >
               Clear All
             </button>
@@ -227,20 +260,20 @@ import InputField from "./InputField.astro";
             <svg class="mb-3 h-8 w-8 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
             </svg>
-            <p class="text-body-md text-muted">No items yet.</p>
-            <p class="mt-1 text-body-sm text-muted">Add boards above to build your cut list.</p>
+            <p class="text-body-md text-muted" data-i18n="calc.empty_title">No items yet.</p>
+            <p class="mt-1 text-body-sm text-muted" data-i18n="calc.empty_desc">Add boards above to build your cut list.</p>
           </div>
 
           <div class="hidden overflow-x-auto linear-card" data-table-wrapper>
             <table class="w-full text-left text-body-sm">
               <thead>
                 <tr class="border-b border-subtle bg-secondary">
-                  <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-muted">Thickness</th>
-                  <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-muted">Width</th>
-                  <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-muted">Length</th>
-                  <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-muted">Qty</th>
+                  <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-muted" data-i18n="calc.thickness">Thickness</th>
+                  <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-muted" data-i18n="calc.width">Width</th>
+                  <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-muted" data-i18n="calc.length">Length</th>
+                  <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-muted" data-i18n="calc.quantity">Qty</th>
                   <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-muted">BF</th>
-                  <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-muted">Cost</th>
+                  <th class="px-4 py-3 font-mono text-caption uppercase tracking-wide text-muted" data-i18n="calc.cost_label">Cost</th>
                   <th class="px-4 py-3"></th>
                 </tr>
               </thead>
@@ -256,7 +289,7 @@ import InputField from "./InputField.astro";
   <div class="mx-auto mt-6 max-w-xl">
     <Card>
       <div class="flex items-center justify-between">
-        <label class="text-body-sm-strong text-secondary" for="waste-slider">
+        <label class="text-body-sm-strong text-secondary" for="waste-slider" data-i18n="calc.waste_factor">
           Waste Factor
         </label>
         <span class="font-mono text-body-md text-primary" data-waste-value>5%</span>
@@ -487,18 +520,18 @@ import InputField from "./InputField.astro";
       if (vis.side) vis.side.setAttribute("points", pt(p1[0],p1[1])+" "+pt(p4[0],p4[1])+" "+pt(p5[0],p5[1])+" "+pt(p2[0],p2[1]));
       if (vis.top) vis.top.setAttribute("points", pt(p3[0],p3[1])+" "+pt(p2[0],p2[1])+" "+pt(p5[0],p5[1])+" "+pt(p6[0],p6[1]));
       if (vis.front) vis.front.setAttribute("points", pt(p0[0],p0[1])+" "+pt(p1[0],p1[1])+" "+pt(p2[0],p2[1])+" "+pt(p3[0],p3[1]));
-      if (vis.labelW) { vis.labelW.setAttribute("x", cx); vis.labelW.setAttribute("y", cy + sl/2 + 14); vis.labelW.textContent = dimDisplay(w, "width"); }
-      if (vis.labelL) { vis.labelL.setAttribute("x", cx - sw/2 - 10); vis.labelL.setAttribute("y", cy + 4); vis.labelL.textContent = dimDisplay(l * 12, "length"); }
-      if (vis.labelT) { vis.labelT.setAttribute("x", cx + sw/2 + ox/2); vis.labelT.setAttribute("y", cy - sl/2 - oy - 6); vis.labelT.textContent = dimDisplay(t, "thickness"); }
-      if (vis.dimlineW) { vis.dimlineW.setAttribute("x1", p0[0]); vis.dimlineW.setAttribute("y1", p0[1]+6); vis.dimlineW.setAttribute("x2", p1[0]); vis.dimlineW.setAttribute("y2", p1[1]+6); }
-      if (vis.dimlineL) { vis.dimlineL.setAttribute("x1", p3[0]-6); vis.dimlineL.setAttribute("y1", p3[1]); vis.dimlineL.setAttribute("x2", p0[0]-6); vis.dimlineL.setAttribute("y2", p0[1]); }
-      if (vis.dimlineT) { vis.dimlineT.setAttribute("x1", p2[0]); vis.dimlineT.setAttribute("y1", p2[1]-4); vis.dimlineT.setAttribute("x2", p5[0]); vis.dimlineT.setAttribute("y2", p5[1]-4); }
-      if (vis.dotW1) { vis.dotW1.setAttribute("cx", p0[0]); vis.dotW1.setAttribute("cy", p0[1]+6); }
-      if (vis.dotW2) { vis.dotW2.setAttribute("cx", p1[0]); vis.dotW2.setAttribute("cy", p1[1]+6); }
-      if (vis.dotL1) { vis.dotL1.setAttribute("cx", p3[0]-6); vis.dotL1.setAttribute("cy", p3[1]); }
-      if (vis.dotL2) { vis.dotL2.setAttribute("cx", p0[0]-6); vis.dotL2.setAttribute("cy", p0[1]); }
-      if (vis.dotT1) { vis.dotT1.setAttribute("cx", p2[0]); vis.dotT1.setAttribute("cy", p2[1]-4); }
-      if (vis.dotT2) { vis.dotT2.setAttribute("cx", p5[0]); vis.dotT2.setAttribute("cy", p5[1]-4); }
+      if (vis.labelW) { vis.labelW.setAttribute("x", cx); vis.labelW.setAttribute("y", cy + sl/2 + 20); vis.labelW.textContent = dimDisplay(w, "width"); }
+      if (vis.labelL) { vis.labelL.setAttribute("x", cx - sw/2 - 18); vis.labelL.setAttribute("y", cy + 4); vis.labelL.textContent = dimDisplay(l * 12, "length"); }
+      if (vis.labelT) { vis.labelT.setAttribute("x", cx + sw/2 + ox/2); vis.labelT.setAttribute("y", cy - sl/2 - oy - 12); vis.labelT.textContent = dimDisplay(t, "thickness"); }
+      if (vis.dimlineW) { vis.dimlineW.setAttribute("x1", p0[0]); vis.dimlineW.setAttribute("y1", p0[1]+8); vis.dimlineW.setAttribute("x2", p1[0]); vis.dimlineW.setAttribute("y2", p1[1]+8); }
+      if (vis.dimlineL) { vis.dimlineL.setAttribute("x1", p3[0]-9); vis.dimlineL.setAttribute("y1", p3[1]); vis.dimlineL.setAttribute("x2", p0[0]-9); vis.dimlineL.setAttribute("y2", p0[1]); }
+      if (vis.dimlineT) { vis.dimlineT.setAttribute("x1", p2[0]); vis.dimlineT.setAttribute("y1", p2[1]-6); vis.dimlineT.setAttribute("x2", p5[0]); vis.dimlineT.setAttribute("y2", p5[1]-6); }
+      if (vis.dotW1) { vis.dotW1.setAttribute("cx", p0[0]); vis.dotW1.setAttribute("cy", p0[1]+8); }
+      if (vis.dotW2) { vis.dotW2.setAttribute("cx", p1[0]); vis.dotW2.setAttribute("cy", p1[1]+8); }
+      if (vis.dotL1) { vis.dotL1.setAttribute("cx", p3[0]-9); vis.dotL1.setAttribute("cy", p3[1]); }
+      if (vis.dotL2) { vis.dotL2.setAttribute("cx", p0[0]-9); vis.dotL2.setAttribute("cy", p0[1]); }
+      if (vis.dotT1) { vis.dotT1.setAttribute("cx", p2[0]); vis.dotT1.setAttribute("cy", p2[1]-6); }
+      if (vis.dotT2) { vis.dotT2.setAttribute("cx", p5[0]); vis.dotT2.setAttribute("cy", p5[1]-6); }
     }
 
     function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state.cutList)); localStorage.setItem("bfc_currency", state.currency); } catch (e) {} }
@@ -526,13 +559,14 @@ import InputField from "./InputField.astro";
     }
 
     function tot() {
+      const tl = window.i18n?.t("calc.total_label") || "Total:", cl = window.i18n?.t("calc.cost_label") || "Cost:";
       const items = state.cutList;
-      if (!items.length) { ui.summaryBf.textContent = "Total: 0 BF"; ui.summaryCost.textContent = "Cost: $0.00"; return; }
+      if (!items.length) { ui.summaryBf.textContent = tl + " 0 BF"; ui.summaryCost.textContent = cl + " $0.00"; return; }
       let bs = 0, cs = 0;
       for (const it of items) { bs += it.bf; cs += it.c; }
       const m = 1 + state.waste / 100;
-      ui.summaryBf.textContent = `Total: ${(bs * m).toFixed(2)} BF (incl. ${state.waste}% waste)`;
-      ui.summaryCost.textContent = `Cost: ${fmt(cs * m)}`;
+      ui.summaryBf.textContent = tl + ` ${(bs * m).toFixed(2)} BF (incl. ${state.waste}% waste)`;
+      ui.summaryCost.textContent = cl + ` ${fmt(cs * m)}`;
     }
 
     function add() {
@@ -583,6 +617,7 @@ import InputField from "./InputField.astro";
       ui.add.addEventListener("click", add);
       ui.clear.addEventListener("click", clearAll);
       if (ui.currency) { ui.currency.value = state.currency; ui.currency.addEventListener("change", () => { state.currency = ui.currency.value; save(); labels(); live(); render(); }); }
+      document.addEventListener("i18nchange", () => { labels(); tot(); });
       labels(); live(); viz(); render();
       if (ui.waste) ui.waste.textContent = state.waste + "%";
     }
