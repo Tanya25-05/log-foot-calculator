@@ -361,7 +361,6 @@ import InputField from "./InputField.astro";
       if (u === "m_cm") return a / 0.3048 + inpVal("length", 2) / 30.48;
       return a;
     }
-
     function bf() { return valIn("thickness") * valIn("width") * valFt() / 12; }
 
     const sym = () => CURRENCIES[state.currency] || "$";
@@ -577,6 +576,7 @@ import InputField from "./InputField.astro";
       root.addEventListener("input", e => {
         if (e.target.closest("[data-input-wrapper]")) { live(); viz(); return; }
         if (e.target === inputs.waste) { state.waste = +e.target.value || 5; ui.waste.textContent = state.waste + "%"; tot(); return; }
+        if (e.target === inputs.price || e.target === inputs.quantity) { live(); return; }
       });
       root.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.closest("[data-input-wrapper]")) add(); });
       if (ui.presets) ui.presets.addEventListener("click", e => { const b = e.target.closest("[data-preset]"); if (b) preset(b.dataset.preset); });
