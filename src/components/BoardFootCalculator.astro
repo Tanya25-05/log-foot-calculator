@@ -21,30 +21,14 @@ import InputField from "./InputField.astro";
     </p>
   </div>
 
-  <!-- Unit Toggle -->
-  <div class="mb-8 flex items-center justify-center gap-3">
-    <span class="text-body-sm text-secondary" data-unit-label-imperial>Imperial</span>
-    <button
-      data-unit-toggle
-      class="relative inline-flex h-6 w-10 cursor-pointer items-center rounded-full border border-subtle bg-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent-mustard/40"
-      role="switch"
-      aria-checked="false"
-      aria-label="Toggle metric units"
-    >
-      <span class="inline-block h-4 w-4 translate-x-0.5 transform rounded-full bg-accent-mustard transition-transform duration-200" data-toggle-dot></span>
-    </button>
-    <span class="text-body-sm text-secondary" data-unit-label-metric>Metric</span>
-  </div>
-
   <!-- Calculator Layout: 2-col top + full-width cut list below -->
   <div class="calculator-layout">
 
     <!-- Board Dimensions — Column 1 -->
     <div>
       <Card>
-        <div class="mb-6 flex items-center justify-between">
+        <div class="mb-6">
           <h3 class="text-display-sm text-primary">Board Dimensions</h3>
-          <span class="text-caption font-mono text-muted uppercase tracking-wide" data-unit-labels>in / ft</span>
         </div>
 
         <div class="mb-6" data-presets-root>
@@ -59,11 +43,41 @@ import InputField from "./InputField.astro";
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-4">
-          <InputField label="Thickness" unit="in" step="0.25" min="0.1" value="1.5" dataInput="thickness" dataUnitLabel="thickness" />
-          <InputField label="Width" unit="in" step="0.25" min="0.1" value="3.5" dataInput="width" dataUnitLabel="width" />
-          <InputField label="Length" unit="ft" step="0.5" min="0.5" value="8" dataInput="length" dataUnitLabel="length" />
-          <InputField label="Quantity" step="1" min="1" value="1" dataInput="quantity" />
+        <div class="flex flex-col gap-4">
+          <div>
+            <label class="mb-1.5 block text-body-sm text-secondary">Thickness</label>
+            <div class="flex items-center rounded-lg border border-subtle bg-primary">
+              <input data-input="thickness" type="number" step="0.25" min="0.1" value="1.5" class="flex-1 border-none bg-transparent outline-none px-3 py-2 text-body-md text-primary [appearance:textfield]" />
+              <select data-unit="thickness" class="border-none bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-2">
+                <option value="in">in</option>
+                <option value="mm">mm</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="mb-1.5 block text-body-sm text-secondary">Width</label>
+            <div class="flex items-center rounded-lg border border-subtle bg-primary">
+              <input data-input="width" type="number" step="0.25" min="0.1" value="3.5" class="flex-1 border-none bg-transparent outline-none px-3 py-2 text-body-md text-primary [appearance:textfield]" />
+              <select data-unit="width" class="border-none bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-2">
+                <option value="in">in</option>
+                <option value="mm">mm</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="mb-1.5 block text-body-sm text-secondary">Length</label>
+            <div class="flex items-center rounded-lg border border-subtle bg-primary">
+              <input data-input="length" type="number" step="0.5" min="0.5" value="8" class="flex-1 border-none bg-transparent outline-none px-3 py-2 text-body-md text-primary [appearance:textfield]" />
+              <select data-unit="length" class="border-none bg-transparent outline-none text-accent-mustard text-body-sm cursor-pointer px-2 py-2">
+                <option value="ft">ft</option>
+                <option value="m">m</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="mb-1.5 block text-body-sm text-secondary">Quantity</label>
+            <input data-input="quantity" type="number" step="1" min="1" value="1" class="w-full rounded-lg border border-subtle bg-primary px-3 py-2 text-body-md text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40 [appearance:textfield]" />
+          </div>
         </div>
 
         <div class="mt-6 grid grid-cols-2 gap-x-4 sm:grid-cols-4">
@@ -253,7 +267,7 @@ import InputField from "./InputField.astro";
     const STORAGE_KEY = "bfc_cutlist";
 
     const CURRENCIES = { USD:"$", EUR:"€", GBP:"£", CAD:"C$", AUD:"A$", JPY:"¥", CNY:"¥", INR:"₹", BRL:"R$", MXN:"$" };
-    const state = { unit: "imperial", waste: 5, cutList: [], currency: "USD" };
+    const state = { units: { thickness: "in", width: "in", length: "ft" }, waste: 5, cutList: [], currency: "USD" };
 
     const $ = (s) => document.querySelector(s);
     const $$ = (s) => document.querySelectorAll(s);
@@ -268,15 +282,12 @@ import InputField from "./InputField.astro";
       quantity: $("[data-input='quantity']"),
       price: $("[data-input='price']"),
       waste: $("[data-input='waste']"),
+      unitT: $("[data-unit='thickness']"),
+      unitW: $("[data-unit='width']"),
+      unitL: $("[data-unit='length']"),
     };
 
     const ui = {
-      toggle: $("[data-unit-toggle]"),
-      dot: $("[data-toggle-dot]"),
-      labels: $("[data-unit-labels]"),
-      thickness: $("[data-unit-label='thickness']"),
-      width: $("[data-unit-label='width']"),
-      length: $("[data-unit-label='length']"),
       price: $("[data-unit-label='price']"),
       bf: $("[data-result-bf]"),
       totalBf: $("[data-result-total-bf]"),
@@ -295,22 +306,17 @@ import InputField from "./InputField.astro";
 
     let vis = {};
 
+    function toIn(v, u) { return u === "mm" ? v/25.4 : v; }
+    function toFt(v, u) { return u === "m" ? v/0.3048 : v; }
     function bf(t, w, l) {
-      if (state.unit === "metric") { t/=25.4; w/=25.4; l/=0.3048; }
-      return t*w*l/12;
+      return toIn(t,state.units.thickness) * toIn(w,state.units.width) * toFt(l,state.units.length) / 12;
     }
     const sym = () => CURRENCIES[state.currency] || "$";
     const fmt = (v) => sym()+v.toFixed(2);
     const fmtBf = (v) => v.toFixed(2)+" BF";
 
     function labels() {
-      const imp = state.unit === "imperial";
-      ui.labels.textContent = imp ? "in / ft" : "mm / m";
-      if (ui.thickness) ui.thickness.textContent = imp ? "in" : "mm";
-      if (ui.width) ui.width.textContent = imp ? "in" : "mm";
-      if (ui.length) ui.length.textContent = imp ? "ft" : "m";
       if (ui.price) ui.price.textContent = sym()+"/BF";
-      ui.dot.style.transform = imp ? "translateX(0.125rem)" : "translateX(1rem)";
     }
 
     function live() {
@@ -346,7 +352,7 @@ import InputField from "./InputField.astro";
     function viz() {
       if (!vis.front) initVis();
       let t = +inputs.thickness.value||1, w = +inputs.width.value||1, l = +inputs.length.value||1;
-      if (state.unit === "metric") { t/=25.4; w/=25.4; l/=0.3048; }
+      t = toIn(t,state.units.thickness); w = toIn(w,state.units.width); l = toFt(l,state.units.length);
       const max = Math.max(t,w,l);
       if (max===0) return;
 
@@ -376,13 +382,12 @@ import InputField from "./InputField.astro";
       if (vis.front) vis.front.setAttribute("points",
         pt(p0[0],p0[1])+" "+pt(p1[0],p1[1])+" "+pt(p2[0],p2[1])+" "+pt(p3[0],p3[1]));
 
-      const u = state.unit==="imperial"?"in":"mm";
-      const lu = state.unit==="imperial"?"ft":"m";
+      const wu = state.units.width, lu = state.units.length, tu = state.units.thickness;
 
       if (vis.labelW) {
         vis.labelW.setAttribute("x", cx);
         vis.labelW.setAttribute("y", cy + sl/2 + 14);
-        vis.labelW.textContent = "W: "+w.toFixed(2)+" "+u;
+        vis.labelW.textContent = "W: "+w.toFixed(2)+" "+wu;
       }
       if (vis.labelL) {
         vis.labelL.setAttribute("x", cx - sw/2 - 10);
@@ -392,7 +397,7 @@ import InputField from "./InputField.astro";
       if (vis.labelT) {
         vis.labelT.setAttribute("x", cx + sw/2 + ox/2);
         vis.labelT.setAttribute("y", cy - sl/2 - oy - 6);
-        vis.labelT.textContent = "T: "+t.toFixed(2)+" "+u;
+        vis.labelT.textContent = "T: "+t.toFixed(2)+" "+tu;
       }
 
       if (vis.dimlineW) {
@@ -467,34 +472,26 @@ import InputField from "./InputField.astro";
 
     function clearAll() { if (!state.cutList.length) return; state.cutList=[]; save(); render(); }
 
-    function toggleUnit() {
-      const nu = state.unit==="imperial"?"metric":"imperial";
-      const t=+inputs.thickness.value||1.5, w=+inputs.width.value||3.5, l=+inputs.length.value||8;
-      if (nu==="metric") {
-        inputs.thickness.value=(t*25.4).toFixed(1); inputs.width.value=(w*25.4).toFixed(1); inputs.length.value=(l*0.3048).toFixed(2);
-      } else {
-        inputs.thickness.value=(t/25.4).toFixed(2); inputs.width.value=(w/25.4).toFixed(2); inputs.length.value=(l/0.3048).toFixed(2);
-      }
-      state.unit=nu; ui.toggle.setAttribute("aria-checked",nu==="metric");
-      labels(); live(); viz();
-    }
-
     function preset(v) {
       const p=v.split(","); if (p.length<3) return;
-      let t=+p[0], w=+p[1], l=+p[2];
-      if (state.unit==="metric") { t*=25.4; w*=25.4; l*=0.3048; }
-      inputs.thickness.value=t; inputs.width.value=w; inputs.length.value=l;
+      inputs.thickness.value=p[0]; inputs.width.value=p[1]; inputs.length.value=p[2];
       live(); viz();
     }
 
     function init() {
       load();
       initVis();
+      const unitKeys = [["thickness","unitT"],["width","unitW"],["length","unitL"]];
+      unitKeys.forEach(([k,uk])=>{
+        const sel = inputs[uk];
+        if(!sel) return;
+        sel.value=state.units[k];
+        sel.addEventListener("change",()=>{ state.units[k]=sel.value; labels(); live(); viz(); });
+      });
       Object.values(inputs).forEach(el=>{ if(!el) return; el.addEventListener("input",()=>{
         if(el===inputs.waste){ state.waste=+el.value||5; ui.waste.textContent=state.waste+"%"; tot(); return; }
         live(); viz();
       })});
-      ui.toggle.addEventListener("click",toggleUnit);
       if (ui.presets) ui.presets.addEventListener("click",e=>{ const b=e.target.closest("[data-preset]"); if(b) preset(b.dataset.preset); });
       ui.add.addEventListener("click",add);
       Object.values(inputs).forEach(el=>{ if(!el||el===inputs.waste) return; el.addEventListener("keydown",e=>{ if(e.key==="Enter") add(); }); });
