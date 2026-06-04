@@ -7,20 +7,24 @@ import FAQAccordion from "../components/FAQAccordion.astro";
 
 const faqItems = [
   {
-    question: "What is a board foot?",
-    answer: "A board foot is a unit of volume for lumber. One board foot equals 1 foot × 1 foot × 1 inch thick, or 144 cubic inches. It's the standard measure for buying hardwood lumber in North America."
+    question: "What is a board foot calculator?",
+    answer: "A board foot calculator is a tool that computes the volume of lumber in board feet — the standard unit for measuring hardwood in North America. It multiplies thickness (in), width (in), and length (ft), then divides by 12. Our calculator adds real-time results, price per board foot, and a project cut list."
   },
   {
-    question: "Nominal vs actual dimensions?",
-    answer: "Nominal (e.g. 2×4) is the rough-sawn size before milling. Actual (e.g. 1.5″ × 3.5″) is the final dimension. Always use actual dimensions for accurate calculations. Our Quick Fill presets use standard actual sizes."
+    question: "How do I calculate a board foot?",
+    answer: "Use the formula: Board Feet = Thickness (in) × Width (in) × Length (ft) ÷ 12. For example, a 2×4 that is 8 feet long is 1.5 × 3.5 × 8 ÷ 12 = 3.5 board feet. Our calculator does this instantly — just enter your dimensions."
   },
   {
-    question: "How does metric mode work?",
-    answer: "Toggle to Metric mode and enter thickness in mm, width in mm, and length in meters. The calculator converts internally to inches and feet for the board foot formula."
+    question: "How many board feet is a 2x4x8?",
+    answer: "An 8-foot 2×4 (actual dimensions: 1.5″ × 3.5″ × 8′) contains 3.5 board feet. The calculation is 1.5 × 3.5 × 8 ÷ 12 = 3.5 BF. Use our Quick Fill presets to load common lumber sizes instantly."
   },
   {
-    question: "Is my cut list saved?",
-    answer: "Yes. Your project cut list is saved in your browser's localStorage. It persists across visits but is not synced across devices."
+    question: "How many board feet is a 2x4x10?",
+    answer: "A 10-foot 2×4 (actual: 1.5″ × 3.5″ × 10′) contains 4.375 board feet. The formula is 1.5 × 3.5 × 10 ÷ 12 = 4.375 BF. Enter any length and our calculator adjusts the result in real time."
+  },
+  {
+    question: "How much will 200 board feet cover?",
+    answer: "Coverage depends on thickness. At 1″ thick, 200 BF covers 200 square feet. At ¾″ (0.75″), it covers roughly 267 sq ft. Use our calculator to test different thicknesses and see both board footage and cost instantly."
   }
 ];
 ---
@@ -32,9 +36,12 @@ const faqItems = [
   <NavBar />
 
   <main>
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden bg-primary border-b border-subtle">
-      <div class="mx-auto max-w-7xl px-4 pb-20 pt-16 text-center sm:px-6 lg:px-8 lg:pb-28 lg:pt-24">
+    <!-- Calculator Section — first thing on page -->
+    <BoardFootCalculator />
+
+    <!-- Hero Message + CTA — now below calculator -->
+    <section class="bg-primary border-t border-subtle py-16 sm:py-20 lg:py-24">
+      <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
         <span class="inline-block rounded-full bg-secondary px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-muted">
           Free Online Tool
         </span>
@@ -50,12 +57,6 @@ const faqItems = [
 
         <div class="mt-8 flex items-center justify-center gap-3">
           <a
-            href="#calculator"
-            class="inline-flex items-center rounded-lg bg-accent-mustard px-8 py-3 text-button-lg text-white no-underline transition-opacity hover:opacity-90"
-          >
-            Start Calculating
-          </a>
-          <a
             href="#how-it-works"
             class="inline-flex items-center rounded-lg border border-subtle bg-primary px-8 py-3 text-button-lg text-primary no-underline transition-colors hover:bg-secondary"
           >
@@ -63,12 +64,63 @@ const faqItems = [
           </a>
         </div>
       </div>
-
-      <div class="pointer-events-none absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-accent-mustard/5 via-accent-mustard/5 to-transparent" aria-hidden="true"></div>
     </section>
 
-    <!-- Calculator Section -->
-    <BoardFootCalculator />
+    <!-- SEO Content Section -->
+    <section class="bg-secondary border-t border-subtle py-16 sm:py-20 lg:py-24" aria-label="About board foot calculations">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="prose-custom mx-auto">
+          <h2 class="text-display-lg text-primary text-center mb-8">Everything you need from a board foot calculator.</h2>
+
+          <div class="space-y-6 text-body-md text-secondary leading-relaxed">
+            <p>
+              A <strong>board foot calculator</strong> is an essential tool for anyone working with lumber — from professional contractors and cabinet makers to weekend DIYers. Board footage is the standard unit of volume for hardwood lumber in North America, and getting it right means the difference between a profitable project and costly waste. Our <strong>lumber board foot calculator</strong> delivers fast, accurate results with a clean interface and zero clutter.
+            </p>
+
+            <h3 class="text-display-sm text-primary mt-10">What is a board foot?</h3>
+            <p>
+              One board foot is defined as a piece of lumber measuring 12 inches long, 12 inches wide, and 1 inch thick — or 144 cubic inches. The <strong>board foot calculator formula</strong> is straightforward:
+            </p>
+            <div class="rounded-lg bg-primary p-4 font-mono text-body-sm text-primary border border-subtle my-4">
+              Board Feet = Thickness (in) &times; Width (in) &times; Length (ft) &divide; 12
+            </div>
+            <p>
+              For example, a 2&times;6 that is 10 feet long yields 10 board feet. Our calculator applies this formula instantly as you type, showing per-board and total results in real time.
+            </p>
+
+            <h3 class="text-display-sm text-primary mt-10">Why use a dedicated lumber board foot calculator?</h3>
+            <p>
+              A general calculator works in a pinch, but a purpose-built <strong>wood board foot calculator</strong> handles the details that matter: multiple board sizes in a single cut list, <strong>price per board foot calculator</strong> logic for cost estimation, waste factor for realistic material planning, and unit conversions between imperial and metric. Whether you need a <strong>board foot calculator for lumber</strong> on a job site or a <strong>board foot calculator for logs</strong> in the workshop, this tool adapts to your workflow.
+            </p>
+
+            <h3 class="text-display-sm text-primary mt-10">Log board foot calculator vs lumber calculator</h3>
+            <p>
+              A <strong>log board foot calculator</strong> typically estimates the usable lumber volume inside a log before it is milled. While that requires log-specific scaling rules (Doyle, Scribner, International), our <strong>board foot calculator log</strong> tool focuses on dimensional lumber — boards that have already been cut to standard thicknesses and widths. This covers the vast majority of woodworking and construction needs. If you work with rough lumber, simply measure the actual dimensions after surfacing for the most accurate <strong>tree board foot calculator</strong> results.
+            </p>
+
+            <h3 class="text-display-sm text-primary mt-10">Price per board foot — know your costs</h3>
+            <p>
+              Lumber pricing varies widely by species, grade, and region. A <strong>price per board foot calculator</strong> helps you compare options before you buy. Enter the price per board foot your supplier charges, and the calculator shows the cost per board and the total project cost instantly. Whether pricing walnut, cherry, oak, or construction-grade pine, the <strong>per board foot calculator</strong> gives you line-item visibility into every dollar. This makes it easy to create accurate quotes for clients or stick to a project budget.
+            </p>
+
+            <h3 class="text-display-sm text-primary mt-10">Conversions: linear foot and square foot to board foot</h3>
+            <p>
+              Sometimes you have measurements in other units. A <strong>linear foot to board foot calculator</strong> requires knowing the thickness and width, since board footage is a volume measure, not a linear one. Similarly, a <strong>square foot to board foot calculator</strong> converts area into volume by factoring in thickness. Our built-in calculator handles both — enter any combination of dimensions and the <strong>sq ft to board foot calculator</strong> logic is handled automatically behind the scenes. The <strong>linear board foot calculator</strong> mode is built right into the same input fields.
+            </p>
+
+            <h3 class="text-display-sm text-primary mt-10">Cut lists and project management</h3>
+            <p>
+              The <strong>board foot calculator app</strong> experience goes beyond one-off calculations. Build a multi-item cut list, adjust quantities, and see running total board feet and total cost. Toggle the waste factor slider (default 5%) to account for offcuts and mistakes — a must for any serious project. Your cut list is saved in your browser automatically, so coming back to a project is as simple as reloading the page. No accounts, no logins, no data sent to a server.
+            </p>
+
+            <h3 class="text-display-sm text-primary mt-10">Built for professionals and hobbyists</h3>
+            <p>
+              Every detail of this <strong>board foot calculator</strong> is designed for speed and clarity. The isometric visualizer shows your lumber dimensions as a scaled 3D preview, so you can verify proportions at a glance. Quick Fill presets cover common lumber sizes (2&times;4, 2&times;6, 1&times;6, 4&times;4, and more), and the unit toggle switches between imperial and metric instantly. Whether you are a contractor estimating framing lumber or a hobbyist planning a bookshelf, this <strong>board foot calculator wood</strong> tool is built to save you time and reduce material waste.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- How It Works Section -->
     <section id="how-it-works" class="bg-secondary border-t border-subtle py-16 sm:py-20 lg:py-24">
@@ -147,16 +199,54 @@ const faqItems = [
     </section>
 
     <!-- FAQ Section -->
-    <section class="bg-primary border-t border-subtle py-16 sm:py-20 lg:py-24">
+    <section class="bg-primary border-t border-subtle py-16 sm:py-20 lg:py-24" data-faq-section>
       <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <h2 class="text-center text-display-lg text-primary">
           Frequently asked questions.
         </h2>
         <div class="mt-10">
-          <FAQAccordion items={faqItems} />
+          <div data-faq-container>
+            <FAQAccordion items={faqItems} />
+          </div>
+          <div class="mt-6 text-center">
+            <button
+              data-faq-toggle
+              class="inline-flex items-center rounded-lg border border-subtle bg-primary px-6 py-2.5 text-body-md text-secondary no-underline transition-colors hover:bg-secondary cursor-pointer"
+            >
+              Load More FAQ
+            </button>
+          </div>
         </div>
       </div>
     </section>
+
+    <script>
+      (() => {
+        const section = document.querySelector("[data-faq-section]");
+        if (!section) return;
+        const container = section.querySelector("[data-faq-container]");
+        const toggle = section.querySelector("[data-faq-toggle]");
+        const items = container?.querySelectorAll("details");
+        if (!items?.length || !toggle) return;
+
+        const INITIAL = 3;
+        let isExpanded = false;
+
+        function apply() {
+          items.forEach((el, i) => {
+            el.classList.toggle("hidden", i >= INITIAL && !isExpanded);
+          });
+          toggle.textContent = isExpanded ? "Show Less" : `Load More FAQ (${items.length - INITIAL} more)`;
+        }
+
+        apply();
+
+        toggle.addEventListener("click", () => {
+          isExpanded = !isExpanded;
+          apply();
+        });
+      })();
+    </script>
   </main>
 
   <Footer />

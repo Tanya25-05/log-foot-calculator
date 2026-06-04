@@ -15,10 +15,10 @@ const { label, unit, value, step, min, dataInput, dataUnitLabel } = Astro.props;
       step={step || "any"}
       min={min || "0"}
       value={value || ""}
-      class="w-full rounded-lg border border-subtle bg-primary px-3 py-2 text-body-md text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40"
+      class="w-full rounded-lg border border-subtle bg-primary px-3 py-2 pr-[52px] text-body-md text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40"
     />
     {unit && (
-      <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-body-sm text-muted">
+      <span class="pointer-events-none absolute right-8 top-1/2 -translate-y-1/2 text-body-sm text-muted">
         {unit}
       </span>
     )}

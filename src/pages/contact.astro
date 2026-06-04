@@ -1,0 +1,58 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Contact Us"
+  description="Contact Board Foot Calculator. Have a question, suggestion, or bug report? We'd love to hear from you."
+>
+  <NavBar />
+
+  <main class="bg-primary">
+    <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <span class="inline-block rounded-full bg-secondary px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-muted">
+        Contact
+      </span>
+      <h1 class="mt-4 text-display-xl text-primary">Get in touch</h1>
+      <p class="mt-2 text-body-lg text-secondary">
+        Questions, suggestions, bug reports — all welcome.
+      </p>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+        <div class="linear-card p-6">
+          <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-mustard/10">
+            <svg class="h-5 w-5 text-accent-mustard" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h2 class="mt-4 text-display-sm text-primary">Email</h2>
+          <p class="mt-1 text-body-md text-secondary">
+            <a href="mailto:shortlisted07@gmail.com" class="text-accent-mustard underline decoration-accent-mustard/30 hover:decoration-accent-mustard">shortlisted07@gmail.com</a>
+          </p>
+        </div>
+
+        <div class="linear-card p-6">
+          <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-mustard/10">
+            <svg class="h-5 w-5 text-accent-mustard" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+          </div>
+          <h2 class="mt-4 text-display-sm text-primary">GitHub</h2>
+          <p class="mt-1 text-body-md text-secondary">
+            <a href="https://github.com/Tanya25-05/log-foot-calculator" class="text-accent-mustard underline decoration-accent-mustard/30 hover:decoration-accent-mustard">Report an issue</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-8 linear-card p-6">
+        <p class="text-caption text-muted">
+          We typically respond within 24&ndash;48 hours. For feature requests, include as much detail as possible about what you need. Bug reports with browser and OS info are especially helpful.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="About Us"
+  description="About Board Foot Calculator — a modern free lumber calculator built for woodworkers, contractors, and DIYers. Fast, accurate, no fluff."
+>
+  <NavBar />
+
+  <main class="bg-primary">
+    <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <span class="inline-block rounded-full bg-secondary px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-muted">
+        About
+      </span>
+      <h1 class="mt-4 text-display-xl text-primary">About Board Foot Calculator</h1>
+
+      <div class="mt-10 space-y-6 text-body-md text-secondary leading-relaxed">
+        <p>
+          Board Foot Calculator was built for one reason: existing lumber calculators are slow, cluttered, and feel like they were designed in 2005. We wanted something that works the way woodworkers actually think — enter dimensions, see results instantly, build a cut list, and get back to the shop.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-8">What makes this different</h2>
+        <p>
+          Most board foot calculators are single-use forms. You punch in one board, get one number, and start over. Ours is a full project tool. Add multiple board sizes, track running totals, factor in waste, and come back to your cut list days later — it's all saved locally. The isometric visualizer lets you see your lumber proportions at a glance, which is especially helpful when you are working with unfamiliar dimensions.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-8">Who it is for</h2>
+        <p>
+          Whether you are a contractor estimating framing for a new build, a cabinet maker pricing a custom kitchen, or a hobbyist planning a weekend bookshelf, this tool is for you. It handles imperial and metric, common lumber presets, and price-per-board-foot calculations out of the box. No sign-up, no paywall, no data collection.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-8">Our philosophy</h2>
+        <p>
+          Tools should be fast, accurate, and respectful of your privacy. Every calculation runs in your browser. Your data stays on your machine. There are no ads, no trackers, and no unnecessary page weight. We believe a good tool gets out of your way and lets you work.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-8">Contact</h2>
+        <p>
+          Have feedback or questions? We would love to hear from you. Visit our <a href="/contact" class="text-accent-mustard underline decoration-accent-mustard/30 hover:decoration-accent-mustard">Contact page</a> to get in touch.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

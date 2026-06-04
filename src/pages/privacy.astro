@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Privacy Policy"
+  description="Privacy Policy for Board Foot Calculator. Learn how we handle your data — we don't collect, store, or share any personal information."
+>
+  <NavBar />
+
+  <main class="bg-primary">
+    <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <span class="inline-block rounded-full bg-secondary px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-muted">
+        Legal
+      </span>
+      <h1 class="mt-4 text-display-xl text-primary">Privacy Policy</h1>
+      <p class="mt-2 text-body-md text-muted">Last updated: June 2026</p>
+
+      <div class="mt-10 space-y-6 text-body-md text-secondary leading-relaxed">
+        <h2 class="text-display-sm text-primary mt-8">1. Information We Collect</h2>
+        <p>
+          Board Foot Calculator does not collect, store, or transmit any personal data. The calculator runs entirely in your browser. No account creation, no email addresses, no cookies for tracking purposes.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-8">2. Local Storage</h2>
+        <p>
+          Your project cut list is saved in your browser's <code class="rounded bg-secondary px-1.5 py-0.5 font-mono text-body-sm">localStorage</code>. This data never leaves your device. You can clear it at any time through your browser settings. We have no access to this data.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-8">3. Third-Party Services</h2>
+        <p>
+          This website uses Google Fonts for typography. When you load the page, your browser requests font files from Google's servers, which may log your IP address per Google's privacy policy. No other third-party scripts, analytics, or trackers are used.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-8">4. Cookies</h2>
+        <p>
+          This site does not use cookies for tracking, analytics, or advertising. The only browser storage used is <code class="rounded bg-secondary px-1.5 py-0.5 font-mono text-body-sm">localStorage</code> for your cut list and theme preference, both of which remain on your device.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-8">5. Data Sharing</h2>
+        <p>
+          Since we collect no personal data, we share nothing. There is no data to sell, rent, or disclose to third parties.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-8">6. Changes to This Policy</h2>
+        <p>
+          If this policy changes, the "Last updated" date at the top will reflect the revision. Continued use of the site constitutes acceptance of any updates.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-8">7. Contact</h2>
+        <p>
+          Questions about this privacy policy? Reach out through our <a href="/contact" class="text-accent-mustard underline decoration-accent-mustard/30 hover:decoration-accent-mustard">Contact page</a>.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

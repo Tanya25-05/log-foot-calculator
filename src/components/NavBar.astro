@@ -1,28 +1,15 @@
 <header class="sticky top-0 z-50 h-14 bg-primary border-b border-subtle">
   <nav class="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
     <a href="/" class="flex items-center gap-2 no-underline shrink-0">
-      <span class="text-display-sm text-primary tracking-tight">BoardFootCalc</span>
+      <span class="text-display-sm text-primary tracking-tight">BoardFootCal</span>
     </a>
 
-    <div class="flex items-center gap-1 sm:gap-3">
-      <a
-        href="#calculator"
-        class="rounded-lg px-3 py-1.5 text-body-sm text-secondary no-underline hover:bg-secondary transition-colors"
-      >
-        Calculator
-      </a>
-      <a
-        href="#how-it-works"
-        class="rounded-lg px-3 py-1.5 text-body-sm text-secondary no-underline hover:bg-secondary transition-colors"
-      >
-        Guide
-      </a>
-      <button
-        id="theme-toggle"
-        class="ml-1 flex h-8 w-8 items-center justify-center rounded-lg text-secondary hover:bg-secondary transition-colors cursor-pointer"
-        aria-label="Toggle dark mode"
-        title="Toggle dark mode"
-      >
+    <!-- Desktop nav -->
+    <div class="hidden sm:flex items-center gap-1 sm:gap-3">
+      <a href="/#calculator" class="rounded-lg px-3 py-1.5 text-body-sm text-secondary no-underline hover:bg-secondary transition-colors">Calculator</a>
+      <a href="/about" class="rounded-lg px-3 py-1.5 text-body-sm text-secondary no-underline hover:bg-secondary transition-colors">About</a>
+      <a href="/contact" class="rounded-lg px-3 py-1.5 text-body-sm text-secondary no-underline hover:bg-secondary transition-colors">Contact</a>
+      <button id="theme-toggle" class="ml-1 flex h-8 w-8 items-center justify-center rounded-lg text-secondary hover:bg-secondary transition-colors cursor-pointer" aria-label="Toggle dark mode" title="Toggle dark mode">
         <svg id="sun-icon" class="h-4 w-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
         </svg>
@@ -30,12 +17,38 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
         </svg>
       </button>
-      <a
-        href="#calculator"
-        class="inline-flex items-center rounded-lg bg-accent-mustard px-4 py-1.5 text-body-sm-strong text-white no-underline transition-opacity hover:opacity-90"
-      >
-        Get Started
-      </a>
+      <a href="/#calculator" class="inline-flex items-center rounded-lg bg-accent-mustard px-4 py-1.5 text-body-sm-strong text-white no-underline transition-opacity hover:opacity-90">Get Started</a>
+    </div>
+
+    <!-- Mobile nav -->
+    <div class="flex sm:hidden items-center gap-2">
+      <button id="theme-toggle-mobile" class="flex h-8 w-8 items-center justify-center rounded-lg text-secondary hover:bg-secondary transition-colors cursor-pointer" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg id="sun-icon-mobile" class="h-4 w-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg id="moon-icon-mobile" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+      </button>
+      <button id="menu-toggle" class="flex h-8 w-8 items-center justify-center rounded-lg text-secondary hover:bg-secondary transition-colors cursor-pointer" aria-label="Open menu" title="Menu">
+        <svg id="menu-icon" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="close-icon" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile menu panel -->
+  <div id="mobile-menu" class="hidden sm:hidden border-t border-subtle bg-primary px-4 py-4">
+    <div class="flex flex-col gap-2">
+      <a href="/#calculator" class="rounded-lg px-3 py-2 text-body-md text-secondary no-underline hover:bg-secondary transition-colors">Calculator</a>
+      <a href="/about" class="rounded-lg px-3 py-2 text-body-md text-secondary no-underline hover:bg-secondary transition-colors">About</a>
+      <a href="/contact" class="rounded-lg px-3 py-2 text-body-md text-secondary no-underline hover:bg-secondary transition-colors">Contact</a>
+      <a href="/privacy" class="rounded-lg px-3 py-2 text-body-md text-secondary no-underline hover:bg-secondary transition-colors">Privacy</a>
+      <a href="/terms" class="rounded-lg px-3 py-2 text-body-md text-secondary no-underline hover:bg-secondary transition-colors">Terms</a>
+    </div>
+  </div>
 </header>

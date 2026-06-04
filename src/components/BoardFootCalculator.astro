@@ -67,10 +67,38 @@ import InputField from "./InputField.astro";
         </div>
 
         <div class="mt-6 grid grid-cols-2 gap-x-4 sm:grid-cols-4">
-          <div class="sm:col-span-1">
-            <InputField label="Price / BF" unit="$/BF" step="0.01" min="0" value="0" dataInput="price" dataUnitLabel="price" />
+          <div class="sm:col-span-2">
+            <label class="mb-1.5 block text-body-sm text-secondary">
+              Price / BF
+              <span class="text-muted" data-unit-label="price">$/BF</span>
+            </label>
+            <div class="flex gap-2">
+              <select data-currency class="shrink-0 rounded-lg border border-subtle bg-primary px-2.5 py-2 text-body-sm text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40 cursor-pointer">
+                <option value="USD">$ USD</option>
+                <option value="EUR">€ EUR</option>
+                <option value="GBP">£ GBP</option>
+                <option value="CAD">C$ CAD</option>
+                <option value="AUD">A$ AUD</option>
+                <option value="JPY">¥ JPY</option>
+                <option value="CNY">¥ CNY</option>
+                <option value="INR">₹ INR</option>
+                <option value="BRL">R$ BRL</option>
+                <option value="MXN">$ MXN</option>
+              </select>
+              <div class="relative flex-1">
+                <input
+                  data-input="price"
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  value="0"
+                  class="w-full rounded-lg border border-subtle bg-primary px-3 py-2 text-body-md text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40"
+                />
+
+              </div>
+            </div>
           </div>
-          <div class="flex items-end sm:col-span-1 sm:col-start-4">
+          <div class="flex items-end sm:col-span-2 sm:justify-end">
             <button
               data-action="add-to-cart"
               class="w-full rounded-lg bg-accent-mustard px-4 py-2.5 text-body-md-strong text-white transition-opacity hover:opacity-90 cursor-pointer"
@@ -104,23 +132,34 @@ import InputField from "./InputField.astro";
     <div>
       <Card class="h-full flex flex-col">
         <h3 class="mb-4 text-display-sm text-primary">Lumber Preview</h3>
-        <div class="flex flex-1 items-center justify-center" data-visualizer-root>
-          <div class="visualizer-scene" data-visualizer-scene>
-            <div class="visualizer-box" data-visualizer-box>
-              <div class="visualizer-face visualizer-face-front" data-face="front">
-                <span data-face-label="front"></span>
-              </div>
-              <div class="visualizer-face visualizer-face-top" data-face="top">
-                <span data-face-label="top"></span>
-              </div>
-              <div class="visualizer-face visualizer-face-side" data-face="side">
-                <span data-face-label="side"></span>
-              </div>
-            </div>
-          </div>
+        <div class="flex flex-1 items-center justify-center p-2" data-visualizer-root>
+          <svg class="w-full max-w-sm h-auto" viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg" data-visualizer-svg>
+            <!-- Side face (back) -->
+            <polygon data-viz="side" fill="var(--bg-primary)" stroke="var(--border-subtle)" stroke-width="1.2" stroke-linejoin="round" />
+            <!-- Top face -->
+            <polygon data-viz="top" fill="var(--bg-secondary)" stroke="var(--border-subtle)" stroke-width="1.2" stroke-linejoin="round" />
+            <!-- Front face (front) -->
+            <polygon data-viz="front" fill="var(--bg-primary)" stroke="var(--border-subtle)" stroke-width="1.2" stroke-linejoin="round" />
+
+            <!-- Dimension labels -->
+            <text data-viz="label-w" font-size="11" fill="var(--text-secondary)" text-anchor="middle" font-family="var(--font-mono)" font-weight="500" />
+            <text data-viz="label-l" font-size="11" fill="var(--text-secondary)" text-anchor="end" font-family="var(--font-mono)" font-weight="500" />
+            <text data-viz="label-t" font-size="11" fill="var(--text-secondary)" text-anchor="middle" font-family="var(--font-mono)" font-weight="500" />
+
+            <!-- Dimension indicator icons -->
+            <line data-viz="dimline-w" stroke="var(--accent-mustard)" stroke-width="1.5" stroke-linecap="round" />
+            <line data-viz="dimline-l" stroke="var(--accent-mustard)" stroke-width="1.5" stroke-linecap="round" />
+            <line data-viz="dimline-t" stroke="var(--accent-mustard)" stroke-width="1.5" stroke-linecap="round" />
+            <circle data-viz="dot-w1" r="2.5" fill="var(--accent-mustard)" />
+            <circle data-viz="dot-w2" r="2.5" fill="var(--accent-mustard)" />
+            <circle data-viz="dot-l1" r="2.5" fill="var(--accent-mustard)" />
+            <circle data-viz="dot-l2" r="2.5" fill="var(--accent-mustard)" />
+            <circle data-viz="dot-t1" r="2.5" fill="var(--accent-mustard)" />
+            <circle data-viz="dot-t2" r="2.5" fill="var(--accent-mustard)" />
+          </svg>
         </div>
-        <p class="mt-3 text-center text-caption text-muted">
-          Rough proportional representation
+        <p class="mt-1 text-center text-caption text-muted">
+          Board dimensions — not to scale
         </p>
       </Card>
     </div>
@@ -203,39 +242,18 @@ import InputField from "./InputField.astro";
 </section>
 
 <style>
-  .visualizer-scene {
-    width: 200px; height: 200px;
-    perspective: 600px;
-    display: flex; align-items: center; justify-content: center;
+  [data-visualizer-svg] text {
+    user-select: none;
+    pointer-events: none;
   }
-  .visualizer-box {
-    width: 120px; height: 80px;
-    position: relative;
-    transform-style: preserve-3d;
-    transform: rotateX(-24deg) rotateY(-30deg);
-    transition: transform 0.3s ease;
-  }
-  .visualizer-face {
-    position: absolute;
-    display: flex; align-items: center; justify-content: center;
-    border: 1px solid var(--border-subtle);
-    backface-visibility: hidden; overflow: hidden;
-  }
-  .visualizer-face span {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 10px; color: var(--text-secondary);
-    text-align: center; line-height: 1.2; pointer-events: none;
-  }
-  .visualizer-face-front { width: 120px; height: 60px; background: var(--bg-secondary); transform: translateZ(10px); }
-  .visualizer-face-top { width: 120px; height: 20px; background: var(--bg-primary); transform: rotateX(90deg) translateZ(10px); transform-origin: bottom center; }
-  .visualizer-face-side { width: 20px; height: 60px; background: var(--bg-primary); transform: rotateY(-90deg) translateZ(10px); transform-origin: right center; right: 0; }
 </style>
 
 <script>
   (() => {
     const STORAGE_KEY = "bfc_cutlist";
 
-    const state = { unit: "imperial", waste: 5, cutList: [] };
+    const CURRENCIES = { USD:"$", EUR:"€", GBP:"£", CAD:"C$", AUD:"A$", JPY:"¥", CNY:"¥", INR:"₹", BRL:"R$", MXN:"$" };
+    const state = { unit: "imperial", waste: 5, cutList: [], currency: "USD" };
 
     const $ = (s) => document.querySelector(s);
     const $$ = (s) => document.querySelectorAll(s);
@@ -272,20 +290,17 @@ import InputField from "./InputField.astro";
       body: $("[data-table-body]"),
       summaryBf: $("[data-total-summary-bf]"),
       summaryCost: $("[data-total-summary-cost]"),
+      currency: $("[data-currency]"),
     };
 
-    const vis = { box: $("[data-visualizer-box]") };
-    if (vis.box) {
-      vis.front = vis.box.querySelector("[data-face='front'] span");
-      vis.top = vis.box.querySelector("[data-face='top'] span");
-      vis.side = vis.box.querySelector("[data-face='side'] span");
-    }
+    let vis = {};
 
     function bf(t, w, l) {
       if (state.unit === "metric") { t/=25.4; w/=25.4; l/=0.3048; }
       return t*w*l/12;
     }
-    const fmt = (v) => "$"+v.toFixed(2);
+    const sym = () => CURRENCIES[state.currency] || "$";
+    const fmt = (v) => sym()+v.toFixed(2);
     const fmtBf = (v) => v.toFixed(2)+" BF";
 
     function labels() {
@@ -294,7 +309,7 @@ import InputField from "./InputField.astro";
       if (ui.thickness) ui.thickness.textContent = imp ? "in" : "mm";
       if (ui.width) ui.width.textContent = imp ? "in" : "mm";
       if (ui.length) ui.length.textContent = imp ? "ft" : "m";
-      if (ui.price) ui.price.textContent = "$/BF";
+      if (ui.price) ui.price.textContent = sym()+"/BF";
       ui.dot.style.transform = imp ? "translateX(0.125rem)" : "translateX(1rem)";
     }
 
@@ -308,31 +323,101 @@ import InputField from "./InputField.astro";
       ui.cost.textContent = fmt(totalBf * p);
     }
 
+    function initVis() {
+      vis = {
+        front: document.querySelector("[data-viz='front']"),
+        top: document.querySelector("[data-viz='top']"),
+        side: document.querySelector("[data-viz='side']"),
+        labelW: document.querySelector("[data-viz='label-w']"),
+        labelL: document.querySelector("[data-viz='label-l']"),
+        labelT: document.querySelector("[data-viz='label-t']"),
+        dimlineW: document.querySelector("[data-viz='dimline-w']"),
+        dimlineL: document.querySelector("[data-viz='dimline-l']"),
+        dimlineT: document.querySelector("[data-viz='dimline-t']"),
+        dotW1: document.querySelector("[data-viz='dot-w1']"),
+        dotW2: document.querySelector("[data-viz='dot-w2']"),
+        dotL1: document.querySelector("[data-viz='dot-l1']"),
+        dotL2: document.querySelector("[data-viz='dot-l2']"),
+        dotT1: document.querySelector("[data-viz='dot-t1']"),
+        dotT2: document.querySelector("[data-viz='dot-t2']"),
+      };
+    }
+
     function viz() {
+      if (!vis.front) initVis();
       let t = +inputs.thickness.value||1, w = +inputs.width.value||1, l = +inputs.length.value||1;
       if (state.unit === "metric") { t/=25.4; w/=25.4; l/=0.3048; }
       const max = Math.max(t,w,l);
       if (max===0) return;
-      const s = 100/max;
-      const bw = Math.max(20,Math.min(140,w*s*1.2));
-      const bh = Math.max(12,Math.min(80,l*s*1.2));
-      const bd = Math.max(6,Math.min(40,t*s*1.2));
-      if (!vis.box) return;
-      vis.box.style.width = bw+"px"; vis.box.style.height = bh+"px";
-      const f = vis.box.querySelector("[data-face='front']");
-      const tp = vis.box.querySelector("[data-face='top']");
-      const sd = vis.box.querySelector("[data-face='side']");
-      if (f) { f.style.width=bw+"px"; f.style.height=bh+"px"; f.style.transform="translateZ("+(bd/2)+"px)"; }
-      if (tp) { tp.style.width=bw+"px"; tp.style.height=bd+"px"; tp.style.transform="rotateX(90deg) translateZ("+(bd/2)+"px)"; }
-      if (sd) { sd.style.width=bd+"px"; sd.style.height=bh+"px"; sd.style.transform="rotateY(-90deg) translateZ("+(bd/2)+"px)"; }
-      const u = state.unit==="imperial"?"in":"mm", lu = state.unit==="imperial"?"ft":"m";
-      if (vis.front) vis.front.textContent = t.toFixed(1)+"\u00D7"+w.toFixed(1)+" "+u;
-      if (vis.top) vis.top.textContent = l.toFixed(1)+" "+lu;
-      if (vis.side) vis.side.textContent = t.toFixed(1)+" "+u;
+
+      const scale = 54 / max;
+      const sw = Math.max(28, Math.min(92, w * scale));
+      const sl = Math.max(22, Math.min(72, l * scale));
+      const st = Math.max(10, Math.min(38, t * scale));
+      const ox = st * 0.48;
+      const oy = st * 0.28;
+
+      const cx = 130, cy = 102;
+
+      function pt(x, y) { return x.toFixed(1)+","+y.toFixed(1); }
+
+      const p0 = [cx - sw/2, cy + sl/2];
+      const p1 = [cx + sw/2, cy + sl/2];
+      const p2 = [cx + sw/2, cy - sl/2];
+      const p3 = [cx - sw/2, cy - sl/2];
+      const p4 = [cx + sw/2 + ox, cy + sl/2 - oy];
+      const p5 = [cx + sw/2 + ox, cy - sl/2 - oy];
+      const p6 = [cx - sw/2 + ox, cy - sl/2 - oy];
+
+      if (vis.side) vis.side.setAttribute("points",
+        pt(p1[0],p1[1])+" "+pt(p4[0],p4[1])+" "+pt(p5[0],p5[1])+" "+pt(p2[0],p2[1]));
+      if (vis.top) vis.top.setAttribute("points",
+        pt(p3[0],p3[1])+" "+pt(p2[0],p2[1])+" "+pt(p5[0],p5[1])+" "+pt(p6[0],p6[1]));
+      if (vis.front) vis.front.setAttribute("points",
+        pt(p0[0],p0[1])+" "+pt(p1[0],p1[1])+" "+pt(p2[0],p2[1])+" "+pt(p3[0],p3[1]));
+
+      const u = state.unit==="imperial"?"in":"mm";
+      const lu = state.unit==="imperial"?"ft":"m";
+
+      if (vis.labelW) {
+        vis.labelW.setAttribute("x", cx);
+        vis.labelW.setAttribute("y", cy + sl/2 + 14);
+        vis.labelW.textContent = "W: "+w.toFixed(2)+" "+u;
+      }
+      if (vis.labelL) {
+        vis.labelL.setAttribute("x", cx - sw/2 - 10);
+        vis.labelL.setAttribute("y", cy + 4);
+        vis.labelL.textContent = "L: "+l.toFixed(2)+" "+lu;
+      }
+      if (vis.labelT) {
+        vis.labelT.setAttribute("x", cx + sw/2 + ox/2);
+        vis.labelT.setAttribute("y", cy - sl/2 - oy - 6);
+        vis.labelT.textContent = "T: "+t.toFixed(2)+" "+u;
+      }
+
+      if (vis.dimlineW) {
+        vis.dimlineW.setAttribute("x1", p0[0]); vis.dimlineW.setAttribute("y1", p0[1]+6);
+        vis.dimlineW.setAttribute("x2", p1[0]); vis.dimlineW.setAttribute("y2", p1[1]+6);
+      }
+      if (vis.dimlineL) {
+        vis.dimlineL.setAttribute("x1", p3[0]-6); vis.dimlineL.setAttribute("y1", p3[1]);
+        vis.dimlineL.setAttribute("x2", p0[0]-6); vis.dimlineL.setAttribute("y2", p0[1]);
+      }
+      if (vis.dimlineT) {
+        vis.dimlineT.setAttribute("x1", p2[0]); vis.dimlineT.setAttribute("y1", p2[1]-4);
+        vis.dimlineT.setAttribute("x2", p5[0]); vis.dimlineT.setAttribute("y2", p5[1]-4);
+      }
+
+      if (vis.dotW1) { vis.dotW1.setAttribute("cx", p0[0]); vis.dotW1.setAttribute("cy", p0[1]+6); }
+      if (vis.dotW2) { vis.dotW2.setAttribute("cx", p1[0]); vis.dotW2.setAttribute("cy", p1[1]+6); }
+      if (vis.dotL1) { vis.dotL1.setAttribute("cx", p3[0]-6); vis.dotL1.setAttribute("cy", p3[1]); }
+      if (vis.dotL2) { vis.dotL2.setAttribute("cx", p0[0]-6); vis.dotL2.setAttribute("cy", p0[1]); }
+      if (vis.dotT1) { vis.dotT1.setAttribute("cx", p2[0]); vis.dotT1.setAttribute("cy", p2[1]-4); }
+      if (vis.dotT2) { vis.dotT2.setAttribute("cx", p5[0]); vis.dotT2.setAttribute("cy", p5[1]-4); }
     }
 
-    function save() { try { localStorage.setItem(STORAGE_KEY,JSON.stringify(state.cutList)); } catch(e) {} }
-    function load() { try { const d=localStorage.getItem(STORAGE_KEY); if(d) state.cutList=JSON.parse(d); } catch(e) {} }
+    function save() { try { localStorage.setItem(STORAGE_KEY,JSON.stringify(state.cutList)); localStorage.setItem("bfc_currency",state.currency); } catch(e) {} }
+    function load() { try { const d=localStorage.getItem(STORAGE_KEY); if(d) state.cutList=JSON.parse(d); const c=localStorage.getItem("bfc_currency"); if(c&&CURRENCIES[c]) state.currency=c; } catch(e) {} }
 
     function render() {
       const items = state.cutList;
@@ -404,6 +489,7 @@ import InputField from "./InputField.astro";
 
     function init() {
       load();
+      initVis();
       Object.values(inputs).forEach(el=>{ if(!el) return; el.addEventListener("input",()=>{
         if(el===inputs.waste){ state.waste=+el.value||5; ui.waste.textContent=state.waste+"%"; tot(); return; }
         live(); viz();
@@ -413,6 +499,10 @@ import InputField from "./InputField.astro";
       ui.add.addEventListener("click",add);
       Object.values(inputs).forEach(el=>{ if(!el||el===inputs.waste) return; el.addEventListener("keydown",e=>{ if(e.key==="Enter") add(); }); });
       ui.clear.addEventListener("click",clearAll);
+      if (ui.currency) {
+        ui.currency.value=state.currency;
+        ui.currency.addEventListener("change",()=>{ state.currency=ui.currency.value; save(); labels(); live(); render(); });
+      }
       labels(); live(); viz(); render();
       if (ui.waste) ui.waste.textContent=state.waste+"%";
     }

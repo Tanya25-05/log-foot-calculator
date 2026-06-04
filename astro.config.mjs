@@ -5,5 +5,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  site: 'https://boardfootcalc.app',
+  site: 'https://boardfootcal.com',
 });

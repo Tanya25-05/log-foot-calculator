@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-const { title = "Board Foot Calculator", description = "Free online board foot calculator for lumber." } = Astro.props;
+const { title = "Board Foot Calculator — Free Lumber Calculator with Cut List", description = "Free board foot calculator for lumber. Calculate board feet, visualize dimensions, manage cut lists with price per board foot, waste factor, and instant cost estimates for any woodworking project." } = Astro.props;
 ---
 
 <!doctype html>
@@ -8,8 +8,12 @@ const { title = "Board Foot Calculator", description = "Free online board foot c
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Board Foot" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,35 +23,73 @@ const { title = "Board Foot Calculator", description = "Free online board foot c
       rel="stylesheet"
     />
 
-    <title>{title} | Modern Board Foot Calculator</title>
+    <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="board foot calculator, lumber calculator, woodworking calculator, board feet, cut list, lumber cost" />
-    <link rel="canonical" href="https://boardfootcalc.app/" />
+    <meta name="keywords" content="board foot calculator, log board foot calculator, board foot calculator app, price per board foot calculator, board foot calculator lumber, lumber board foot calculator, board foot calculator for lumber, wood board foot calculator, board foot calculator wood, board foot calculator price, board foot calculator formula, board foot calculator for logs, linear foot to board foot calculator, square foot to board foot calculator, board foot calculator log, tree board foot calculator, sq ft to board foot calculator, per board foot calculator" />
+    <link rel="canonical" href="https://boardfootcal.com/" />
 
-    <meta property="og:title" content={`${title} | Modern Board Foot Calculator`} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://boardfootcalc.app/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Board Foot Calculator — Free Lumber Calculator with Cut List & Visualizer" />
+    <meta property="og:description" content="Free board foot calculator for lumber. Calculate board feet, visualize dimensions, manage cut lists with price per board foot, waste factor, and instant cost estimates for any woodworking project." />
+    <meta property="og:url" content="https://boardfootcal.com/" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Modern Board Foot Calculator" />
+    <meta property="og:site_name" content="Board Foot Calculator" />
+    <meta property="og:image" content="https://boardfootcal.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Board Foot Calculator — Lumber Board Foot Calculator Tool" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={`${title} | Modern Board Foot Calculator`} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content="Board Foot Calculator — Free Lumber Calculator with Cut List & Visualizer" />
+    <meta name="twitter:description" content="Free board foot calculator for lumber. Calculate board feet, visualize dimensions, manage cut lists with price per board foot, waste factor, and instant cost estimates for any woodworking project." />
+    <meta name="twitter:image" content="https://boardfootcal.com/og-image.png" />
 
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Modern Board Foot Calculator",
-      "url": "https://boardfootcalc.app/",
-      "description": description,
-      "applicationCategory": "Utilities",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "Board Foot Calculator",
+          "url": "https://boardfootcal.com/",
+          "description": description,
+          "applicationCategory": "Utilities",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+          "featureList": [
+            "Board foot calculation from thickness, width, and length",
+            "Price per board foot cost estimation",
+            "SVG isometric lumber visualizer",
+            "Project cut list with localStorage persistence",
+            "Waste factor adjustment",
+            "Imperial and metric unit support",
+            "Quick fill lumber presets"
+          ]
+        },
+        {
+          "@type": "HowTo",
+          "name": "How to Calculate Board Feet",
+          "description": "Calculate board feet for any lumber project using thickness, width, and length measurements.",
+          "step": [
+            { "@type": "HowToStep", "position": 1, "name": "Enter dimensions", "text": "Input thickness (in), width (in), and length (ft) of your lumber." },
+            { "@type": "HowToStep", "position": 2, "name": "Set quantity and price", "text": "Enter how many boards and the price per board foot to get instant cost." },
+            { "@type": "HowToStep", "position": 3, "name": "Build your cut list", "text": "Add multiple board sizes to your project cut list. Totals auto-calculate with waste margin." }
+          ]
+        }
+      ]
     })}>
     </script>
 
     <slot name="head" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X3VYVBGR8D"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-X3VYVBGR8D');
+    </script>
   </head>
   <body class="min-h-screen bg-secondary text-primary font-sans antialiased">
     <slot />
@@ -65,31 +107,47 @@ const { title = "Board Foot Calculator", description = "Free online board foot c
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      const btn = document.getElementById("theme-toggle");
-      const sun = document.getElementById("sun-icon");
-      const moon = document.getElementById("moon-icon");
+      // Theme toggle
+      const themeBtns = ["theme-toggle", "theme-toggle-mobile"].map(id => document.getElementById(id)).filter(Boolean);
+      const sunIcons = ["sun-icon", "sun-icon-mobile"].map(id => document.getElementById(id)).filter(Boolean);
+      const moonIcons = ["moon-icon", "moon-icon-mobile"].map(id => document.getElementById(id)).filter(Boolean);
 
-      if (!btn) return;
-
-      const update = () => {
+      const updateTheme = () => {
         const dark = document.documentElement.getAttribute("data-theme") === "dark";
-        sun.classList.toggle("hidden", !dark);
-        moon.classList.toggle("hidden", dark);
+        sunIcons.forEach(el => el.classList.toggle("hidden", !dark));
+        moonIcons.forEach(el => el.classList.toggle("hidden", dark));
       };
 
-      update();
+      updateTheme();
 
-      btn.addEventListener("click", () => {
-        const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-        if (isDark) {
-          document.documentElement.removeAttribute("data-theme");
-          localStorage.setItem("bfc_theme", "light");
-        } else {
-          document.documentElement.setAttribute("data-theme", "dark");
-          localStorage.setItem("bfc_theme", "dark");
-        }
-        update();
+      themeBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+          if (isDark) {
+            document.documentElement.removeAttribute("data-theme");
+            localStorage.setItem("bfc_theme", "light");
+          } else {
+            document.documentElement.setAttribute("data-theme", "dark");
+            localStorage.setItem("bfc_theme", "dark");
+          }
+          updateTheme();
+        });
       });
+
+      // Mobile menu toggle
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuIcon = document.getElementById("menu-icon");
+      const closeIcon = document.getElementById("close-icon");
+
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener("click", () => {
+          const isOpen = !mobileMenu.classList.contains("hidden");
+          mobileMenu.classList.toggle("hidden", isOpen);
+          menuIcon.classList.toggle("hidden", !isOpen);
+          closeIcon.classList.toggle("hidden", isOpen);
+        });
+      }
     });
   })();
 </script>
