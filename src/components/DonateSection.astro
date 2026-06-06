@@ -1,0 +1,21 @@
+---
+import { SITE_CONFIG } from "../config";
+const BUTTON_ID = SITE_CONFIG.razorpayPaymentButtonId;
+---
+
+<section class="border-t border-subtle bg-secondary py-16 sm:py-20">
+  <div class="mx-auto max-w-2xl px-8 sm:px-14 lg:px-24 text-center">
+    <span class="inline-block rounded-full bg-primary px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-muted border border-subtle">
+      Support
+    </span>
+    <h2 class="mt-4 text-display-lg text-primary text-balance">Keep this tool free.</h2>
+    <p class="mt-3 text-body-md text-secondary leading-relaxed max-w-lg mx-auto">
+      Board Foot Calculator is and always will be free. If it has helped you, consider a donation.
+    </p>
+
+    <div class="mt-8 rounded-lg border border-subtle bg-primary p-6 inline-block w-full max-w-sm mx-auto">
+      <p class="text-body-sm text-secondary mb-4">One-time donation via Razorpay</p>
+      <form><script async src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id={BUTTON_ID}> </script></form>
+    </div>
+  </div>
+</section>
