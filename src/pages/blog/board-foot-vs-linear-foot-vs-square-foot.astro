@@ -1,0 +1,118 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NavBar from "../../components/NavBar.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<Layout
+  title="Board Foot vs Linear Foot vs Square Foot"
+  description="The difference between board feet, linear feet, and square feet explained with real examples for woodworkers and contractors."
+>
+  <NavBar />
+
+  <main class="bg-primary">
+    <article class="mx-auto max-w-3xl px-8 py-16 sm:px-14 lg:px-24 lg:py-24">
+      <div class="flex items-center gap-3 text-caption text-muted mb-2">
+        <a href="/blog" class="text-accent-mustard no-underline hover:underline">Back to blog</a>
+        <span>&middot;</span>
+        <time datetime="2026-06-05">June 5, 2026</time>
+        <span>&middot;</span>
+        <span>5 min read</span>
+      </div>
+
+      <h1 class="mt-4 text-display-xl text-primary">Board Foot vs Linear Foot vs Square Foot</h1>
+      <p class="mt-3 text-body-lg text-secondary leading-relaxed">
+        The difference between these three measurements matters more than most beginners realize.
+      </p>
+
+      <div class="mt-10 space-y-6 text-body-md text-secondary leading-relaxed">
+
+        <h2 class="text-display-sm text-primary mt-10">Linear Foot</h2>
+        <p>
+          A linear foot is simply a measurement of length. Twelve inches. One foot. That is it. A board that is 8 linear feet long is 8 feet long, regardless of how wide or thick it is.
+        </p>
+        <p>
+          Construction lumber at the home center is often priced per linear foot. A 2&times;4 might be labeled at $0.50 per linear foot, so an 8-foot board costs $4.00. This works fine when all the boards are the same dimensions, but it breaks down when you compare different sizes — an 8-foot 2&times;6 has more wood than an 8-foot 2&times;4, but at linear foot pricing, they cost the same per foot. That makes linear feet a poor way to compare value across different lumber sizes.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">Square Foot</h2>
+        <p>
+          A square foot measures area. Length times width. A sheet of plywood that is 4 feet by 8 feet is 32 square feet. Square footage is used for flooring, sheathing, drywall, and anything where thickness is a secondary concern.
+        </p>
+        <p>
+          The problem with square feet in lumber pricing is that they ignore thickness. A 12-inch by 12-inch piece of 1/4-inch oak veneer plywood is 1 square foot, and a 12-inch by 12-inch piece of 2-inch thick solid oak is also 1 square foot. But one has eight times the volume of the other. This is why hardwood lumber is not priced by the square foot.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">Board Foot</h2>
+        <p>
+          A board foot measures volume. Length times width times thickness. It solves the problem that linear feet and square feet ignore: how much wood is actually there.
+        </p>
+        <p>
+          A 1-inch thick board that is 12 inches wide and 12 inches long is exactly 1 board foot. A 2-inch thick board of the same width and length is 2 board feet. The price scales with the amount of wood, which makes board feet the fairest way to buy hardwood.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">Side-by-Side Comparison</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-body-sm border-collapse">
+            <thead>
+              <tr class="border-b border-subtle">
+                <th class="text-left py-2 pr-4 text-primary">Board</th>
+                <th class="text-left py-2 pr-4 text-primary">Linear Feet</th>
+                <th class="text-left py-2 pr-4 text-primary">Square Feet</th>
+                <th class="text-left py-2 text-primary">Board Feet</th>
+              </tr>
+            </thead>
+            <tbody class="text-secondary">
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">1&times;6 &times; 8'</td>
+                <td class="py-2 pr-4">8</td>
+                <td class="py-2 pr-4">4</td>
+                <td class="py-2">2.75</td>
+              </tr>
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">2&times;4 &times; 8'</td>
+                <td class="py-2 pr-4">8</td>
+                <td class="py-2 pr-4">2.33</td>
+                <td class="py-2">3.5</td>
+              </tr>
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">2&times;6 &times; 10'</td>
+                <td class="py-2 pr-4">10</td>
+                <td class="py-2 pr-4">4.58</td>
+                <td class="py-2">6.88</td>
+              </tr>
+              <tr>
+                <td class="py-2 pr-4">4&times;4 &times; 8'</td>
+                <td class="py-2 pr-4">8</td>
+                <td class="py-2 pr-4">2.33</td>
+                <td class="py-2">8.17</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Notice the 2&times;4 and the 4&times;4 are both 8 linear feet and roughly 2.33 square feet on the face &mdash; but the 4&times;4 has more than twice the board feet because it is more than twice as thick.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">When Each Measurement Matters</h2>
+        <p>
+          <strong>Linear feet</strong> are useful for trim, baseboards, crown molding, and anything sold by the foot regardless of width. You care about the length, not the volume.
+        </p>
+        <p>
+          <strong>Square feet</strong> are for sheet goods and flooring — plywood, MDF, laminate, tile. Thickness varies by product, but you are buying coverage area.
+        </p>
+        <p>
+          <strong>Board feet</strong> are for solid hardwood, exotic lumber, and any situation where the price should reflect how much wood you are actually getting. If a lumber yard quotes you a price per board foot, they are accounting for thickness, width, and length.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">Quick Conversion Tips</h2>
+        <p>
+          To go from linear feet to board feet, multiply by the thickness and width in inches and divide by 12. To go from square feet to board feet, multiply by the thickness in inches. Our <a href="/" class="text-accent-mustard underline decoration-accent-mustard/30 hover:decoration-accent-mustard">calculator</a> handles all of these automatically.
+        </p>
+
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

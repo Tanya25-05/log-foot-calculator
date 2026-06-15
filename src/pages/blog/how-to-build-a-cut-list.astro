@@ -1,0 +1,114 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NavBar from "../../components/NavBar.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<Layout
+  title="How to Build a Cut List for Any Woodworking Project"
+  description="A practical guide to planning your lumber needs from a set of plans, accounting for waste, and building a cut list that saves you time and money."
+>
+  <NavBar />
+
+  <main class="bg-primary">
+    <article class="mx-auto max-w-3xl px-8 py-16 sm:px-14 lg:px-24 lg:py-24">
+      <div class="flex items-center gap-3 text-caption text-muted mb-2">
+        <a href="/blog" class="text-accent-mustard no-underline hover:underline">Back to blog</a>
+        <span>&middot;</span>
+        <time datetime="2026-06-02">June 2, 2026</time>
+        <span>&middot;</span>
+        <span>7 min read</span>
+      </div>
+
+      <h1 class="mt-4 text-display-xl text-primary">How to Build a Cut List for Any Woodworking Project</h1>
+      <p class="mt-3 text-body-lg text-secondary leading-relaxed">
+        A practical walkthrough of planning lumber from a set of plans so you buy the right amount the first time.
+      </p>
+
+      <div class="mt-10 space-y-6 text-body-md text-secondary leading-relaxed">
+
+        <h2 class="text-display-sm text-primary mt-10">Start with Your Plans</h2>
+        <p>
+          Every cut list starts the same way: write down every piece of wood your project needs. Go through your plans piece by piece and list the thickness, width, length, and quantity for each part. Do not skip anything, including small pieces like cleats, spacers, and scrap blocks.
+        </p>
+        <p>
+          For example, a simple coffee table might have:
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Tabletop: 1 piece at 1" &times; 18" &times; 48"</li>
+          <li>Aprons: 2 pieces at 1" &times; 3" &times; 42" and 2 pieces at 1" &times; 3" &times; 15"</li>
+          <li>Legs: 4 pieces at 2" &times; 2" &times; 17"</li>
+          <li>Stretchers: 2 pieces at 1" &times; 2" &times; 36"</li>
+        </ul>
+        <p>
+          Be precise. An extra half-inch on every piece adds up fast when you are pricing hardwood.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">Add a Waste Factor</h2>
+        <p>
+          No one cuts perfectly every time. You will make mistakes, grain will dictate where you cut, and some boards will have defects you need to work around. A waste factor accounts for this.
+        </p>
+        <p>
+          For simple projects with straight cuts, 5-10% waste is usually enough. For complex furniture with angled joinery, curved cuts, or demanding grain matching, 15-20% is safer. Beginners should lean toward 20% until they develop confidence in their cutting accuracy.
+        </p>
+        <p>
+          This calculator has a waste slider built into the cut list feature. Set it once and the adjusted total updates automatically.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">Convert to Board Feet</h2>
+        <p>
+          Once you have your list of pieces, convert each one to board feet using the formula (T &times; W &times; L &divide; 12, with T and W in inches and L in feet). Add them all up, apply your waste factor, and you know how much lumber to buy.
+        </p>
+        <p>
+          Using the coffee table example above and running the numbers:
+        </p>
+        <div class="rounded-lg bg-secondary p-4 font-mono text-body-sm text-primary border border-subtle my-4">
+          Top: 1 &times; 18 &times; 4 &divide; 12 = 6 BF<br>
+          Aprons: 2 &times; (1 &times; 3 &times; 3.5 &divide; 12) + 2 &times; (1 &times; 3 &times; 1.25 &divide; 12) = 2.38 BF<br>
+          Legs: 4 &times; (2 &times; 2 &times; 1.42 &divide; 12) = 1.89 BF<br>
+          Stretchers: 2 &times; (1 &times; 2 &times; 3 &divide; 12) = 1 BF<br>
+          Total: ~11.3 BF
+        </div>
+        <p>
+          With 15% waste, buy about 13 board feet. At $8 per board foot for walnut, that is roughly $104 for materials.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">Optimize Your Board Selections</h2>
+        <p>
+          Lumber comes in random widths and lengths. When you buy rough hardwood, you are buying a board and cutting your parts from it. The more you can nest your parts efficiently within the boards you buy, the less waste you generate.
+        </p>
+        <p>
+          Some tips for efficient buying:
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Buy longer boards when you have multiple long parts, rather than several shorter boards</li>
+          <li>Group smaller parts together &mdash; you can often fit several small pieces from offcuts of larger parts</li>
+          <li>Ask your lumber yard if they sell shorts or offcuts at a discount for very small parts</li>
+          <li>Bring your cut list with you to the yard and visually check boards for defects before buying</li>
+        </ul>
+
+        <h2 class="text-display-sm text-primary mt-10">Common Cut List Mistakes</h2>
+        <p>
+          <strong>Forgetting grain direction.</strong> On furniture, the grain should run the same direction on adjacent parts. This means you might need extra length to cut around defects or to match grain patterns.
+        </p>
+        <p>
+          <strong>Not accounting for kerf.</strong> Every saw cut removes material (kerf). For a table saw, that is about 1/8 inch per cut. For a band saw, it is less (1/16 inch). It adds up over many cuts.
+        </p>
+        <p>
+          <strong>Skipping the waste factor.</strong> This is the most common beginner mistake. You calculate exactly what you need, buy exactly that much, and then realize you have no room for error. Always add at least 10%.
+        </p>
+        <p>
+          <strong>Using nominal instead of actual.</strong> As discussed in <a href="/blog/nominal-vs-actual-lumber-sizes" class="text-accent-mustard underline decoration-accent-mustard/30 hover:decoration-accent-mustard">our guide to lumber sizes</a>, always use actual dimensions in your calculations.
+        </p>
+
+        <div class="mt-10 rounded-lg border border-subtle bg-secondary p-6">
+          <p class="text-body-sm text-primary">
+            <strong>Try it now:</strong> Use the <a href="/" class="text-accent-mustard underline decoration-accent-mustard/30 hover:decoration-accent-mustard">board foot calculator's cut list feature</a> to build your project list, add a waste factor, and see the total cost instantly.
+          </p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

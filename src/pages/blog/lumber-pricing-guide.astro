@@ -1,0 +1,180 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NavBar from "../../components/NavBar.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<Layout
+  title="Lumber Pricing Guide for 2026"
+  description="Current price ranges for common hardwoods and softwoods, what drives lumber pricing, and how to estimate project material costs."
+>
+  <NavBar />
+
+  <main class="bg-primary">
+    <article class="mx-auto max-w-3xl px-8 py-16 sm:px-14 lg:px-24 lg:py-24">
+      <div class="flex items-center gap-3 text-caption text-muted mb-2">
+        <a href="/blog" class="text-accent-mustard no-underline hover:underline">Back to blog</a>
+        <span>&middot;</span>
+        <time datetime="2026-06-04">June 4, 2026</time>
+        <span>&middot;</span>
+        <span>7 min read</span>
+      </div>
+
+      <h1 class="mt-4 text-display-xl text-primary">Lumber Pricing Guide for 2026</h1>
+      <p class="mt-3 text-body-lg text-secondary leading-relaxed">
+        A practical look at what lumber costs right now and how to budget for your next project.
+      </p>
+
+      <div class="mt-10 space-y-6 text-body-md text-secondary leading-relaxed">
+
+        <h2 class="text-display-sm text-primary mt-10">Why Lumber Prices Fluctuate</h2>
+        <p>
+          Lumber prices move with supply and demand, just like any commodity. Housing starts, mill production, transportation costs, import tariffs, and even weather all affect what you pay at the yard. In 2020-2021, we saw historic spikes when demand surged and mills could not keep up. Things have stabilized since then, but prices still vary regionally and seasonally.
+        </p>
+        <p>
+          The best strategy is to call ahead and get current pricing from your local supplier before you commit to a project budget. The ranges below are general guidelines based on mid-2026 market conditions.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">Softwood Prices (per Board Foot)</h2>
+        <p>
+          Softwoods — pine, fir, spruce, cedar — are used for framing, decking, and construction. They are generally more affordable than hardwoods.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-body-sm border-collapse">
+            <thead>
+              <tr class="border-b border-subtle">
+                <th class="text-left py-2 pr-4 text-primary">Species</th>
+                <th class="text-left py-2 pr-4 text-primary">Typical Use</th>
+                <th class="text-left py-2 text-primary">Price Range / BF</th>
+              </tr>
+            </thead>
+            <tbody class="text-secondary">
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">SPF (Spruce-Pine-Fir)</td>
+                <td class="py-2 pr-4">Framing, studs</td>
+                <td class="py-2">$1.00 &ndash; $2.50</td>
+              </tr>
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">Pressure-Treated Pine</td>
+                <td class="py-2 pr-4">Decks, fence, outdoor</td>
+                <td class="py-2">$1.50 &ndash; $3.00</td>
+              </tr>
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">Cedar</td>
+                <td class="py-2 pr-4">Decking, siding, outdoor furniture</td>
+                <td class="py-2">$3.00 &ndash; $6.00</td>
+              </tr>
+              <tr>
+                <td class="py-2 pr-4">Redwood</td>
+                <td class="py-2 pr-4">Decking, outdoor projects</td>
+                <td class="py-2">$4.00 &ndash; $8.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-display-sm text-primary mt-10">Domestic Hardwood Prices (per Board Foot)</h2>
+        <p>
+          Hardwoods are priced by the board foot at virtually every lumber yard. Prices depend on grade (FAS, Select, #1 Common) and thickness (4/4, 6/4, 8/4).
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-body-sm border-collapse">
+            <thead>
+              <tr class="border-b border-subtle">
+                <th class="text-left py-2 pr-4 text-primary">Species</th>
+                <th class="text-left py-2 pr-4 text-primary">4/4 (1")</th>
+                <th class="text-left py-2 text-primary">8/4 (2")</th>
+              </tr>
+            </thead>
+            <tbody class="text-secondary">
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">Red Oak</td>
+                <td class="py-2 pr-4">$3.00 &ndash; $5.00</td>
+                <td class="py-2">$5.00 &ndash; $8.00</td>
+              </tr>
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">White Oak</td>
+                <td class="py-2 pr-4">$5.00 &ndash; $8.00</td>
+                <td class="py-2">$8.00 &ndash; $12.00</td>
+              </tr>
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">Hard Maple</td>
+                <td class="py-2 pr-4">$4.00 &ndash; $7.00</td>
+                <td class="py-2">$7.00 &ndash; $10.00</td>
+              </tr>
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">Black Walnut</td>
+                <td class="py-2 pr-4">$8.00 &ndash; $14.00</td>
+                <td class="py-2">$12.00 &ndash; $18.00</td>
+              </tr>
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">Cherry</td>
+                <td class="py-2 pr-4">$5.00 &ndash; $9.00</td>
+                <td class="py-2">$8.00 &ndash; $13.00</td>
+              </tr>
+              <tr>
+                <td class="py-2 pr-4">Poplar</td>
+                <td class="py-2 pr-4">$2.00 &ndash; $4.00</td>
+                <td class="py-2">$3.50 &ndash; $6.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-display-sm text-primary mt-10">Exotic Hardwood Prices (per Board Foot)</h2>
+        <p>
+          Exotics are imported and priced higher due to shipping, rarity, and demand. These prices vary significantly by region and availability.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-body-sm border-collapse">
+            <thead>
+              <tr class="border-b border-subtle">
+                <th class="text-left py-2 pr-4 text-primary">Species</th>
+                <th class="text-left py-2 text-primary">Price Range / BF</th>
+              </tr>
+            </thead>
+            <tbody class="text-secondary">
+              <tr class="border-b border-subtle"><td class="py-2 pr-4">African Mahogany</td><td class="py-2">$8.00 &ndash; $14.00</td></tr>
+              <tr class="border-b border-subtle"><td class="py-2 pr-4">Sapele</td><td class="py-2">$7.00 &ndash; $12.00</td></tr>
+              <tr class="border-b border-subtle"><td class="py-2 pr-4">Teak</td><td class="py-2">$15.00 &ndash; $30.00</td></tr>
+              <tr class="border-b border-subtle"><td class="py-2 pr-4">Ipe</td><td class="py-2">$10.00 &ndash; $18.00</td></tr>
+              <tr><td class="py-2 pr-4">Padauk</td><td class="py-2">$10.00 &ndash; $16.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-display-sm text-primary mt-10">How to Estimate Your Lumber Cost</h2>
+        <p>
+          Once you know the price per board foot, estimating your total cost is simple:
+        </p>
+        <ol class="list-decimal pl-6 space-y-2">
+          <li>Calculate the total board feet for every piece in your project</li>
+          <li>Add a waste factor (10% is a safe starting point)</li>
+          <li>Multiply by the price per board foot</li>
+        </ol>
+        <p>
+          For example, a small table using 20 board feet of cherry at $7/BF with 10% waste: 20 &times; 1.1 &times; $7 = $154. You can do this calculation for any species to compare material costs before you buy.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">Tips for Saving Money at the Lumber Yard</h2>
+        <p>
+          Buy rough lumber and surface it yourself. Rough lumber costs significantly less than S2S (surfaced two sides) because you are paying for the milling. If you have a planer and jointer, you can save 20-30%.
+        </p>
+        <p>
+          Ask about shorts and offcuts. Many yards sell shorter pieces at a discount. If your project uses 3-foot and 4-foot lengths, you might save substantially.
+        </p>
+        <p>
+          Buy in bulk. Most yards offer a discount for buying an entire bundle or a minimum quantity. If you have storage space, bundling multiple projects into one purchase makes sense.
+        </p>
+
+        <div class="mt-10 rounded-lg border border-subtle bg-secondary p-6">
+          <p class="text-body-sm text-primary">
+            <strong>Plan your budget:</strong> Use the <a href="/" class="text-accent-mustard underline decoration-accent-mustard/30 hover:decoration-accent-mustard">board foot calculator</a> to build a cut list, add a waste factor, and see your total material cost instantly.
+          </p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

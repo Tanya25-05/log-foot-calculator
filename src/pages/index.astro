@@ -7,24 +7,52 @@ import FAQAccordion from "../components/FAQAccordion.astro";
 
 const faqItems = [
   {
-    question: "What is a board foot calculator?",
-    answer: "A board foot calculator is a tool that computes the volume of lumber in board feet — the standard unit for measuring hardwood in North America. It multiplies thickness (in), width (in), and length (ft), then divides by 12. Our calculator adds real-time results, price per board foot, and a project cut list."
+    question: "What is a board foot?",
+    answer: "A board foot is a volume measurement used for lumber in the US and Canada. One board foot equals 12\" × 12\" × 1\" — or 144 cubic inches. It is different from a linear foot (which only measures length) or a square foot (which measures area), because board feet account for thickness, width, and length all at once."
   },
   {
-    question: "How do I calculate a board foot?",
-    answer: "Use the formula: Board Feet = Thickness (in) × Width (in) × Length (ft) ÷ 12. For example, a 2×4 that is 8 feet long is 1.5 × 3.5 × 8 ÷ 12 = 3.5 board feet. Our calculator does this instantly — just enter your dimensions."
+    question: "How do I manually calculate board feet?",
+    answer: "The formula is: Thickness (in) × Width (in) × Length (ft) ÷ 12. For an 8-foot 2×4, that is 1.5 × 3.5 × 8 ÷ 12 = 3.5 board feet. A 10-foot 2×4 is 1.5 × 3.5 × 10 ÷ 12 = 4.375 board feet. The hard part is doing this over and over for every board in a project — that is why this calculator exists."
   },
   {
-    question: "How many board feet is a 2x4x8?",
-    answer: "An 8-foot 2×4 (actual dimensions: 1.5″ × 3.5″ × 8′) contains 3.5 board feet. The calculation is 1.5 × 3.5 × 8 ÷ 12 = 3.5 BF. Use our Quick Fill presets to load common lumber sizes instantly."
+    question: "Why is a 2×4 not actually 2 inches by 4 inches?",
+    answer: "The \"2×4\" is the nominal size — what the board was called before being dried and planed. After milling, the actual dimensions are 1.5\" × 3.5\". Same goes for 2×6 (actual: 1.5\" × 5.5\"), 4×4 (actual: 3.5\" × 3.5\"), and 1×6 (actual: 0.75\" × 5.5\"). This calculator uses actual dimensions in its presets so you do not have to remember the differences."
   },
   {
-    question: "How many board feet is a 2x4x10?",
-    answer: "A 10-foot 2×4 (actual: 1.5″ × 3.5″ × 10′) contains 4.375 board feet. The formula is 1.5 × 3.5 × 10 ÷ 12 = 4.375 BF. Enter any length and our calculator adjusts the result in real time."
+    question: "How much does lumber cost per board foot in 2026?",
+    answer: "It varies wildly by species and region. Common construction lumber like pine or SPF runs about $1–$3 per board foot. Domestic hardwoods like oak, maple, and cherry range from $4–$10. Exotics like mahogany or teak can go $12–$25 or more. Prices also fluctuate with the market — check with your local supplier for current rates."
   },
   {
-    question: "How much will 200 board feet cover?",
-    answer: "Coverage depends on thickness. At 1″ thick, 200 BF covers 200 square feet. At ¾″ (0.75″), it covers roughly 267 sq ft. Use our calculator to test different thicknesses and see both board footage and cost instantly."
+    question: "How do I convert linear feet to board feet?",
+    answer: "You need to know the thickness and width too, since board feet measure volume. Take the thickness (in), multiply by width (in), multiply by linear length (ft), then divide by 12. A 10-foot 1×6 (0.75\" × 5.5\") is 0.75 × 5.5 × 10 ÷ 12 = 3.44 board feet. Our calculator does this automatically — just enter your dimensions."
+  },
+  {
+    question: "What is a waste factor and why should I include one?",
+    answer: "Waste factor accounts for lumber you will lose to offcuts, knots, mistakes, and off-by-one cuts. For framing, 5% is usually enough. For furniture or cabinetry with complex joinery, 10–20% is safer. This calculator has a waste slider so you can dial in the buffer you need without doing extra math."
+  },
+  {
+    question: "Can I save my cut list and come back to it later?",
+    answer: "Yes. Your cut list is saved in your browser automatically — no account needed. Close the tab, come back tomorrow, and everything is still there. This works because the data never leaves your machine. If you clear your browser data, the list will reset, so export anything important."
+  },
+  {
+    question: "Is this calculator accurate for rough lumber?",
+    answer: "It depends on the measurements you enter. If you are working with rough-sawn lumber that has not been surfaced, you need to measure the actual dimensions yourself after planing. Rough lumber is often sold by the nominal size before milling, and the actual volume changes once it is surfaced. Enter whatever dimensions you plan to work with and the calculator will be accurate."
+  },
+  {
+    question: "What is the difference between a board foot and a square foot?",
+    answer: "A square foot measures area (length × width). A board foot measures volume (length × width × thickness). For example, a 12\" × 12\" slab that is 1\" thick is 1 square foot AND 1 board foot. The same slab at 2\" thick is still 1 square foot, but now it is 2 board feet. Thickness is what separates the two."
+  },
+  {
+    question: "Does the calculator work for metric measurements?",
+    answer: "Yes. Toggle the unit switch and enter dimensions in millimeters for thickness, width, and length in meters. The calculator converts everything internally and shows results in both board feet and cubic meters. This is useful if you are working with imported lumber or European-sourced materials."
+  },
+  {
+    question: "How many board feet does a 2x4x8 have?",
+    answer: "An 8-foot 2×4 has 3.5 board feet (1.5 × 3.5 × 8 ÷ 12). A 2x4x10 has 4.375 BF. A 2x4x12 has 5.25 BF. These are common sizes used in framing, and the calculator has Quick Fill presets for them so you do not have to type the dimensions every time."
+  },
+  {
+    question: "Why is my board foot calculation different from the lumber yard's?",
+    answer: "Lumber yards sometimes round. They might charge for the nearest whole board foot, or they might include a waste surcharge on small orders. Some yards also use the nominal size instead of the actual size for softwood. If you are unsure, ask how they calculate — most yards are happy to explain."
   }
 ];
 ---
@@ -39,7 +67,7 @@ const faqItems = [
     <!-- Calculator Section — first thing on page -->
     <BoardFootCalculator />
 
-    <!-- Hero Message + CTA — now below calculator -->
+    <!-- Hero Message -->
     <section class="bg-primary border-t border-subtle py-16 sm:py-20 lg:py-24">
       <div class="mx-auto max-w-7xl px-8 text-center sm:px-14 lg:px-24">
         <span class="inline-block rounded-full bg-secondary px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-muted" data-i18n="hero.badge">
@@ -47,12 +75,12 @@ const faqItems = [
         </span>
 
         <h1 class="mx-auto mt-6 max-w-4xl text-display-xl text-primary text-balance" data-i18n="hero.title">
-          Calculate lumber instantly. Build smarter.
+          A board foot calculator that actually works the way you do.
         </h1>
 
         <p class="mx-auto mt-4 max-w-2xl text-body-lg text-secondary" data-i18n="hero.desc">
-          The modern board foot calculator for woodworkers, contractors, and DIYers.
-          Real-time results, visual preview, and a project cut list that persists across sessions.
+          Drop in your dimensions, get your board footage, price it out, and build a cut list — all in one place.
+          No sign-up, no bloat, just the math you need.
         </p>
 
         <div class="mt-8 flex items-center justify-center gap-3">
@@ -66,54 +94,78 @@ const faqItems = [
       </div>
     </section>
 
-    <!-- SEO Content Section -->
+    <!-- In-depth educational content about board feet -->
     <section class="bg-secondary border-t border-subtle py-16 sm:py-20 lg:py-24" aria-label="About board foot calculations">
       <div class="mx-auto max-w-4xl px-8 sm:px-14 lg:px-24">
         <div class="prose-custom mx-auto">
-          <h2 class="text-display-lg text-primary text-center mb-8" data-i18n="seo.heading">Everything you need from a board foot calculator.</h2>
+          <h2 class="text-display-lg text-primary text-center mb-8" data-i18n="seo.heading">Everything you need to know about board feet.</h2>
 
           <div class="space-y-6 text-body-md text-secondary leading-relaxed">
 
-            <h3 class="text-display-sm text-primary mt-10">What is a board foot?</h3>
+            <h3 class="text-display-sm text-primary mt-10">What exactly is a board foot?</h3>
             <p>
-              One board foot is defined as a piece of lumber measuring 12 inches long, 12 inches wide, and 1 inch thick — or 144 cubic inches. The <strong>board foot calculator formula</strong> is straightforward:
+              A board foot is a unit of volume used for lumber in the US and Canada. One board foot equals a piece of wood that is 12 inches long, 12 inches wide, and 1 inch thick — or 144 cubic inches. Think of it as a slice of wood about the size of a cutting board, but an inch thick.
+            </p>
+            <p>
+              The formula is simple:
             </p>
             <div class="rounded-lg bg-primary p-4 font-mono text-body-sm text-primary border border-subtle my-4">
-              Board Feet = Thickness (in) &times; Width (in) &times; Length (ft) &divide; 12
+              Board Feet = (Thickness in inches &times; Width in inches &times; Length in feet) &divide; 12
             </div>
             <p>
-              For example, a 2&times;6 that is 10 feet long yields 10 board feet. Our calculator applies this formula instantly as you type, showing per-board and total results in real time.
+              So a 2&times;6 that is 10 feet long works out to 1.5 &times; 5.5 &times; 10 &divide; 12 = 6.88 board feet. The calculator on this page does this math instantly, which is handy when you are pricing out a whole project and not just one board.
             </p>
 
-            <h3 class="text-display-sm text-primary mt-10">Why use a dedicated lumber board foot calculator?</h3>
+            <h3 class="text-display-sm text-primary mt-10">Why lumber is sold by the board foot</h3>
             <p>
-              A general calculator works in a pinch, but a purpose-built <strong>wood board foot calculator</strong> handles the details that matter: multiple board sizes in a single cut list, <strong>price per board foot calculator</strong> logic for cost estimation, waste factor for realistic material planning, and unit conversions between imperial and metric. Whether you need a <strong>board foot calculator for lumber</strong> on a job site or a <strong>board foot calculator for logs</strong> in the workshop, this tool adapts to your workflow.
+              If you have ever bought hardwood from a lumberyard, you know they do not sell by the linear foot. A 6-foot plank of 8/4 walnut costs more than a 6-foot plank of 4/4 walnut, even though they are the same length. That is because board feet account for thickness and width too. It is the only fair way to price wood, since two boards of the same length can have wildly different volumes.
+            </p>
+            <p>
+              Softwood lumber at the home center is usually sold by dimensional size (a 2&times;4 is 2&times;4, regardless of length), but hardwood and exotic species are almost always priced per board foot. If you are building furniture, cabinets, or trim work from rough lumber, you need to think in board feet.
             </p>
 
-            <h3 class="text-display-sm text-primary mt-10">Log board foot calculator vs lumber calculator</h3>
+            <h3 class="text-display-sm text-primary mt-10">Actual vs nominal dimensions — the gotcha that trips everyone up</h3>
             <p>
-              A <strong>log board foot calculator</strong> typically estimates the usable lumber volume inside a log before it is milled. While that requires log-specific scaling rules (Doyle, Scribner, International), our <strong>board foot calculator log</strong> tool focuses on dimensional lumber — boards that have already been cut to standard thicknesses and widths. This covers the vast majority of woodworking and construction needs. If you work with rough lumber, simply measure the actual dimensions after surfacing for the most accurate <strong>tree board foot calculator</strong> results.
+              Here is something that surprises a lot of new woodworkers: a 2&times;4 is not actually 2 inches by 4 inches. It is 1.5 inches by 3.5 inches. The "2&times;4" is the nominal size — what the board was called before it was planed smooth at the mill. The actual dimensions are smaller.
+            </p>
+            <p>
+              This matters for board foot calculations. If you punch 2 &times; 4 &times; 8 into a calculator that expects actual dimensions, you will overestimate. This tool uses actual dimensions for its lumber presets (1.5 &times; 3.5 for a 2&times;4, 1.5 &times; 5.5 for a 2&times;6, 3.5 &times; 3.5 for a 4&times;4, and so on), so you get accurate results without having to look up the real sizes.
+            </p>
+            <p>
+              If you are working with rough lumber that has not been surfaced, measure it yourself after jointing and planing to whatever thickness you need. That actual measurement is what goes into the board foot formula.
             </p>
 
-            <h3 class="text-display-sm text-primary mt-10">Price per board foot — know your costs</h3>
+            <h3 class="text-display-sm text-primary mt-10">How to price a project using board feet</h3>
             <p>
-              Lumber pricing varies widely by species, grade, and region. A <strong>price per board foot calculator</strong> helps you compare options before you buy. Enter the price per board foot your supplier charges, and the calculator shows the cost per board and the total project cost instantly. Whether pricing walnut, cherry, oak, or construction-grade pine, the <strong>per board foot calculator</strong> gives you line-item visibility into every dollar. This makes it easy to create accurate quotes for clients or stick to a project budget.
+              Say you are building a farmhouse table out of white oak. Your lumberyard wants $8.50 per board foot. You need eight boards, each 8/4 thick, 6 inches wide, and 8 feet long. That is 1.75 &times; 5.5 &times; 8 &divide; 12 = 6.42 board feet per board, times eight boards, times $8.50 — roughly $436 just for the top.
+            </p>
+            <p>
+              The price-per-board-foot field in this calculator lets you plug in whatever your supplier charges, and it shows the cost per board and the running total. That way you can compare oak at one price versus walnut at another without having to reach for a separate calculator.
             </p>
 
-            <h3 class="text-display-sm text-primary mt-10">Conversions: linear foot and square foot to board foot</h3>
+            <h3 class="text-display-sm text-primary mt-10">Cut lists and waste factor — buying smarter</h3>
             <p>
-              Sometimes you have measurements in other units. A <strong>linear foot to board foot calculator</strong> requires knowing the thickness and width, since board footage is a volume measure, not a linear one. Similarly, a <strong>square foot to board foot calculator</strong> converts area into volume by factoring in thickness. Our built-in calculator handles both — enter any combination of dimensions and the <strong>sq ft to board foot calculator</strong> logic is handled automatically behind the scenes. The <strong>linear board foot calculator</strong> mode is built right into the same input fields.
+              No project uses lumber with 100% efficiency. There are always offcuts, knots that you have to work around, and off-by-one mistakes. A typical waste factor for woodworking is 5% to 10%, depending on the complexity of the project. Framing a house might only waste 5%, but building a piece of furniture with lots of small parts can waste 20% or more.
+            </p>
+            <p>
+              This tool includes a waste factor slider so you can add a buffer to your total. Build your cut list with all the pieces you need, set the waste percentage, and the calculator shows the adjusted total board footage and cost. It is one of those features that seems small until you actually use it on a real project and realize how much it simplifies the math.
             </p>
 
-            <h3 class="text-display-sm text-primary mt-10">Cut lists and project management</h3>
+            <h3 class="text-display-sm text-primary mt-10">Metric measurements — not just for Europe</h3>
             <p>
-              The <strong>board foot calculator app</strong> experience goes beyond one-off calculations. Build a multi-item cut list, adjust quantities, and see running total board feet and total cost. Toggle the waste factor slider (default 5%) to account for offcuts and mistakes — a must for any serious project. Your cut list is saved in your browser automatically, so coming back to a project is as simple as reloading the page. No accounts, no logins, no data sent to a server.
+              Even in the US, a lot of imported lumber is sold in metric dimensions. Plywood is commonly 1220 &times; 2440 mm, and some hardwood suppliers list thickness in millimeters. This calculator handles both imperial and metric, and converts between them on the fly. Toggle the unit switch and all your inputs and results update automatically. No need to remember conversion factors.
             </p>
 
-            <h3 class="text-display-sm text-primary mt-10">Built for professionals and hobbyists</h3>
+            <h3 class="text-display-sm text-primary mt-10">The visualizer — a quick sanity check</h3>
             <p>
-              Every detail of this <strong>board foot calculator</strong> is designed for speed and clarity. The isometric visualizer shows your lumber dimensions as a scaled 3D preview, so you can verify proportions at a glance. Quick Fill presets cover common lumber sizes (2&times;4, 2&times;6, 1&times;6, 4&times;4, and more), and the unit toggle switches between imperial and metric instantly. Whether you are a contractor estimating framing lumber or a hobbyist planning a bookshelf, this <strong>board foot calculator wood</strong> tool is built to save you time and reduce material waste.
+              Numbers are one thing. Actually seeing the board helps catch mistakes. The isometric preview on this tool shows your lumber as a 3D block, scaled to the dimensions you entered. It is not meant to be a CAD drawing — it is a quick visual check that the proportions look right. If you meant to enter 8 feet but typed 80, the visualizer makes it obvious.
             </p>
+
+            <h3 class="text-display-sm text-primary mt-10">Doyle, Scribner, and International log rules — a quick note</h3>
+            <p>
+              If you are scaling logs (round timber still in the bark), the math is different. The board foot formula above works for dimensional lumber, but for logs, scalers use the Doyle Rule, the Scribner Decimal C Rule, or the International 1/4-Inch Rule. These are empirical formulas that estimate how many board feet of usable lumber can be sawn from a given log, accounting for saw kerf, slab waste, and taper. This calculator focuses on lumber that has already been milled, which covers the needs of most woodworkers, contractors, and DIYers. If you need a log scaling tool, that is a different beast entirely.
+            </p>
+
           </div>
         </div>
       </div>

@@ -1,0 +1,155 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NavBar from "../../components/NavBar.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<Layout
+  title="How to Calculate Board Feet — A Complete Guide"
+  description="Step-by-step guide to calculating board feet for any lumber project. Includes formula, examples, nominal vs actual dimensions, and common mistakes to avoid."
+>
+  <NavBar />
+
+  <main class="bg-primary">
+    <article class="mx-auto max-w-3xl px-8 py-16 sm:px-14 lg:px-24 lg:py-24">
+      <div class="flex items-center gap-3 text-caption text-muted mb-2">
+        <a href="/blog" class="text-accent-mustard no-underline hover:underline">Back to blog</a>
+        <span>&middot;</span>
+        <time datetime="2026-06-07">June 7, 2026</time>
+        <span>&middot;</span>
+        <span>6 min read</span>
+      </div>
+
+      <h1 class="mt-4 text-display-xl text-primary">How to Calculate Board Feet</h1>
+      <p class="mt-3 text-body-lg text-secondary leading-relaxed">
+        A complete guide to the math behind lumber volume, with real examples you can follow along with.
+      </p>
+
+      <div class="mt-10 space-y-6 text-body-md text-secondary leading-relaxed">
+
+        <h2 class="text-display-sm text-primary mt-10">The Formula</h2>
+        <p>
+          The formula for board feet is straightforward:
+        </p>
+        <div class="rounded-lg bg-secondary p-4 font-mono text-body-sm text-primary border border-subtle my-4">
+          Board Feet = (Thickness in inches &times; Width in inches &times; Length in feet) &divide; 12
+        </div>
+        <p>
+          Multiply the three dimensions together and divide by 12. The result is the board footage. That is all there is to it.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">A Simple Example</h2>
+        <p>
+          Say you have a board that is 1 inch thick, 6 inches wide, and 8 feet long. Punch the numbers in:
+        </p>
+        <div class="rounded-lg bg-secondary p-4 font-mono text-body-sm text-primary border border-subtle my-4">
+          1 &times; 6 &times; 8 &divide; 12 = 4 board feet
+        </div>
+        <p>
+          One board, 4 board feet. If your lumber yard charges $5 per board foot, that board costs $20.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">Working with Nominal Dimensions</h2>
+        <p>
+          Here is where it gets tricky. If you buy a 2&times;6 from the home center, the label says 2&times;6, but the actual dimensions are 1.5 inches thick and 5.5 inches wide. The nominal size (the name) and the actual size (what you measure) are different.
+        </p>
+        <p>
+          For the board foot formula, you need the actual dimensions. A 10-foot 2&times;6 is:
+        </p>
+        <div class="rounded-lg bg-secondary p-4 font-mono text-body-sm text-primary border border-subtle my-4">
+          1.5 &times; 5.5 &times; 10 &divide; 12 = 6.88 board feet
+        </div>
+        <p>
+          If you used 2 and 6 instead of 1.5 and 5.5, you would get 10 board feet &mdash; an overestimate of about 45%. That is the difference between paying $55 and paying $80 for the same board at $8 per board foot.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">Common Lumber Sizes Reference</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-body-sm border-collapse">
+            <thead>
+              <tr class="border-b border-subtle">
+                <th class="text-left py-2 pr-4 text-primary">Nominal Size</th>
+                <th class="text-left py-2 pr-4 text-primary">Actual (in)</th>
+                <th class="text-left py-2 pr-4 text-primary">BF per 8&prime;</th>
+                <th class="text-left py-2 text-primary">BF per 10&prime;</th>
+              </tr>
+            </thead>
+            <tbody class="text-secondary">
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">1&times;4</td>
+                <td class="py-2 pr-4">0.75 &times; 3.5</td>
+                <td class="py-2 pr-4">1.75</td>
+                <td class="py-2">2.19</td>
+              </tr>
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">1&times;6</td>
+                <td class="py-2 pr-4">0.75 &times; 5.5</td>
+                <td class="py-2 pr-4">2.75</td>
+                <td class="py-2">3.44</td>
+              </tr>
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">2&times;4</td>
+                <td class="py-2 pr-4">1.5 &times; 3.5</td>
+                <td class="py-2 pr-4">3.5</td>
+                <td class="py-2">4.38</td>
+              </tr>
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">2&times;6</td>
+                <td class="py-2 pr-4">1.5 &times; 5.5</td>
+                <td class="py-2 pr-4">5.5</td>
+                <td class="py-2">6.88</td>
+              </tr>
+              <tr class="border-b border-subtle">
+                <td class="py-2 pr-4">2&times;8</td>
+                <td class="py-2 pr-4">1.5 &times; 7.25</td>
+                <td class="py-2 pr-4">7.25</td>
+                <td class="py-2">9.06</td>
+              </tr>
+              <tr>
+                <td class="py-2 pr-4">4&times;4</td>
+                <td class="py-2 pr-4">3.5 &times; 3.5</td>
+                <td class="py-2 pr-4">8.17</td>
+                <td class="py-2">10.21</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-display-sm text-primary mt-10">Calculating Board Feet for a Whole Project</h2>
+        <p>
+          When you have multiple boards of different sizes, you calculate each one separately and add them up. This is where a calculator like the one on this site saves time. Instead of doing the math for every board, you enter each piece once, set the quantity, and the running total updates automatically.
+        </p>
+        <p>
+          For example, a simple bookshelf might need:
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Two 1&times;12 boards at 6 feet each for the shelves</li>
+          <li>Two 1&times;4 boards at 8 feet each for the sides</li>
+          <li>One 1&times;3 board at 6 feet for the back support</li>
+        </ul>
+        <p>
+          Each of these calculates differently because the dimensions are different. Add a waste factor of 10% and you know exactly how much lumber to buy.
+        </p>
+
+        <h2 class="text-display-sm text-primary mt-10">Common Mistakes</h2>
+        <p>
+          <strong>Using nominal instead of actual.</strong> This is the most common error. Always use the actual dimensions after milling.
+        </p>
+        <p>
+          <strong>Forgetting to convert units.</strong> The formula expects thickness and width in inches, and length in feet. If you measure length in inches, divide by 12 first. If you use metric, the formula changes &mdash; use our calculator's metric mode instead.
+        </p>
+        <p>
+          <strong>Skipping the waste factor.</strong> Even professional builders waste 5-10% of their lumber. Beginners can waste 20% or more. Always add a buffer.
+        </p>
+
+        <div class="mt-10 rounded-lg border border-subtle bg-secondary p-6">
+          <p class="text-body-sm text-primary">
+            <strong>Try it yourself:</strong> Use the <a href="/" class="text-accent-mustard underline decoration-accent-mustard/30 hover:decoration-accent-mustard">board foot calculator</a> on this site to check your math and build a cut list for your next project.
+          </p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>
