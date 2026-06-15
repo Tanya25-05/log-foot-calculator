@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import NavBar from "../../components/NavBar.astro";
 import Footer from "../../components/Footer.astro";
 
-const posts = [
+const libraryPosts = [
   {
     title: "How to Calculate Board Feet — A Complete Guide",
     slug: "how-to-calculate-board-feet",
@@ -62,40 +62,239 @@ const posts = [
       </span>
       <h1 class="mt-4 text-display-xl text-primary">Lumber guides and resources.</h1>
       <p class="mt-3 text-body-md text-secondary max-w-xl">
-        Articles about board foot calculations, lumber pricing, woodworking measurements, and
-        practical tips for buying and using lumber.
+        Share your knowledge about wood types, lumber calculations, and workshop tips — or read guides from the community and our library.
       </p>
 
-      <div class="mt-12 space-y-8">
-        {posts.map((post) => (
-          <article class="border-b border-subtle pb-8">
-            <div class="flex items-center gap-3 text-caption text-muted mb-2">
-              <time datetime={post.date}>{post.date}</time>
-              <span>&middot;</span>
-              <span>{post.readTime}</span>
-            </div>
-            <h2 class="text-display-sm text-primary">
-              <a href={`/blog/${post.slug}`} class="no-underline hover:text-accent-mustard transition-colors">
-                {post.title}
-              </a>
-            </h2>
-            <p class="mt-2 text-body-md text-secondary leading-relaxed">
-              {post.excerpt}
-            </p>
-            <a
-              href={`/blog/${post.slug}`}
-              class="mt-3 inline-flex items-center gap-1 text-body-sm text-accent-mustard no-underline hover:underline"
-            >
-              Read more
-              <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </article>
-        ))}
+      <!-- Search -->
+      <div class="relative mt-8">
+        <svg class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="search" id="blog-search" placeholder="Search articles..." class="w-full rounded-lg border border-subtle bg-primary px-10 py-2.5 text-body-md text-primary outline-none transition-colors placeholder:text-muted focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40" />
       </div>
+
+      <!-- Write a Guide — submit form -->
+      <div class="mt-10 linear-card p-6 lg:p-8" data-write-root>
+        <div class="flex items-start gap-4">
+          <div class="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-mustard text-white">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h2 class="text-display-sm text-primary">Write a Guide</h2>
+            <p class="mt-1 text-body-sm text-secondary">Share your knowledge about wood types, lumber calculations, joinery, or workshop tips.</p>
+            <div class="mt-4 flex flex-col gap-3">
+              <input type="text" id="post-title" placeholder="Guide title (e.g. 'White Oak vs Red Oak')" class="w-full rounded-lg border border-subtle bg-primary px-3 py-2 text-body-md text-primary outline-none transition-colors placeholder:text-muted focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40" maxlength="120" />
+              <div class="flex gap-3">
+                <input type="text" id="post-author" placeholder="Your name (optional)" class="w-48 rounded-lg border border-subtle bg-primary px-3 py-2 text-body-md text-primary outline-none transition-colors placeholder:text-muted focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40" maxlength="40" />
+                <select id="post-category" class="rounded-lg border border-subtle bg-primary px-3 py-2 text-body-md text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40 cursor-pointer">
+                  <option value="wood-types">Wood Types</option>
+                  <option value="calculations">Calculations</option>
+                  <option value="workshop-tips">Workshop Tips</option>
+                  <option value="project-guides">Project Guides</option>
+                </select>
+              </div>
+              <textarea id="post-content" placeholder="Write your guide here — share tips, measurements, personal experience..." rows="5" class="w-full rounded-lg border border-subtle bg-primary px-3 py-2 text-body-md text-primary outline-none transition-colors placeholder:text-muted focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40 resize-y" maxlength="10000"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center justify-between border-t border-subtle pt-4">
+          <span class="text-caption text-muted" id="post-char-count">0 / 10000</span>
+          <div class="flex items-center gap-3">
+            <span id="post-feedback" class="text-body-sm text-muted hidden"></span>
+            <button id="post-submit" class="rounded-lg bg-accent-mustard px-5 py-2 text-body-sm-strong text-white transition-opacity hover:opacity-90 cursor-pointer">Publish Guide</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Community Guides (user-submitted) -->
+      <div id="community-section" class="mt-10 hidden">
+        <h2 class="text-display-sm text-primary mb-6">Community Guides</h2>
+        <div id="community-list" class="space-y-6"></div>
+      </div>
+
+      <!-- From Our Library (existing posts) -->
+      <div class="mt-10" id="library-section">
+        <h2 class="text-display-sm text-primary mb-6">From Our Library</h2>
+
+        <div id="blog-list" class="space-y-8" data-posts={JSON.stringify(libraryPosts)}>
+          {libraryPosts.map((post) => (
+            <article class="border-b border-subtle pb-8" data-blog-post data-slug={post.slug}>
+              <div class="flex items-center gap-3 text-caption text-muted mb-2">
+                <time datetime={post.date}>{post.date}</time>
+                <span>&middot;</span>
+                <span>{post.readTime}</span>
+              </div>
+              <h3 class="text-display-sm text-primary">
+                <a href={`/blog/${post.slug}`} class="no-underline hover:text-accent-mustard transition-colors">
+                  {post.title}
+                </a>
+              </h3>
+              <p class="mt-2 text-body-md text-secondary leading-relaxed">
+                {post.excerpt}
+              </p>
+              <a
+                href={`/blog/${post.slug}`}
+                class="mt-3 inline-flex items-center gap-1 text-body-sm text-accent-mustard no-underline hover:underline"
+              >
+                Read more
+                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <p id="blog-no-results" class="mt-8 hidden text-center text-body-md text-muted py-12">No articles match your search.</p>
     </div>
   </main>
 
   <Footer />
-</Layout>
+
+<script>
+(() => {
+  const STORAGE_KEY = "bfc_community_posts";
+
+  const input = document.getElementById("blog-search");
+  const list = document.getElementById("blog-list");
+  const noResults = document.getElementById("blog-no-results");
+
+  // Community form
+  const titleEl = document.getElementById("post-title");
+  const authorEl = document.getElementById("post-author");
+  const categoryEl = document.getElementById("post-category");
+  const contentEl = document.getElementById("post-content");
+  const submitBtn = document.getElementById("post-submit");
+  const feedback = document.getElementById("post-feedback");
+  const charCount = document.getElementById("post-char-count");
+  const communitySection = document.getElementById("community-section");
+  const communityList = document.getElementById("community-list");
+  const librarySection = document.getElementById("library-section");
+
+  // Char count
+  if (contentEl && charCount) {
+    contentEl.addEventListener("input", () => {
+      charCount.textContent = contentEl.value.length + " / 10000";
+    });
+  }
+
+  // Load community posts
+  function loadPosts() {
+    try {
+      const d = localStorage.getItem(STORAGE_KEY);
+      return d ? JSON.parse(d) : [];
+    } catch (e) { return []; }
+  }
+
+  function savePosts(posts) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(posts)); } catch (e) {}
+  }
+
+  function formatDate() {
+    const d = new Date();
+    return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  }
+
+  function renderCommunity() {
+    const posts = loadPosts();
+    if (!posts.length) {
+      communitySection.classList.add("hidden");
+      return;
+    }
+    communitySection.classList.remove("hidden");
+    communityList.innerHTML = posts.map((p, i) => {
+      const contentHtml = p.content.replace(/\n/g, "<br>");
+      return `<article class="border-b border-subtle pb-6">
+        <div class="flex items-center gap-2 text-caption text-muted mb-2">
+          <span class="inline-block rounded-full bg-secondary px-2 py-0.5 text-caption-mono font-mono uppercase tracking-wide">${p.category}</span>
+          <span>&middot;</span>
+          <time>${p.date}</time>
+          ${p.author ? `<span>&middot;</span><span>by ${p.author}</span>` : ""}
+        </div>
+        <h3 class="text-display-sm text-primary">${p.title}</h3>
+        <div class="mt-2 text-body-md text-secondary leading-relaxed">${contentHtml}</div>
+        <div class="mt-3 flex items-center gap-3">
+          <button data-remove="${i}" class="text-body-sm text-muted underline decoration-muted/30 hover:decoration-muted transition-colors cursor-pointer bg-transparent border-none">Remove</button>
+        </div>
+      </article>`;
+    }).join("");
+
+    communityList.querySelectorAll("[data-remove]").forEach(b => {
+      b.addEventListener("click", () => {
+        const posts = loadPosts();
+        posts.splice(+b.dataset.remove, 1);
+        savePosts(posts);
+        renderCommunity();
+        applySearch();
+      });
+    });
+  }
+
+  // Submit
+  if (submitBtn) {
+    submitBtn.addEventListener("click", () => {
+      const title = titleEl.value.trim();
+      const content = contentEl.value.trim();
+      if (!title || !content) {
+        feedback.textContent = "Title and content are required.";
+        feedback.classList.remove("hidden");
+        return;
+      }
+      const posts = loadPosts();
+      posts.unshift({
+        title,
+        content,
+        author: authorEl.value.trim(),
+        category: categoryEl.options[categoryEl.selectedIndex].text,
+        date: formatDate(),
+      });
+      savePosts(posts);
+      titleEl.value = "";
+      authorEl.value = "";
+      contentEl.value = "";
+      charCount.textContent = "0 / 10000";
+      feedback.classList.add("hidden");
+      renderCommunity();
+      applySearch();
+    });
+  }
+
+  // Search
+  const allArticles = list ? [...list.querySelectorAll("[data-blog-post]")] : [];
+  const postsData = list ? JSON.parse(list.dataset.posts || "[]") : [];
+
+  function applySearch() {
+    const q = input ? input.value.toLowerCase().trim() : "";
+    const communityPosts = communityList ? communityList.querySelectorAll("article") : [];
+
+    let visible = 0;
+
+    allArticles.forEach(el => {
+      const slug = el.dataset.slug;
+      const post = postsData.find(p => p.slug === slug);
+      if (!post) return;
+      const match = !q || post.title.toLowerCase().includes(q) || post.excerpt.toLowerCase().includes(q);
+      el.classList.toggle("hidden", !match);
+      if (match) visible++;
+    });
+
+    communityPosts.forEach(el => {
+      const title = el.querySelector("h3")?.textContent || "";
+      const body = el.querySelector("div")?.textContent || "";
+      const match = !q || title.toLowerCase().includes(q) || body.toLowerCase().includes(q);
+      el.classList.toggle("hidden", !match);
+      if (match) visible++;
+    });
+
+    if (noResults) {
+      const totalVisible = visible + (librarySection?.classList.contains("hidden") ? 0 : 0);
+      noResults.classList.toggle("hidden", visible > 0 || (allArticles.length > 0 && !q));
+    }
+  }
+
+  if (input) input.addEventListener("input", applySearch);
+
+  renderCommunity();
+})();
+</script>

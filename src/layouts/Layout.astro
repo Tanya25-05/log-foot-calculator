@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-const { title = "Board Foot Calculator — Free Lumber Calculator with Cut List", description = "Free board foot calculator for lumber. Calculate board feet, visualize dimensions, manage cut lists with price per board foot, waste factor, and instant cost estimates for any woodworking project." } = Astro.props;
+const { title = "Board Foot Calculator — Lumber Calculator with Cut List", description = "Board foot calculator for lumber. Calculate board feet, visualize dimensions, manage cut lists with price per board foot, waste factor, and instant cost estimates for any woodworking project." } = Astro.props;
 ---
 
 <!doctype html>
@@ -29,23 +29,24 @@ const { title = "Board Foot Calculator — Free Lumber Calculator with Cut List"
     <link rel="canonical" href="https://boardfootcal.com/" />
 
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="Board Foot Calculator — Free Lumber Calculator with Cut List & Visualizer" />
-    <meta property="og:description" content="Free board foot calculator for lumber. Calculate board feet, visualize dimensions, manage cut lists with price per board foot, waste factor, and instant cost estimates for any woodworking project." />
-    <meta property="og:url" content="https://boardfootcal.com/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Board Foot Calculator" />
-    <meta property="og:image" content="https://boardfootcal.com/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Board Foot Calculator — Lumber Board Foot Calculator Tool" />
+    <meta property="og:title" content="Board Foot Calculator — Lumber Calculator with Cut List & Visualizer" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Board Foot Calculator — Free Lumber Calculator with Cut List & Visualizer" />
-    <meta name="twitter:description" content="Free board foot calculator for lumber. Calculate board feet, visualize dimensions, manage cut lists with price per board foot, waste factor, and instant cost estimates for any woodworking project." />
+    <meta property="og:description" content="Board foot calculator for lumber. Calculate board feet, visualize dimensions, manage cut lists with price per board foot, waste factor, and instant cost estimates for any woodworking project." />
+
+    <meta name="twitter:title" content="Board Foot Calculator — Lumber Calculator with Cut List & Visualizer" />
+
+    <meta name="twitter:description" content="Board foot calculator for lumber. Calculate board feet, visualize dimensions, manage cut lists with price per board foot, waste factor, and instant cost estimates for any woodworking project." />
     <meta name="twitter:image" content="https://boardfootcal.com/og-image.png" />
 
     <meta name="google-adsense-account" content="ca-pub-3182180984888087">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3182180984888087" crossorigin="anonymous"></script>
+    <script>
+      const c = (() => { try { return localStorage.getItem("bfc_cookie_consent"); } catch (e) { return null; } })();
+      if (c === "accepted") {
+        const s = document.createElement("script");
+        s.async = true; s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3182180984888087"; s.crossOrigin = "anonymous";
+        document.head.appendChild(s);
+      }
+    </script>
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@graph": [
@@ -84,33 +85,51 @@ const { title = "Board Foot Calculator — Free Lumber Calculator with Cut List"
 
     <slot name="head" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X3VYVBGR8D"></script>
+    <!-- Google tag (gtag.js) - loaded only after cookie consent -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-X3VYVBGR8D');
+      const consent = (() => { try { return localStorage.getItem("bfc_cookie_consent"); } catch (e) { return null; } })();
+      if (consent === "accepted") {
+        const s = document.createElement("script");
+        s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=G-X3VYVBGR8D";
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', 'G-X3VYVBGR8D');
+      }
     </script>
   </head>
   <body class="min-h-screen bg-secondary text-primary font-sans antialiased">
     <slot />
-  </body>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[100] hidden border-t border-subtle bg-primary px-6 py-4 shadow-card-lg sm:px-10">
+      <div class="mx-auto flex max-w-7xl flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-body-sm text-secondary leading-relaxed max-w-2xl">
+          This site uses cookies from Google to deliver its services and analyze traffic.
+          <a href="/privacy" class="text-accent-mustard underline decoration-accent-mustard/30 hover:decoration-accent-mustard">Privacy Policy</a>.
+        </p>
+        <div class="flex shrink-0 items-center gap-3">
+          <button id="cookie-accept" class="rounded-lg bg-accent-mustard px-5 py-2 text-body-sm-strong text-white transition-opacity hover:opacity-90 cursor-pointer">Accept</button>
+          <button id="cookie-decline" class="rounded-lg border border-subtle bg-secondary px-5 py-2 text-body-sm text-secondary transition-colors hover:bg-primary cursor-pointer">Decline</button>
+        </div>
+      </div>
+    </div>
 </html>
 
 <script>
   const LANG = {
     en: {
-      "nav.calculator":"Calculator","nav.about":"About","nav.blog":"Blog","nav.contact":"Contact","nav.privacy":"Privacy","nav.terms":"Terms","nav.get_started":"Get Started",
-      "footer.desc":"Free online board foot calculator for woodworkers, contractors, and DIYers.","footer.about":"About","footer.blog":"Blog","footer.contact":"Contact","footer.privacy":"Privacy Policy","footer.terms":"Terms & Conditions","footer.copyright":"© BoardFootCal.com — Made for makers.",
-      "calc.badge":"Free Online Tool","calc.heading":"Board Foot Calculator.","calc.subtitle":"Real-time lumber calculations with a visual preview and a project cut list that saves to your browser.",
+      "nav.calculator":"Calculator","nav.about":"About","nav.blog":"Blog","nav.emi":"EMI Calculator","nav.contact":"Contact","nav.privacy":"Privacy","nav.terms":"Terms","nav.get_started":"Get Started",
+      "footer.desc":"Online board foot calculator for woodworkers, contractors, and DIYers.","footer.about":"About","footer.blog":"Blog","footer.emi":"EMI Calculator","footer.contact":"Contact","footer.privacy":"Privacy Policy","footer.terms":"Terms & Conditions","footer.copyright":"© BoardFootCal.com — Made for makers.",
+      "calc.badge":"Online Tool","calc.heading":"Board Foot Calculator.","calc.subtitle":"Real-time lumber calculations with a visual preview and a project cut list that saves to your browser.",
       "calc.board_dimensions":"Board Dimensions","calc.quick_fill":"Quick Fill","calc.thickness":"Thickness","calc.width":"Width","calc.length":"Length","calc.quantity":"Quantity",
       "calc.price_per_bf":"Price / BF","calc.add_to_cut_list":"Add to Cut List","calc.per_board":"Per Board","calc.total_bf":"Total BF","calc.total_cost":"Total Cost",
       "calc.cost_formula":"Cost = Total BF × Price / BF · Waste factor applied to cut list totals",
       "calc.lumber_preview":"Lumber Preview","calc.not_to_scale":"Board dimensions — not to scale","calc.project_cut_list":"Project Cut List",
       "calc.total_label":"Total:","calc.cost_label":"Cost:","calc.clear_all":"Clear All","calc.empty_title":"No items yet.","calc.empty_desc":"Add boards above to build your cut list.",
       "calc.waste_factor":"Waste Factor","calc.waste_0":"0%","calc.waste_50":"50%",
-      "hero.badge":"Free Online Tool","hero.title":"Calculate lumber instantly. Build smarter.","hero.desc":"The modern board foot calculator for woodworkers, contractors, and DIYers. Real-time results, visual preview, and a project cut list that persists across sessions.","hero.cta":"How It Works",
+      "hero.badge":"Online Tool","hero.title":"Calculate lumber instantly. Build smarter.","hero.desc":"The modern board foot calculator for woodworkers, contractors, and DIYers. Real-time results, visual preview, and a project cut list that persists across sessions.","hero.cta":"How It Works",
       "how.guide":"Guide","how.title":"How to calculate board feet.","how.desc":"Board footage measures lumber volume. One board foot is 1′ × 1′ × 1″.",
       "how.step1_title":"Enter dimensions","how.step1_desc":"Input thickness, width, and length. Toggle between Imperial and Metric seamlessly.",
       "how.step2_title":"Set quantity and price","how.step2_desc":"How many boards? What's the price per board foot? Results update instantly.",
@@ -123,18 +142,35 @@ const { title = "Board Foot Calculator — Free Lumber Calculator with Cut List"
       "faq.q4":"How many board feet is a 2x4x10?","faq.a4":"A 10-foot 2×4 (actual: 1.5″ × 3.5″ × 10′) contains 4.375 board feet. The formula is 1.5 × 3.5 × 10 ÷ 12 = 4.375 BF. Enter any length and our calculator adjusts the result in real time.",
       "faq.q5":"How much will 200 board feet cover?","faq.a5":"Coverage depends on thickness. At 1″ thick, 200 BF covers 200 square feet. At ¾″ (0.75″), it covers roughly 267 sq ft. Use our calculator to test different thicknesses and see both board footage and cost instantly.",
       "seo.heading":"Everything you need from a board foot calculator.",
+      "emi.badge":"Online Tool","emi.heading":"EMI Calculator.","emi.subtitle":"Plan your loan with real-time EMI calculations and a visual breakdown of principal vs interest.",
+      "emi.loan_details":"Loan Details","emi.loan_amount":"Loan Amount","emi.interest_rate":"Interest Rate","emi.tenure":"Loan Tenure",
+      "emi.monthly_emi":"Monthly EMI","emi.total_interest":"Total Interest","emi.total_payment":"Total Payment",
+      "emi.breakdown":"Principal vs Interest Breakdown","emi.principal":"Principal (Your Debt)","emi.interest":"Interest (Bank's Profit)",
+      "emi.amortization":"Amortization Schedule","emi.show_table":"Show Table","emi.hide_table":"Hide Table",
+      "emi.year":"Year","emi.emi_paid":"EMI Paid","emi.principal_paid":"Principal Paid","emi.interest_paid":"Interest Paid","emi.balance":"Balance",
+      "emi.how_title":"How EMI works.","emi.how_desc":"EMI stands for Equated Monthly Installment — a fixed payment you make each month to repay a loan over a set period.",
+      "emi.step1_title":"Enter loan details","emi.step1_desc":"Set the loan amount, interest rate, and tenure using the sliders. Results update instantly.",
+      "emi.step2_title":"See the breakdown","emi.step2_desc":"Watch the debt vs profit bar shift as you adjust parameters — a visual split of principal vs interest.",
+      "emi.step3_title":"Review amortization","emi.step3_desc":"Open the year-by-year table to see how your balance declines and how much goes toward interest each year.",
+      "emi.formula_title":"EMI Formula","emi.formula":"EMI = P × R × (1+R)ᴺ ÷ ((1+R)ᴺ − 1)","emi.formula_note":"P = Principal loan amount · R = Monthly interest rate · N = Total months",
+      "emi.faq_heading":"Frequently asked questions about EMI.",
+      "emi.faq1_q":"What is an EMI calculator?","emi.faq1_a":"An EMI calculator estimates your monthly installment for any loan — home, car, personal, or education. Enter the loan amount, interest rate, and tenure, and it instantly shows your EMI, total interest payable, and total payment with a visual breakdown.",
+      "emi.faq2_q":"How is EMI calculated?","emi.faq2_a":"EMI uses the formula: EMI = P × r × (1+r)^n / ((1+r)^n - 1), where P is the loan amount, r is the monthly interest rate (annual rate divided by 12), and n is the total number of monthly installments. This formula ensures each payment is the same amount every month while the principal decreases over time.",
+      "emi.faq3_q":"What does the debt vs profit bar show?","emi.faq3_a":"The bar splits your total payment into two parts: the green section is the principal (your debt — what you borrowed), and the red section is the interest (the bank's profit). A longer red bar means more of your money goes toward interest. Adjust the loan parameters to see how shorter tenures and lower rates reduce the red portion.",
+      "emi.faq4_q":"How can I reduce my total interest?","emi.faq4_a":"Two main ways: choose a shorter tenure (you pay more each month but far less interest overall) or negotiate a lower interest rate. Even a 0.5% rate difference can save you significant amounts over 20 years. Use this calculator to compare scenarios side by side.",
+      "emi.faq5_q":"What is an amortization schedule?","emi.faq5_a":"An amortization schedule breaks down each payment over the loan term, showing how much goes toward principal vs interest and what the remaining balance is after each period. In early years, most of your payment goes toward interest; in later years, it shifts toward principal.",
     },
     es: {
-      "nav.calculator":"Calculadora","nav.about":"Acerca de","nav.blog":"Blog","nav.contact":"Contacto","nav.privacy":"Privacidad","nav.terms":"Términos","nav.get_started":"Comenzar",
-      "footer.desc":"Calculadora gratuita de pies tablares para carpinteros, contratistas y aficionados.","footer.about":"Acerca de","footer.blog":"Blog","footer.contact":"Contacto","footer.privacy":"Política de Privacidad","footer.terms":"Términos y Condiciones","footer.copyright":"© BoardFootCal.com — Hecho para creadores.",
-      "calc.badge":"Herramienta Gratuita","calc.heading":"Calculadora de Pies Tablares.","calc.subtitle":"Cálculos de madera en tiempo real con vista previa visual y lista de corte que se guarda en tu navegador.",
+      "nav.calculator":"Calculadora","nav.about":"Acerca de","nav.blog":"Blog","nav.emi":"Calculadora EMI","nav.contact":"Contacto","nav.privacy":"Privacidad","nav.terms":"Términos","nav.get_started":"Comenzar",
+      "footer.desc":"Calculadora de pies tablares para carpinteros, contratistas y aficionados.","footer.about":"Acerca de","footer.blog":"Blog","footer.emi":"Calculadora EMI","footer.contact":"Contacto","footer.privacy":"Política de Privacidad","footer.terms":"Términos y Condiciones","footer.copyright":"© BoardFootCal.com — Hecho para creadores.",
+      "calc.badge":"Herramienta Online","calc.heading":"Calculadora de Pies Tablares.","calc.subtitle":"Cálculos de madera en tiempo real con vista previa visual y lista de corte que se guarda en tu navegador.",
       "calc.board_dimensions":"Dimensiones","calc.quick_fill":"Relleno Rápido","calc.thickness":"Grosor","calc.width":"Ancho","calc.length":"Largo","calc.quantity":"Cantidad",
       "calc.price_per_bf":"Precio / Pie Tablar","calc.add_to_cut_list":"Agregar a Lista","calc.per_board":"Por Tabla","calc.total_bf":"Total Pies T.","calc.total_cost":"Costo Total",
       "calc.cost_formula":"Costo = Total Pies T. × Precio / Pie T. · Factor de desperdicio aplicado a totales",
       "calc.lumber_preview":"Vista Previa","calc.not_to_scale":"Dimensiones — no a escala","calc.project_cut_list":"Lista de Corte",
       "calc.total_label":"Total:","calc.cost_label":"Costo:","calc.clear_all":"Limpiar Todo","calc.empty_title":"Sin elementos aún.","calc.empty_desc":"Agrega tablas arriba para crear tu lista.",
       "calc.waste_factor":"Factor de Desperdicio","calc.waste_0":"0%","calc.waste_50":"50%",
-      "hero.badge":"Herramienta Gratuita","hero.title":"Calcula madera al instante. Construye mejor.","hero.desc":"La calculadora moderna de pies tablares para carpinteros, contratistas y aficionados. Resultados en tiempo real, vista previa visual y lista de corte que persiste entre sesiones.","hero.cta":"Cómo Funciona",
+      "hero.badge":"Herramienta Online","hero.title":"Calcula madera al instante. Construye mejor.","hero.desc":"La calculadora moderna de pies tablares para carpinteros, contratistas y aficionados. Resultados en tiempo real, vista previa visual y lista de corte que persiste entre sesiones.","hero.cta":"Cómo Funciona",
       "how.guide":"Guía","how.title":"Cómo calcular pies tablares.","how.desc":"El pie tablar mide el volumen de la madera. Un pie tablar es 1′ × 1′ × 1″.",
       "how.step1_title":"Ingresa dimensiones","how.step1_desc":"Introduce grosor, ancho y largo. Cambia entre imperial y métrico sin problemas.",
       "how.step2_title":"Cantidad y precio","how.step2_desc":"¿Cuántas tablas? ¿Precio por pie tablar? Los resultados se actualizan al instante.",
@@ -149,16 +185,16 @@ const { title = "Board Foot Calculator — Free Lumber Calculator with Cut List"
       "seo.heading":"Todo lo que necesitas de una calculadora de pies tablares.",
     },
     fr: {
-      "nav.calculator":"Calculatrice","nav.about":"À propos","nav.blog":"Blog","nav.contact":"Contact","nav.privacy":"Confidentialité","nav.terms":"CGV","nav.get_started":"Commencer",
-      "footer.desc":"Calculateur gratuit de pied-planche pour les menuisiers, entrepreneurs et bricoleurs.","footer.about":"À propos","footer.blog":"Blog","footer.contact":"Contact","footer.privacy":"Politique de Confidentialité","footer.terms":"Conditions Générales","footer.copyright":"© BoardFootCal.com — Fabriqué pour les créateurs.",
-      "calc.badge":"Outil Gratuit","calc.heading":"Calculateur de Pieds-planches.","calc.subtitle":"Calculs de bois en temps réel avec aperçu visuel et liste de coupe sauvegardée dans votre navigateur.",
+      "nav.calculator":"Calculatrice","nav.about":"À propos","nav.blog":"Blog","nav.emi":"Calculateur EMI","nav.contact":"Contact","nav.privacy":"Confidentialité","nav.terms":"CGV","nav.get_started":"Commencer",
+      "footer.desc":"Calculateur de pied-planche pour les menuisiers, entrepreneurs et bricoleurs.","footer.about":"À propos","footer.blog":"Blog","footer.emi":"Calculateur EMI","footer.contact":"Contact","footer.privacy":"Politique de Confidentialité","footer.terms":"Conditions Générales","footer.copyright":"© BoardFootCal.com — Fabriqué pour les créateurs.",
+      "calc.badge":"Outil en Ligne","calc.heading":"Calculateur de Pieds-planches.","calc.subtitle":"Calculs de bois en temps réel avec aperçu visuel et liste de coupe sauvegardée dans votre navigateur.",
       "calc.board_dimensions":"Dimensions","calc.quick_fill":"Saisie Rapide","calc.thickness":"Épaisseur","calc.width":"Largeur","calc.length":"Longueur","calc.quantity":"Quantité",
       "calc.price_per_bf":"Prix / Pied-planche","calc.add_to_cut_list":"Ajouter à la Liste","calc.per_board":"Par Planche","calc.total_bf":"Total P-p","calc.total_cost":"Coût Total",
       "calc.cost_formula":"Coût = Total P-p × Prix / P-p · Facteur de perte appliqué aux totaux",
       "calc.lumber_preview":"Aperçu","calc.not_to_scale":"Dimensions — pas à l'échelle","calc.project_cut_list":"Liste de Coupe",
       "calc.total_label":"Total :","calc.cost_label":"Coût :","calc.clear_all":"Tout Effacer","calc.empty_title":"Aucun élément.","calc.empty_desc":"Ajoutez des planches ci-dessus pour constituer votre liste.",
       "calc.waste_factor":"Facteur de Perte","calc.waste_0":"0%","calc.waste_50":"50%",
-      "hero.badge":"Outil Gratuit","hero.title":"Calculez le bois instantanément. Construisez mieux.","hero.desc":"Le calculateur moderne de pieds-planches pour menuisiers, entrepreneurs et bricoleurs. Résultats en temps réel, aperçu visuel et liste de coupe persistante.","hero.cta":"Comment Ça Marche",
+      "hero.badge":"Outil en Ligne","hero.title":"Calculez le bois instantanément. Construisez mieux.","hero.desc":"Le calculateur moderne de pieds-planches pour menuisiers, entrepreneurs et bricoleurs. Résultats en temps réel, aperçu visuel et liste de coupe persistante.","hero.cta":"Comment Ça Marche",
       "how.guide":"Guide","how.title":"Comment calculer les pieds-planches.","how.desc":"Le pied-planche mesure le volume du bois. Un pied-planche = 1′ × 1′ × 1″.",
       "how.step1_title":"Saisissez les dimensions","how.step1_desc":"Entrez l'épaisseur, la largeur et la longueur. Basculez entre impérial et métrique.",
       "how.step2_title":"Quantité et prix","how.step2_desc":"Combien de planches ? Prix par pied-planche ? Les résultats se mettent à jour instantanément.",
@@ -173,16 +209,16 @@ const { title = "Board Foot Calculator — Free Lumber Calculator with Cut List"
       "seo.heading":"Tout ce dont vous avez besoin d'un calculateur de pieds-planches.",
     },
     de: {
-      "nav.calculator":"Rechner","nav.about":"Über uns","nav.blog":"Blog","nav.contact":"Kontakt","nav.privacy":"Datenschutz","nav.terms":"AGB","nav.get_started":"Loslegen",
-      "footer.desc":"Kostenloser Brettfuß-Rechner für Holzverarbeiter, Bauunternehmer und Heimwerker.","footer.about":"Über uns","footer.blog":"Blog","footer.contact":"Kontakt","footer.privacy":"Datenschutzerklärung","footer.terms":"AGB","footer.copyright":"© BoardFootCal.com — Für Macher gemacht.",
-      "calc.badge":"Kostenloses Tool","calc.heading":"Brettfuß-Rechner.","calc.subtitle":"Echtzeit-Holzberechnungen mit visueller Vorschau und einer Zuschnittliste, die in Ihrem Browser gespeichert wird.",
+      "nav.calculator":"Rechner","nav.about":"Über uns","nav.blog":"Blog","nav.emi":"EMI-Rechner","nav.contact":"Kontakt","nav.privacy":"Datenschutz","nav.terms":"AGB","nav.get_started":"Loslegen",
+      "footer.desc":"Brettfuß-Rechner für Holzverarbeiter, Bauunternehmer und Heimwerker.","footer.about":"Über uns","footer.blog":"Blog","footer.emi":"EMI-Rechner","footer.contact":"Kontakt","footer.privacy":"Datenschutzerklärung","footer.terms":"AGB","footer.copyright":"© BoardFootCal.com — Für Macher gemacht.",
+      "calc.badge":"Online-Rechner","calc.heading":"Brettfuß-Rechner.","calc.subtitle":"Echtzeit-Holzberechnungen mit visueller Vorschau und einer Zuschnittliste, die in Ihrem Browser gespeichert wird.",
       "calc.board_dimensions":"Abmessungen","calc.quick_fill":"Schnellauswahl","calc.thickness":"Dicke","calc.width":"Breite","calc.length":"Länge","calc.quantity":"Menge",
       "calc.price_per_bf":"Preis / Brettfuß","calc.add_to_cut_list":"Zur Liste hinzufügen","calc.per_board":"Pro Brett","calc.total_bf":"Gesamt BF","calc.total_cost":"Gesamtkosten",
       "calc.cost_formula":"Kosten = Gesamt BF × Preis / BF · Verschnittfaktor auf Summen angewendet",
       "calc.lumber_preview":"Vorschau","calc.not_to_scale":"Abmessungen — nicht maßstabsgetreu","calc.project_cut_list":"Zuschnittliste",
       "calc.total_label":"Gesamt:","calc.cost_label":"Kosten:","calc.clear_all":"Alle löschen","calc.empty_title":"Noch keine Einträge.","calc.empty_desc":"Fügen Sie oben Bretter hinzu, um Ihre Liste zu erstellen.",
       "calc.waste_factor":"Verschnittfaktor","calc.waste_0":"0%","calc.waste_50":"50%",
-      "hero.badge":"Kostenloses Tool","hero.title":"Holz sofort berechnen. Intelligenter bauen.","hero.desc":"Der moderne Brettfuß-Rechner für Holzverarbeiter, Bauunternehmer und Heimwerker. Echtzeitergebnisse, visuelle Vorschau und eine beständige Zuschnittliste.","hero.cta":"So funktioniert's",
+      "hero.badge":"Online-Rechner","hero.title":"Holz sofort berechnen. Intelligenter bauen.","hero.desc":"Der moderne Brettfuß-Rechner für Holzverarbeiter, Bauunternehmer und Heimwerker. Echtzeitergebnisse, visuelle Vorschau und eine beständige Zuschnittliste.","hero.cta":"So funktioniert's",
       "how.guide":"Anleitung","how.title":"Brettfuß berechnen.","how.desc":"Der Brettfuß misst das Holzvolumen. Ein Brettfuß = 1′ × 1′ × 1″.",
       "how.step1_title":"Maße eingeben","how.step1_desc":"Dicke, Breite und Länge eingeben. Zwischen imperial und metrisch umschalten.",
       "how.step2_title":"Menge & Preis","how.step2_desc":"Wie viele Bretter? Preis pro Brettfuß? Ergebnisse werden sofort aktualisiert.",
@@ -197,16 +233,16 @@ const { title = "Board Foot Calculator — Free Lumber Calculator with Cut List"
       "seo.heading":"Alles, was Sie von einem Brettfuß-Rechner brauchen.",
     },
     pt: {
-      "nav.calculator":"Calculadora","nav.about":"Sobre","nav.blog":"Blog","nav.contact":"Contato","nav.privacy":"Privacidade","nav.terms":"Termos","nav.get_started":"Começar",
-      "footer.desc":"Calculadora gratuita de pés-tábua para marceneiros, empreiteiros e DIYers.","footer.about":"Sobre","footer.blog":"Blog","footer.contact":"Contato","footer.privacy":"Política de Privacidade","footer.terms":"Termos e Condições","footer.copyright":"© BoardFootCal.com — Feito para criadores.",
-      "calc.badge":"Ferramenta Gratuita","calc.heading":"Calculadora de Pés-Tábua.","calc.subtitle":"Cálculos de madeira em tempo real com visualização e lista de corte salva no seu navegador.",
+      "nav.calculator":"Calculadora","nav.about":"Sobre","nav.blog":"Blog","nav.emi":"Calculadora EMI","nav.contact":"Contato","nav.privacy":"Privacidade","nav.terms":"Termos","nav.get_started":"Começar",
+      "footer.desc":"Calculadora de pés-tábua para marceneiros, empreiteiros e DIYers.","footer.about":"Sobre","footer.blog":"Blog","footer.emi":"Calculadora EMI","footer.contact":"Contato","footer.privacy":"Política de Privacidade","footer.terms":"Termos e Condições","footer.copyright":"© BoardFootCal.com — Feito para criadores.",
+      "calc.badge":"Ferramenta Online","calc.heading":"Calculadora de Pés-Tábua.","calc.subtitle":"Cálculos de madeira em tempo real com visualização e lista de corte salva no seu navegador.",
       "calc.board_dimensions":"Dimensões","calc.quick_fill":"Preenchimento Rápido","calc.thickness":"Espessura","calc.width":"Largura","calc.length":"Comprimento","calc.quantity":"Quantidade",
       "calc.price_per_bf":"Preço / Pé-tábua","calc.add_to_cut_list":"Adicionar à Lista","calc.per_board":"Por Tábua","calc.total_bf":"Total Pés","calc.total_cost":"Custo Total",
       "calc.cost_formula":"Custo = Total Pés × Preço / Pé · Fator de perda aplicado aos totais",
       "calc.lumber_preview":"Visualização","calc.not_to_scale":"Dimensões — fora de escala","calc.project_cut_list":"Lista de Corte",
       "calc.total_label":"Total:","calc.cost_label":"Custo:","calc.clear_all":"Limpar Tudo","calc.empty_title":"Nenhum item ainda.","calc.empty_desc":"Adicione tábuas acima para criar sua lista.",
       "calc.waste_factor":"Fator de Perda","calc.waste_0":"0%","calc.waste_50":"50%",
-      "hero.badge":"Ferramenta Gratuita","hero.title":"Calcule madeira instantaneamente. Construa melhor.","hero.desc":"A calculadora moderna de pés-tábua para marceneiros, empreiteiros e DIYers. Resultados em tempo real, visualização e lista de corte persistente.","hero.cta":"Como Funciona",
+      "hero.badge":"Ferramenta Online","hero.title":"Calcule madeira instantaneamente. Construa melhor.","hero.desc":"A calculadora moderna de pés-tábua para marceneiros, empreiteiros e DIYers. Resultados em tempo real, visualização e lista de corte persistente.","hero.cta":"Como Funciona",
       "how.guide":"Guia","how.title":"Como calcular pés-tábua.","how.desc":"O pé-tábua mede o volume da madeira. Um pé-tábua = 1′ × 1′ × 1″.",
       "how.step1_title":"Insira dimensões","how.step1_desc":"Insira espessura, largura e comprimento. Alterne entre imperial e métrico.",
       "how.step2_title":"Quantidade e preço","how.step2_desc":"Quantas tábuas? Preço por pé-tábua? Resultados atualizados instantaneamente.",
@@ -263,6 +299,24 @@ const { title = "Board Foot Calculator — Free Lumber Calculator with Cut List"
       themeBtns.forEach(btn => { btn.addEventListener("click", () => { const isD = document.documentElement.getAttribute("data-theme") === "dark"; if (isD) { document.documentElement.removeAttribute("data-theme"); localStorage.setItem("bfc_theme", "light"); } else { document.documentElement.setAttribute("data-theme", "dark"); localStorage.setItem("bfc_theme", "dark"); } updateTheme(); }); });
       const menuToggle = document.getElementById("menu-toggle"), mobileMenu = document.getElementById("mobile-menu"), menuIcon = document.getElementById("menu-icon"), closeIcon = document.getElementById("close-icon");
       if (menuToggle && mobileMenu) menuToggle.addEventListener("click", () => { const isO = !mobileMenu.classList.contains("hidden"); mobileMenu.classList.toggle("hidden", isO); menuIcon.classList.toggle("hidden", !isO); closeIcon.classList.toggle("hidden", isO); });
+
+      // Cookie Consent
+      const banner = document.getElementById("cookie-banner");
+      const acceptBtn = document.getElementById("cookie-accept");
+      const declineBtn = document.getElementById("cookie-decline");
+      const consentState = (() => { try { return localStorage.getItem("bfc_cookie_consent"); } catch (e) { return null; } })();
+      if (!consentState && banner) {
+        banner.classList.remove("hidden");
+        if (acceptBtn) acceptBtn.addEventListener("click", () => {
+          try { localStorage.setItem("bfc_cookie_consent", "accepted"); } catch (e) {}
+          banner.classList.add("hidden");
+          location.reload();
+        });
+        if (declineBtn) declineBtn.addEventListener("click", () => {
+          try { localStorage.setItem("bfc_cookie_consent", "declined"); } catch (e) {}
+          banner.classList.add("hidden");
+        });
+      }
     });
   })();
 </script>

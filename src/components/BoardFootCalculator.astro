@@ -11,7 +11,7 @@ import InputField from "./InputField.astro";
   <!-- Section Heading -->
   <div class="mb-10 text-center">
     <span class="inline-block rounded-full bg-secondary px-3 py-1 text-caption-mono font-mono uppercase tracking-wide text-muted" data-i18n="calc.badge">
-      Free Online Tool
+      Online Tool
     </span>
     <h2 class="mt-4 text-display-xl text-primary text-balance" data-i18n="calc.heading">
       Board Foot Calculator.
@@ -43,7 +43,7 @@ import InputField from "./InputField.astro";
           </div>
         </div>
 
-        <div class="flex flex-col gap-4">
+        <div class="grid grid-cols-3 gap-3">
           <div>
             <label class="mb-1.5 block text-body-sm text-secondary" data-i18n="calc.thickness">Thickness</label>
             <div class="flex items-center rounded-lg border border-subtle bg-primary">
@@ -98,10 +98,10 @@ import InputField from "./InputField.astro";
               </select>
             </div>
           </div>
-          <div>
-            <label class="mb-1.5 block text-body-sm text-secondary" data-i18n="calc.quantity">Quantity</label>
-            <input data-input="quantity" type="number" step="1" min="1" value="1" class="w-full rounded-lg border border-subtle bg-primary px-3 py-1.5 text-body-md text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40 [appearance:textfield]" />
-          </div>
+        </div>
+        <div class="mt-3">
+          <label class="mb-1.5 block text-body-sm text-secondary" data-i18n="calc.quantity">Quantity</label>
+          <input data-input="quantity" type="number" step="1" min="1" value="1" class="w-full rounded-lg border border-subtle bg-primary px-3 py-1.5 text-body-md text-primary outline-none transition-colors focus:border-accent-mustard focus:ring-1 focus:ring-accent-mustard/40 [appearance:textfield]" />
         </div>
 
         <div class="mt-6 grid grid-cols-2 gap-x-4 sm:grid-cols-4">
